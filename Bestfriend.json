@@ -1,0 +1,415 @@
+{
+  "version": 1,
+  "resultType": "line_end",
+  "language": "korean",
+  "lines": [
+    {
+      "startTime": 0,
+      "endTime": 3.6,
+      "text": "I should've stayed at home",
+      "confidence": 100,
+      "startConfidence": 100,
+      "endConfidence": 100
+    },
+    {
+      "startTime": 4,
+      "endTime": 6.4,
+      "text": "'Cause right now I see all these people that love me",
+      "confidence": 93,
+      "startConfidence": 93,
+      "endConfidence": 93
+    },
+    {
+      "startTime": 6.4,
+      "endTime": 9.2,
+      "text": "But I still feel alone",
+      "confidence": 97,
+      "startConfidence": 97,
+      "endConfidence": 97
+    },
+    {
+      "startTime": 9.7,
+      "endTime": 12.7,
+      "text": "Can't help but check my phone",
+      "confidence": 95,
+      "startConfidence": 95,
+      "endConfidence": 95
+    },
+    {
+      "startTime": 13.1,
+      "endTime": 15.7,
+      "text": "I could've made you mine",
+      "confidence": 95,
+      "startConfidence": 95,
+      "endConfidence": 95
+    },
+    {
+      "startTime": 16.3,
+      "endTime": 19.8,
+      "text": "But no, it wasn't meant to be and see, I wasn't made for you",
+      "confidence": 96,
+      "startConfidence": 96,
+      "endConfidence": 96
+    },
+    {
+      "startTime": 19.7,
+      "endTime": 22.3,
+      "text": "And you weren't made for me",
+      "confidence": 95,
+      "startConfidence": 95,
+      "endConfidence": 95
+    },
+    {
+      "startTime": 23,
+      "endTime": 28.8,
+      "text": "Though it seemed so easy",
+      "confidence": 95,
+      "startConfidence": 95,
+      "endConfidence": 95
+    },
+    {
+      "startTime": 29.2,
+      "endTime": 35.6,
+      "text": "And that's because I wanna be your favorite boy",
+      "confidence": 93,
+      "startConfidence": 93,
+      "endConfidence": 93
+    },
+    {
+      "startTime": 35.8,
+      "endTime": 38.8,
+      "text": "I wanna be the one that makes your day",
+      "confidence": 95,
+      "startConfidence": 95,
+      "endConfidence": 95
+    },
+    {
+      "startTime": 39.1,
+      "endTime": 42.7,
+      "text": "The one you think about as you lie awake",
+      "confidence": 96,
+      "startConfidence": 96,
+      "endConfidence": 96
+    },
+    {
+      "startTime": 43.4,
+      "endTime": 48.1,
+      "text": "I can't wait to be your number one",
+      "confidence": 95,
+      "startConfidence": 95,
+      "endConfidence": 95
+    },
+    {
+      "startTime": 49,
+      "endTime": 52,
+      "text": "I'll be your biggest fan and you'll be mine",
+      "confidence": 95,
+      "startConfidence": 95,
+      "endConfidence": 95
+    },
+    {
+      "startTime": 52.1,
+      "endTime": 56.6,
+      "text": "But I still wanna break your heart and make you cry",
+      "confidence": 96,
+      "startConfidence": 96,
+      "endConfidence": 96
+    },
+    {
+      "startTime": 57.3,
+      "endTime": 60.4,
+      "text": "But won't you wait?",
+      "confidence": 93,
+      "startConfidence": 93,
+      "endConfidence": 93
+    },
+    {
+      "startTime": 60.7,
+      "endTime": 63.9,
+      "text": "You know it's too late",
+      "confidence": 94,
+      "startConfidence": 94,
+      "endConfidence": 94
+    },
+    {
+      "startTime": 64.3,
+      "endTime": 67.3,
+      "text": "I'm on my own shit now",
+      "confidence": 95,
+      "startConfidence": 95,
+      "endConfidence": 95
+    },
+    {
+      "startTime": 67.8,
+      "endTime": 73.2,
+      "text": "Let me tell you how it feels to be fucking great",
+      "confidence": 94,
+      "startConfidence": 94,
+      "endConfidence": 94
+    },
+    {
+      "startTime": 74,
+      "endTime": 80.5,
+      "text": "I feel great",
+      "confidence": 94,
+      "startConfidence": 94,
+      "endConfidence": 94
+    },
+    {
+      "startTime": 80.9,
+      "endTime": 84,
+      "text": "Whoa, whoa, whoa, whoa, whoa",
+      "confidence": 94,
+      "startConfidence": 94,
+      "endConfidence": 94
+    },
+    {
+      "startTime": 84.2,
+      "endTime": 86.7,
+      "text": "You need to be yourself",
+      "confidence": 94,
+      "startConfidence": 94,
+      "endConfidence": 94
+    },
+    {
+      "startTime": 87.7,
+      "endTime": 90.8,
+      "text": "Love someone for loving you instead of someone really cool",
+      "confidence": 94,
+      "startConfidence": 94,
+      "endConfidence": 94
+    },
+    {
+      "startTime": 90.6,
+      "endTime": 93.1,
+      "text": "That makes your heart melt",
+      "confidence": 96,
+      "startConfidence": 96,
+      "endConfidence": 96
+    },
+    {
+      "startTime": 93.7,
+      "endTime": 96.8,
+      "text": "Who knows what you truly felt?",
+      "confidence": 95,
+      "startConfidence": 95,
+      "endConfidence": 95
+    },
+    {
+      "startTime": 97.4,
+      "endTime": 100.4,
+      "text": "You're still my favorite girl",
+      "confidence": 95,
+      "startConfidence": 95,
+      "endConfidence": 95
+    },
+    {
+      "startTime": 100.8,
+      "endTime": 102.6,
+      "text": "You better trust me when I tell you",
+      "confidence": 95,
+      "startConfidence": 95,
+      "endConfidence": 95
+    },
+    {
+      "startTime": 102.6,
+      "endTime": 106.4,
+      "text": "There ain't no one else more beautiful in this damn world",
+      "confidence": 96,
+      "startConfidence": 96,
+      "endConfidence": 96
+    },
+    {
+      "startTime": 107.4,
+      "endTime": 114.6,
+      "text": "In this damn world",
+      "confidence": 94,
+      "startConfidence": 94,
+      "endConfidence": 94
+    },
+    {
+      "startTime": 115.8,
+      "endTime": 119.5,
+      "text": "You're gonna wanna be my best friend, baby",
+      "confidence": 93,
+      "startConfidence": 93,
+      "endConfidence": 93
+    },
+    {
+      "startTime": 119.8,
+      "endTime": 128,
+      "text": "You're gonna wanna be my best friend",
+      "confidence": 96,
+      "startConfidence": 96,
+      "endConfidence": 96
+    },
+    {
+      "startTime": 128.9,
+      "endTime": 129.5,
+      "text": "I said that",
+      "confidence": 93,
+      "startConfidence": 93,
+      "endConfidence": 93
+    },
+    {
+      "startTime": 129.7,
+      "endTime": 132.7,
+      "text": "You're gonna wanna be my best friend, baby",
+      "confidence": 97,
+      "startConfidence": 97,
+      "endConfidence": 97
+    },
+    {
+      "startTime": 133,
+      "endTime": 141,
+      "text": "You're gonna wanna be my best friend, best friend",
+      "confidence": 95,
+      "startConfidence": 95,
+      "endConfidence": 95
+    },
+    {
+      "startTime": 143,
+      "endTime": 145.9,
+      "text": "You're gonna wanna be my best friend, baby",
+      "confidence": 94,
+      "startConfidence": 94,
+      "endConfidence": 94
+    },
+    {
+      "startTime": 146,
+      "endTime": 149.3,
+      "text": "You're gonna wanna be my best friend",
+      "confidence": 97,
+      "startConfidence": 97,
+      "endConfidence": 97
+    },
+    {
+      "startTime": 150.4,
+      "endTime": 155.8,
+      "text": "Best friend",
+      "confidence": 93,
+      "startConfidence": 93,
+      "endConfidence": 93
+    },
+    {
+      "startTime": 156.2,
+      "endTime": 159.2,
+      "text": "You're gonna wanna be my best friend, baby",
+      "confidence": 95,
+      "startConfidence": 95,
+      "endConfidence": 95
+    },
+    {
+      "startTime": 159.5,
+      "endTime": 167.7,
+      "text": "You're gonna wanna be my best friend",
+      "confidence": 96,
+      "startConfidence": 96,
+      "endConfidence": 96
+    },
+    {
+      "startTime": 169.4,
+      "endTime": 172.2,
+      "text": "I say that I'm happy",
+      "confidence": 93,
+      "startConfidence": 93,
+      "endConfidence": 93
+    },
+    {
+      "startTime": 172.7,
+      "endTime": 174.8,
+      "text": "I say that I'm happy",
+      "confidence": 94,
+      "startConfidence": 94,
+      "endConfidence": 94
+    },
+    {
+      "startTime": 175.5,
+      "endTime": 178.7,
+      "text": "But no, no, no, no",
+      "confidence": 94,
+      "startConfidence": 94,
+      "endConfidence": 94
+    },
+    {
+      "startTime": 179.2,
+      "endTime": 181.6,
+      "text": "No, no, no",
+      "confidence": 95,
+      "startConfidence": 95,
+      "endConfidence": 95
+    },
+    {
+      "startTime": 182.3,
+      "endTime": 187.2,
+      "text": "Oh, I still wanna be your favorite boy",
+      "confidence": 94,
+      "startConfidence": 94,
+      "endConfidence": 94
+    },
+    {
+      "startTime": 188,
+      "endTime": 191.1,
+      "text": "I wanna be the one that makes your day",
+      "confidence": 95,
+      "startConfidence": 95,
+      "endConfidence": 95
+    },
+    {
+      "startTime": 191.3,
+      "endTime": 195.4,
+      "text": "The one you think about as you lie awake",
+      "confidence": 96,
+      "startConfidence": 96,
+      "endConfidence": 96
+    },
+    {
+      "startTime": 195.6,
+      "endTime": 201,
+      "text": "And I can't wait to be your number, your number one",
+      "confidence": 94,
+      "startConfidence": 94,
+      "endConfidence": 94
+    },
+    {
+      "startTime": 201.3,
+      "endTime": 204.1,
+      "text": "I'll be your biggest fan and you'll be mine",
+      "confidence": 96,
+      "startConfidence": 96,
+      "endConfidence": 96
+    },
+    {
+      "startTime": 204.2,
+      "endTime": 213.1,
+      "text": "But I still wanna break your heart and make you cry",
+      "confidence": 96,
+      "startConfidence": 96,
+      "endConfidence": 96
+    },
+    {
+      "startTime": 240,
+      "endTime": 245.2,
+      "text": "I still wanna be your favorite boy",
+      "confidence": 93,
+      "startConfidence": 93,
+      "endConfidence": 93
+    },
+    {
+      "startTime": 246.6,
+      "endTime": 249.2,
+      "text": "I wanna be the one",
+      "confidence": 92,
+      "startConfidence": 92,
+      "endConfidence": 92
+    },
+    {
+      "startTime": 250.3,
+      "endTime": 260.9,
+      "text": "I might just be the one",
+      "confidence": 94,
+      "startConfidence": 94,
+      "endConfidence": 94
+    }
+  ]
+}

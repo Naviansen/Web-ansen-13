@@ -1,0 +1,2258 @@
+﻿<!DOCTYPE html>
+<html lang="id" class="dark">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jadwal Pelajaran - Portofolio & Repositori Tugas Sekolah</title>
+  <!-- Inline script to detect and apply theme quickly before rendering -->
+  <script>
+    (function () {
+      const savedTheme = localStorage.getItem('theme');
+      const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
+        document.documentElement.classList.add('dark');
+      } else if (savedTheme === 'light' || (!savedTheme && !systemPrefersDark)) {
+        document.documentElement.classList.remove('dark');
+      }
+    })();
+  </script>
+  <!-- SEO Meta Tags -->
+  <meta name="description"
+    content="Website portofolio pribadi dan kumpulan tugas sekolah (Informatika & Bahasa Indonesia) dengan desain modern dan responsif bertema hitam-merah.">
+  <meta name="author" content="NA VIAN SEN">
+  <!-- Tailwind CSS v3 Play CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              red: {
+                50: '#fff1f2',
+                100: '#ffe4e6',
+                200: '#fecdd3',
+                300: '#fda4af',
+                400: '#fb7185',
+                500: '#e00f3c',
+                600: '#c20930',
+                700: '#a30024',
+                800: '#84001b',
+                900: '#660012',
+                950: '#3d0007',
+                accent: '#ff1a40',
+              },
+            },
+            page: 'rgb(var(--color-page) / <alpha-value>)',
+            card: 'rgb(var(--color-card) / <alpha-value>)',
+            surface: 'rgb(var(--color-secondary) / <alpha-value>)',
+            themeBorder: 'rgb(var(--color-border) / <alpha-value>)',
+            borderHover: 'rgb(var(--color-border-hover) / <alpha-value>)',
+            textPrimary: 'rgb(var(--color-primary) / <alpha-value>)',
+            textSecondary: 'rgb(var(--color-secondary-text) / <alpha-value>)',
+            textMuted: 'rgb(var(--color-muted) / <alpha-value>)',
+            themeAccent: 'rgb(var(--color-accent) / <alpha-value>)',
+            themeAccentHover: 'rgb(var(--color-accent-hover) / <alpha-value>)',
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            display: ['Outfit', 'sans-serif'],
+          },
+          animation: {
+            'glow-pulse': 'glowPulse 3s infinite alternate',
+            'fade-in': 'fadeIn 0.4s ease-out forwards',
+            'slide-up': 'slideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+          },
+          keyframes: {
+            glowPulse: {
+              '0%': { boxShadow: '0 0 5px var(--color-accent-glow), 0 0 10px var(--color-accent-glow)' },
+              '100%': { boxShadow: '0 0 15px var(--color-accent-glow-strong), 0 0 25px var(--color-accent-glow-strong)' }
+            },
+            fadeIn: {
+              '0%': { opacity: '0' },
+              '100%': { opacity: '1' }
+            },
+            slideUp: {
+              '0%': { transform: 'translateY(12px)', opacity: '0' },
+              '100%': { transform: 'translateY(0)', opacity: '1' }
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <!-- Google Fonts: Inter & Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <!-- FontAwesome Icons for Social Media and UI Elements -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body
+  class="min-h-screen flex flex-col antialiased overflow-x-hidden bg-page text-textPrimary transition-colors duration-300">
+  <!-- ================= TOP HEADER NAVBAR ================= -->
+  <header
+    class="sticky top-0 z-50 w-full bg-card/85 backdrop-blur-md border-b border-themeBorder transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <!-- Brand Logo / Name -->
+      <a href="index.html" class="flex items-center space-x-3 group">
+        <div
+          class="w-9 h-9 rounded-lg bg-gradient-to-tr from-brand-red-600 to-brand-red-500 flex items-center justify-center text-white font-display font-bold text-lg shadow-lg shadow-brand-red-950/20 group-hover:scale-105 transition-transform duration-200">
+          N
+        </div>
+        <div>
+          <h1
+            class="font-display font-bold text-textPrimary tracking-wide text-xs group-hover:text-textPrimary transition-colors">
+            NA VIAN SEN</h1>
+          <p class="text-[9px] text-textMuted font-medium tracking-wide">Siswa Kelas 11.3</p>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Menu Links -->
+      <nav class="hidden md:flex items-center space-x-1" id="nav-container-desktop">
+        <a href="index.html" id="nav-dashboard"
+          class="nav-item text-textMuted flex items-center space-x-2 px-3 py-1.5 rounded-lg hover:text-textPrimary hover:bg-surface border border-transparent hover:border-themeBorder transition-all duration-200 text-xs font-semibold tracking-wide">
+          <i class="fa-solid fa-chart-pie w-4 text-center"></i>
+          <span>DASHBOARD</span>
+        </a>
+        <a href="profil.html" id="nav-profil"
+          class="nav-item text-textMuted flex items-center space-x-2 px-3 py-1.5 rounded-lg hover:text-textPrimary hover:bg-surface border border-transparent hover:border-themeBorder transition-all duration-200 text-xs font-semibold tracking-wide">
+          <i class="fa-solid fa-user w-4 text-center"></i>
+          <span>PROFIL SAYA</span>
+        </a>
+        <a href="informatika.html" id="nav-informatika"
+          class="nav-item text-textMuted flex items-center space-x-2 px-3 py-1.5 rounded-lg hover:text-textPrimary hover:bg-surface border border-transparent hover:border-themeBorder transition-all duration-200 text-xs font-semibold tracking-wide">
+          <i class="fa-solid fa-code w-4 text-center"></i>
+          <span>INFORMATIKA</span>
+        </a>
+        <a href="bahasa.html" id="nav-bahasa-indonesia"
+          class="nav-item text-textMuted flex items-center space-x-2 px-3 py-1.5 rounded-lg hover:text-textPrimary hover:bg-surface border border-transparent hover:border-themeBorder transition-all duration-200 text-xs font-semibold tracking-wide">
+          <i class="fa-solid fa-book-open w-4 text-center"></i>
+          <span>BAHASA INDONESIA</span>
+        </a>
+        <a href="jadwal.html" id="nav-jadwal-pelajaran"
+          class="nav-item active-nav-item text-brand-red-500 flex items-center space-x-2 px-3 py-1.5 rounded-lg hover:text-textPrimary hover:bg-surface border border-transparent hover:border-themeBorder transition-all duration-200 text-xs font-semibold tracking-wide">
+          <i class="fa-solid fa-calendar-days w-4 text-center"></i>
+          <span>JADWAL PELAJARAN</span>
+        </a>
+        <a href="minigames.html" id="nav-minigames"
+          class="nav-item text-textMuted flex items-center space-x-2 px-3 py-1.5 rounded-lg hover:text-textPrimary hover:bg-surface border border-transparent hover:border-themeBorder transition-all duration-200 text-xs font-semibold tracking-wide">
+          <i class="fa-solid fa-gamepad w-4 text-center"></i>
+          <span>MINI GAMES</span>
+        </a>
+      </nav>
+
+      <!-- Desktop Right-side utilities (Social + Toggle) -->
+      <div class="hidden md:flex items-center space-x-2">
+        <a href="https://www.instagram.com/naviansenn/" target="_blank" rel="noopener noreferrer"
+          class="w-8 h-8 rounded-lg bg-surface border border-themeBorder hover:border-brand-red-500/20 hover:bg-brand-red-500/5 hover:text-brand-accent flex items-center justify-center text-textMuted transition-all duration-200"
+          title="Instagram">
+          <i class="fa-brands fa-instagram text-xs"></i>
+        </a>
+        <a href="mailto:sennavian@gmail.com"
+          class="w-8 h-8 rounded-lg bg-surface border border-themeBorder hover:border-brand-red-500/20 hover:bg-brand-red-500/5 hover:text-brand-accent flex items-center justify-center text-textMuted transition-all duration-200"
+          title="Kirim Email">
+          <i class="fa-solid fa-envelope text-xs"></i>
+        </a>
+        <!-- Vertical Divider -->
+        <span class="h-4 w-px bg-themeBorder mx-1"></span>
+        <!-- Theme Toggle -->
+        <button onclick="toggleTheme()" id="theme-toggle-desktop"
+          class="w-8 h-8 rounded-lg bg-surface border border-themeBorder hover:border-brand-red-500/20 hover:bg-brand-red-500/5 hover:text-brand-accent flex items-center justify-center text-textMuted transition-all duration-200"
+          title="Toggle Tema">
+          <i class="fa-solid fa-sun text-xs dark:hidden"></i>
+          <i class="fa-solid fa-moon text-xs hidden dark:inline-block"></i>
+        </button>
+      </div>
+
+      <!-- Mobile Right-side Actions -->
+      <div class="md:hidden flex items-center space-x-2">
+        <button onclick="toggleTheme()" id="theme-toggle-mobile"
+          class="text-textMuted hover:text-textPrimary p-2 rounded-lg bg-surface border border-themeBorder focus:outline-none transition-all"
+          title="Toggle Tema">
+          <i class="fa-solid fa-sun text-xs dark:hidden"></i>
+          <i class="fa-solid fa-moon text-xs hidden dark:inline-block"></i>
+        </button>
+        <button onclick="toggleMobileMenu()" id="btn-mobile-menu"
+          class="text-textMuted hover:text-textPrimary p-2 rounded-lg bg-surface border border-themeBorder focus:outline-none transition-all">
+          <i class="fa-solid fa-bars-staggered text-xs"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Navigation Drawer Overlay (Slides down from Navbar) -->
+    <div id="mobile-menu" class="hidden md:hidden border-t border-themeBorder bg-card px-4 py-3 space-y-3 shadow-lg">
+      <nav class="flex flex-col space-y-1.5" id="nav-container-mobile">
+        <a href="index.html" id="mobile-nav-dashboard"
+          class="nav-item  w-full flex items-center space-x-3 px-3 py-2 rounded-lg hover:bg-surface border border-transparent hover:border-themeBorder transition-all duration-200 text-xs font-semibold tracking-wide">
+          <i class="fa-solid fa-chart-pie w-4 text-center"></i>
+          <span>DASHBOARD</span>
+        </a>
+        <a href="profil.html" id="mobile-nav-profil"
+          class="nav-item  w-full flex items-center space-x-3 px-3 py-2 rounded-lg hover:bg-surface border border-transparent hover:border-themeBorder transition-all duration-200 text-xs font-semibold tracking-wide">
+          <i class="fa-solid fa-user w-4 text-center"></i>
+          <span>PROFIL SAYA</span>
+        </a>
+        <a href="informatika.html" id="mobile-nav-informatika"
+          class="nav-item  w-full flex items-center space-x-3 px-3 py-2 rounded-lg hover:bg-surface border border-transparent hover:border-themeBorder transition-all duration-200 text-xs font-semibold tracking-wide">
+          <i class="fa-solid fa-code w-4 text-center"></i>
+          <span>INFORMATIKA</span>
+        </a>
+        <a href="bahasa.html" id="mobile-nav-bahasa-indonesia"
+          class="nav-item  w-full flex items-center space-x-3 px-3 py-2 rounded-lg hover:bg-surface border border-transparent hover:border-themeBorder transition-all duration-200 text-xs font-semibold tracking-wide">
+          <i class="fa-solid fa-book-open w-4 text-center"></i>
+          <span>BAHASA INDONESIA</span>
+        </a>
+        <a href="jadwal.html" id="mobile-nav-jadwal-pelajaran"
+          class="nav-item active-nav-item w-full flex items-center space-x-3 px-3 py-2 rounded-lg hover:bg-surface border border-transparent hover:border-themeBorder transition-all duration-200 text-xs font-semibold tracking-wide">
+          <i class="fa-solid fa-calendar-days w-4 text-center"></i>
+          <span>JADWAL PELAJARAN</span>
+        </a>
+        <a href="minigames.html" id="mobile-nav-minigames"
+          class="nav-item  w-full flex items-center space-x-3 px-3 py-2 rounded-lg hover:bg-surface border border-transparent hover:border-themeBorder transition-all duration-200 text-xs font-semibold tracking-wide">
+          <i class="fa-solid fa-gamepad w-4 text-center"></i>
+          <span>MINI GAMES</span>
+        </a>
+      </nav>
+      <!-- Social Media Links (Mobile Drawer Footer) -->
+      <div class="pt-3 border-t border-themeBorder flex items-center justify-between px-2">
+        <span class="text-[10px] text-textMuted font-semibold tracking-widest uppercase">SOSIAL MEDIA</span>
+        <div class="flex space-x-2">
+          <a href="https://www.instagram.com/naviansenn/" target="_blank" rel="noopener noreferrer"
+            class="w-7 h-7 rounded-lg bg-surface border border-themeBorder hover:text-themeAccent flex items-center justify-center text-textMuted transition-all"
+            title="Instagram">
+            <i class="fa-brands fa-instagram text-xs"></i>
+          </a>
+          <a href="mailto:sennavian@gmail.com"
+            class="w-7 h-7 rounded-lg bg-surface border border-themeBorder hover:text-themeAccent flex items-center justify-center text-textMuted transition-all"
+            title="Kirim Email">
+            <i class="fa-solid fa-envelope text-xs"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= MAIN CONTENT WRAPPER ================= -->
+  <main id="spa-main" class="flex-1 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col min-h-[calc(100vh-64px)]">
+    <!-- HEADER AREA -->
+    <header class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6 pb-4 border-b border-themeBorder">
+      <div class="space-y-1 mt-1 sm:mt-0">
+        <h2 id="page-title" class="font-display font-bold text-xl sm:text-2xl text-textPrimary tracking-tight">Jadwal Pelajaran</h2>
+        <p id="page-subtitle" class="text-xs text-textMuted mt-1">Jadwal kegiatan belajar mengajar Kelas 11 semester berjalan.</p>
+      </div>
+      <div class="flex items-center space-x-3">
+        <span class="text-[10px] text-textMuted font-semibold tracking-wide px-2.5 py-1 rounded-full bg-surface border border-themeBorder flex items-center gap-1.5">
+          <span class="w-1.5 h-1.5 rounded-full bg-brand-red-500 animate-pulse"></span> AKTIF: KELAS 11
+        </span>
+      </div>
+    </header>
+
+    <section id="view-dashboard" class="view-panel space-y-6 animate-slide-up hidden">
+  <!-- Welcome Banner / Learning Progress Hero -->
+ <div class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-surface to-page border border-themeBorder p-6 sm:p-10 flex flex-col lg:flex-row lg:items-center justify-between gap-6 shadow-[0_12px_40px_rgba(0,0,0,0.4)]">
+ <!-- Background abstract wavy SVG -->
+ <div class="absolute right-0 top-0 bottom-0 w-[60%] pointer-events-none opacity-40">
+ <svg viewBox="0 0 800 400" preserveAspectRatio="xMaxYMid slice" class="w-full h-full">
+ <path d="M 0,200 C 150,50 250,350 400,200 C 550,50 650,350 800,200" fill="none" stroke="rgba(224,15,60,0.3)" stroke-width="2" />
+ <path d="M -50,220 C 100,70 200,370 350,220 C 500,70 600,370 750,220" fill="none" stroke="rgba(224,15,60,0.15)" stroke-width="1.5" />
+ <path d="M 50,180 C 200,30 300,330 450,180 C 600,30 700,330 850,180" fill="none" stroke="rgba(224,15,60,0.6)" stroke-width="2" filter="drop-shadow(0 0 8px rgba(224,15,60,0.5))" />
+ </svg>
+ <div class="absolute inset-0 bg-gradient-to-l from-transparent to-page"></div>
+ </div>
+
+ <div class="z-10 space-y-4 max-w-xl"> 
+ <div class="flex items-center gap-4">
+ <span class="text-[9px] font-bold text-brand-red-500 uppercase tracking-widest px-2.5 py-1 rounded bg-brand-red-500/10 border border-brand-red-500/20">
+ HALO, SELAMAT <span id="greeting-time">DATANG</span> 
+ </span>
+ </div>
+ <div class="flex items-center gap-4">
+ <h3 class="font-display font-extrabold text-textPrimary text-3xl sm:text-4xl tracking-tight drop-shadow-md">
+ NA VIAN SEN
+ </h3>
+ <div class="w-14 h-14 rounded-xl p-[2px] bg-gradient-to-tr from-brand-red-600 via-brand-red-400 to-transparent shadow-[0_0_15px_rgba(224,15,60,0.3)]">
+ <img src="foto.jpeg" alt="Avatar" class="w-full h-full object-cover rounded-[10px]" onerror="this.src='https://ui-avatars.com/api/?name=Na+Vian+Sen&background=e00f3c&color=fff&size=100'">
+ </div>
+ </div>
+ <p class="text-xs sm:text-sm text-textMuted leading-relaxed max-w-md font-medium">
+ Pantau progres belajar, tugas sekolah, dan portofolio Anda secara real-time.
+ </p>
+ <div class="pt-2 flex gap-3"> 
+ <a href="profil.html" class="px-5 py-2 text-xs font-bold rounded-xl bg-brand-red-500 hover:bg-brand-accent text-white shadow-[0_0_20px_rgba(224,15,60,0.4)] hover:shadow-[0_0_30px_rgba(224,15,60,0.6)] active:scale-[0.98] transition-all duration-300">
+ <i class="fa-solid fa-user-tie mr-1.5"></i>Buka Profil 
+ </a> 
+ <a href="informatika.html" class="px-5 py-2 text-xs font-bold rounded-xl bg-surface border-2 border-themeBorder hover:border-textMuted text-textSecondary active:scale-[0.98] transition-all duration-300">
+ Daftar Tugas 
+ </a> 
+ </div>
+ </div> 
+
+ <!-- Progress Ring Widget -->
+ <div class="z-10 flex items-center gap-5 bg-card/80 backdrop-blur-md p-4 rounded-[20px] border border-white/5 shadow-2xl shrink-0 mr-4 md:mr-10">
+ <div class="relative w-16 h-16 flex items-center justify-center drop-shadow-[0_0_10px_rgba(224,15,60,0.3)]"> 
+ <svg class="w-full h-full transform -rotate-90 drop-shadow-lg">
+ <circle cx="32" cy="32" r="28" class="stroke-page" stroke-width="4" fill="transparent" />
+ <circle id="progress-circle" cx="32" cy="32" r="28" class="stroke-brand-red-500 transition-all duration-500" stroke-width="4" stroke-linecap="round" fill="transparent" stroke-dasharray="175.9" stroke-dashoffset="175.9" />
+ </svg> 
+ <span id="progress-percentage-text" class="absolute text-[11px] font-black text-textPrimary">0%</span>
+ </div>
+ <div class="pr-2">
+ <p class="text-sm font-bold text-textPrimary">Progres Belajar</p>
+ <p class="text-[10px] text-textMuted mt-1 font-medium" id="progress-tasks-text">0 dari 0 tugas selesai</p>
+ </div>
+ </div>
+ </div> 
+  <!-- Quick Stats Card Grid -->
+ <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4"> 
+ <!-- Card 1: Total Tugas -->
+ <div class="premium-card rounded-[14px] bg-card border border-themeBorder/60 p-5 flex items-center relative overflow-hidden shadow-md hover:-translate-y-1 transition-transform duration-300">
+ <div class="absolute inset-0 bg-gradient-to-t from-white/[0.02] to-transparent pointer-events-none"></div>
+ <div class="w-full text-center flex flex-col items-center justify-center space-y-1">
+ <p class="text-[10px] font-bold text-textSecondary uppercase tracking-widest">Total Tugas</p>
+ <h4 class="font-display font-black text-2xl text-textPrimary drop-shadow-sm" id="stat-total">0</h4>
+ </div>
+ <div class="absolute right-4 w-8 h-8 rounded-lg bg-surface border border-themeBorder flex items-center justify-center text-textMuted shadow-sm">
+ <i class="fa-solid fa-layer-group text-[10px]"></i>
+ </div>
+ </div> 
+ <!-- Card 2: Tugas Selesai -->
+ <div class="premium-card rounded-[14px] bg-card border border-themeBorder/60 p-5 flex items-center relative overflow-hidden shadow-md hover:-translate-y-1 transition-transform duration-300">
+ <div class="absolute inset-0 bg-gradient-to-t from-emerald-500/[0.02] to-transparent pointer-events-none"></div>
+ <div class="w-full text-center flex flex-col items-center justify-center space-y-1">
+ <p class="text-[10px] font-bold text-textSecondary uppercase tracking-widest">Tugas Selesai</p>
+ <h4 class="font-display font-black text-2xl text-emerald-500 drop-shadow-sm" id="stat-completed">0</h4>
+ </div>
+ <div class="absolute right-4 w-8 h-8 rounded-lg bg-surface border border-themeBorder flex items-center justify-center text-textMuted shadow-sm">
+ <i class="fa-solid fa-trophy text-[10px]"></i>
+ </div>
+ </div> 
+ <!-- Card 3: Dalam Pengerjaan -->
+ <div class="premium-card rounded-[14px] bg-card border border-themeBorder/60 p-5 flex items-center relative overflow-hidden shadow-md hover:-translate-y-1 transition-transform duration-300">
+ <div class="absolute inset-0 bg-gradient-to-t from-amber-500/[0.02] to-transparent pointer-events-none"></div>
+ <div class="w-full text-center flex flex-col items-center justify-center space-y-1">
+ <p class="text-[10px] font-bold text-textSecondary uppercase tracking-widest">Dalam Pengerjaan</p>
+ <h4 class="font-display font-black text-2xl text-amber-500 drop-shadow-sm" id="stat-progress">0</h4>
+ </div>
+ <div class="absolute right-4 w-8 h-8 rounded-lg bg-surface border border-themeBorder flex items-center justify-center text-amber-500 shadow-sm">
+ <i class="fa-solid fa-gear text-[10px]"></i>
+ </div>
+ </div> 
+ <!-- Card 4: Rata-rata Nilai -->
+ <div class="premium-card rounded-[14px] bg-card border border-themeBorder/60 p-5 flex items-center relative overflow-hidden shadow-md hover:-translate-y-1 transition-transform duration-300">
+ <div class="absolute inset-0 bg-gradient-to-t from-blue-500/[0.02] to-transparent pointer-events-none"></div>
+ <div class="w-full text-center flex flex-col items-center justify-center space-y-1">
+ <p class="text-[10px] font-bold text-textSecondary uppercase tracking-widest">Rata-rata Nilai</p>
+ <h4 class="font-display font-black text-2xl text-blue-400 drop-shadow-sm" id="stat-avg-grade">0.0</h4>
+ </div>
+ <div class="absolute right-4 w-8 h-8 rounded-lg bg-surface border border-themeBorder flex items-center justify-center text-blue-400 shadow-sm">
+ <i class="fa-solid fa-medal text-[10px]"></i>
+ </div>
+ </div>
+ </div> 
+ <!-- Two Column Layout: Activities & Quote -->
+ <div class="grid grid-cols-1 lg:grid-cols-3 gap-5"> <!-- Left: Recent Assignments list -->
+ <div class="lg:col-span-2 premium-card rounded-xl p-5 flex flex-col justify-between">
+ <div>
+ <div class="flex items-center justify-between pb-3.5 border-b border-themeBorder mb-4">
+ <h4 class="font-display font-bold text-sm text-textPrimary flex items-center gap-2"> <i
+ class="fa-solid fa-clock-rotate-left text-brand-red-500 text-xs"></i> TUGAS TERBARU </h4> <a
+ href="informatika.html"
+ class="text-xs text-brand-accent hover:text-[#ff3d5d] font-semibold transition-colors flex items-center gap-1">
+ Semua Tugas <i class="fa-solid fa-arrow-right text-[10px]"></i> </a>
+ </div>
+ <div class="space-y-2.5" id="recent-tasks-list"> <!-- Dynamically populated via JS --> </div>
+ </div>
+ </div>  <!-- Right: Category breakdown and Profile Quote -->
+ <div class="space-y-5"> 
+ <!-- Ringkasan per Pelajaran -->
+ <div class="premium-card rounded-2xl p-6 bg-card border border-themeBorder/60 shadow-md">
+ <h4 class="font-display font-bold text-[11px] text-textPrimary tracking-widest uppercase flex items-center gap-2 mb-6">
+ <i class="fa-solid fa-folder-open text-brand-red-500 text-xs"></i> KATEGORI TUGAS
+ </h4>
+ <div class="space-y-5 text-xs">
+ <div class="space-y-2">
+ <div class="flex justify-between font-semibold items-center"> 
+ <span class="text-textPrimary">Informatika</span>
+ <span class="text-textSecondary font-bold text-[10px]" id="subject-info-count">0 Tugas</span>
+ </div>
+ <div class="h-1.5 w-full bg-themeBorder rounded-full overflow-hidden" style="mask-image: repeating-linear-gradient(to right, black 0, black 6px, transparent 6px, transparent 8px);">
+ <div class="h-full bg-brand-red-500 transition-all duration-500" id="subject-info-bar" style="width: 0%"></div>
+ </div>
+ </div>
+ <div class="space-y-2">
+ <div class="flex justify-between font-semibold items-center"> 
+ <span class="text-textPrimary">Bahasa Indonesia</span> 
+ <span class="text-blue-400 font-bold text-[10px]" id="subject-indo-count">0 Tugas</span> 
+ </div>
+ <div class="h-1.5 w-full bg-themeBorder rounded-full overflow-hidden" style="mask-image: repeating-linear-gradient(to right, black 0, black 6px, transparent 6px, transparent 8px);">
+ <div class="h-full bg-blue-500 transition-all duration-500" id="subject-indo-bar" style="width: 0%"></div>
+ </div>
+ </div>
+ </div>
+ </div> 
+ 
+ <!-- Quote -->
+ <div class="premium-card rounded-2xl p-6 relative overflow-hidden bg-gradient-to-br from-surface to-card border border-themeBorder/60 shadow-md">
+ <i class="fa-solid fa-quote-left absolute top-4 left-4 text-4xl text-themeBorder opacity-30"></i>
+ <div class="relative z-10 space-y-4 pt-4">
+ <p class="text-xs italic text-textSecondary leading-[1.8] font-medium px-2"> 
+ "Teknologi hanyalah alat. Dalam memotivasi anak-anak dan membuat mereka bekerja bersama, gurulah yang paling penting." 
+ </p>
+ <div class="flex items-center justify-end gap-2 pt-2">
+ <span class="text-[9px] font-black text-textPrimary tracking-widest uppercase">BILL GATES</span>
+ <div class="w-6 h-6 rounded-full border border-themeBorder overflow-hidden bg-page">
+ <img src="https://ui-avatars.com/api/?name=Bill+Gates&background=111214&color=fff&size=50" alt="Bill Gates" class="w-full h-full object-cover">
+ </div>
+ </div>
+ </div>
+ </div>
+ </div>
+ </div>
+ </section>
+
+    <section id="view-profil" class="view-panel space-y-6 animate-slide-up hidden">
+      
+      <!-- 1. PRIMARY: Profile Hero Card -->
+      <div class="premium-card rounded-2xl overflow-hidden border border-themeBorder shadow-md bg-card relative">
+        <!-- Banner Background (Subtle & Elegant, Not Harsh) -->
+        <div class="h-32 sm:h-44 bg-gradient-to-r from-surface via-card to-surface relative border-b border-themeBorder overflow-hidden">
+          <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-brand-red-500/10 via-transparent to-transparent"></div>
+          <div class="absolute top-0 right-1/4 w-64 h-64 bg-brand-red-500/5 rounded-full blur-3xl pointer-events-none"></div>
+        </div>
+
+        <!-- Profile Info Overlay -->
+        <div class="px-6 pb-6 sm:px-8 sm:pb-8 relative flex flex-col sm:flex-row items-start sm:items-end gap-6 -mt-14 sm:-mt-16 z-10">
+          <!-- Profile Avatar with subtle glow and border -->
+          <div class="w-24 h-24 sm:w-32 sm:h-32 rounded-2xl bg-surface border-2 border-themeAccent/80 overflow-hidden flex items-center justify-center shadow-lg shadow-themeAccent/15 ring-4 ring-themeAccent/10 shrink-0 hover:scale-[1.02] transition-all duration-300 relative group">
+            <img src="Ansen.jpeg" alt="NA VIAN SEN"
+              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+              onerror="this.src='Ansen.jpg'; this.onerror=function(){this.style.display='none'};" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          </div>
+
+          <!-- Strict Information Hierarchy -->
+          <div class="flex-1 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-5 w-full">
+            <div class="space-y-1 py-0.5">
+              <!-- 1. Name -->
+              <h3 class="font-display font-extrabold text-textPrimary text-2xl sm:text-3xl tracking-tight">
+                NA VIAN SEN
+              </h3>
+
+              <!-- 2. Badges: Frontend Developer Enthusiast + Pelajar Kelas XI -->
+              <div class="flex flex-wrap items-center gap-2 pt-1 pb-0.5">
+                <span class="text-[10px] sm:text-xs bg-themeAccent/10 text-themeAccent font-bold px-2.5 py-1 rounded-md border border-themeAccent/20 flex items-center gap-1.5 shadow-sm">
+                  <i class="fa-solid fa-code text-[10px]"></i> Frontend Developer Enthusiast
+                </span>
+                <span class="text-[10px] sm:text-xs bg-surface text-textSecondary font-medium px-2.5 py-1 rounded-md border border-themeBorder flex items-center gap-1">
+                  <i class="fa-solid fa-graduation-cap text-[10px] text-textMuted"></i> Pelajar Kelas XI
+                </span>
+              </div>
+
+              <!-- 3. Subtitle Description -->
+              <p class="text-xs sm:text-sm text-textSecondary font-medium">
+                Learning Web Development &amp; Programming
+              </p>
+
+              <!-- 4. Location -->
+              <p class="text-xs text-textMuted flex items-center gap-1.5 pt-0.5">
+                <i class="fa-solid fa-location-dot text-themeAccent text-[11px]"></i> Jakarta, Indonesia
+              </p>
+            </div>
+
+            <!-- Social Links -->
+            <div class="flex items-center gap-2.5 self-start sm:self-end pt-2 sm:pt-0">
+              <a href="https://github.com/" target="_blank" rel="noopener noreferrer"
+                class="group w-10 h-10 rounded-xl bg-surface border border-themeBorder hover:border-themeAccent/40 hover:bg-themeAccent/5 flex items-center justify-center text-textSecondary hover:text-themeAccent transition-all duration-300 hover:-translate-y-0.5 shadow-sm"
+                title="GitHub">
+                <i class="fa-brands fa-github text-sm transition-transform group-hover:scale-110"></i>
+              </a>
+              <a href="https://instagram.com/naviansenn/" target="_blank" rel="noopener noreferrer"
+                class="group w-10 h-10 rounded-xl bg-surface border border-themeBorder hover:border-themeAccent/40 hover:bg-themeAccent/5 flex items-center justify-center text-textSecondary hover:text-themeAccent transition-all duration-300 hover:-translate-y-0.5 shadow-sm"
+                title="Instagram">
+                <i class="fa-brands fa-instagram text-sm transition-transform group-hover:scale-110"></i>
+              </a>
+              <a href="mailto:sennavian@gmail.com"
+                class="group w-10 h-10 rounded-xl bg-surface border border-themeBorder hover:border-themeAccent/40 hover:bg-themeAccent/5 flex items-center justify-center text-textSecondary hover:text-themeAccent transition-all duration-300 hover:-translate-y-0.5 shadow-sm"
+                title="Kirim Email">
+                <i class="fa-solid fa-envelope text-sm transition-transform group-hover:scale-110"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. PRIMARY: Music Player (Signature Component) -->
+      <style>
+        @keyframes eq-bar {
+          0%, 100% { transform: scaleY(0.2); }
+          50% { transform: scaleY(1); }
+        }
+        @keyframes cover-pulse-subtle {
+          0%, 100% { box-shadow: 0 0 12px rgba(225, 29, 72, 0.25); }
+          50% { box-shadow: 0 0 24px rgba(225, 29, 72, 0.55); }
+        }
+        .eq-bar {
+          transform-origin: bottom;
+          transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+        .eq-playing .eq-bar {
+          animation: eq-bar ease-in-out infinite;
+        }
+        .eq-playing .eq-bar:nth-child(1) { animation-duration: 0.45s; animation-delay: 0.0s; }
+        .eq-playing .eq-bar:nth-child(2) { animation-duration: 0.55s; animation-delay: 0.12s; }
+        .eq-playing .eq-bar:nth-child(3) { animation-duration: 0.40s; animation-delay: 0.05s; }
+        .eq-playing .eq-bar:nth-child(4) { animation-duration: 0.65s; animation-delay: 0.18s; }
+        .eq-playing .eq-bar:nth-child(5) { animation-duration: 0.50s; animation-delay: 0.08s; }
+        .eq-paused .eq-bar {
+          animation: none !important;
+          transform: scaleY(0.2);
+          opacity: 0.4;
+        }
+        .cover-playing {
+          animation: cover-pulse-subtle 2.5s ease-in-out infinite;
+        }
+        .ctrl-btn {
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border: 1px solid var(--ctrl-border, rgba(255, 255, 255, 0.1));
+          background: var(--ctrl-bg, rgba(255, 255, 255, 0.05));
+          color: var(--ctrl-color, #a1a1aa);
+          transition: all 0.25s ease;
+          cursor: pointer;
+          position: relative;
+        }
+        .ctrl-btn:hover {
+          color: #fff;
+          border-color: rgba(225, 29, 72, 0.5);
+          background: rgba(225, 29, 72, 0.1);
+          transform: scale(1.05);
+        }
+        .ctrl-btn:active { transform: scale(0.95); }
+        .play-btn-glow {
+          box-shadow: 0 0 18px rgba(225, 29, 72, 0.35);
+        }
+        .play-btn-glow:hover {
+          box-shadow: 0 0 28px rgba(225, 29, 72, 0.65);
+        }
+      </style>
+
+      <div id="premium-music-player"
+        class="group relative w-full rounded-2xl bg-card border border-themeBorder shadow-lg hover:shadow-themeAccent/5 transition-all duration-500 p-5 sm:p-6" style="height:auto;min-height:0;">
+        
+        <!-- Subtle Ambient Background Glow -->
+        <div class="absolute -top-24 -right-24 w-48 h-48 bg-themeAccent/5 rounded-full blur-3xl pointer-events-none group-hover:bg-themeAccent/10 transition-all duration-700"></div>
+        <div class="absolute -bottom-24 -left-24 w-48 h-48 bg-themeAccent/5 rounded-full blur-3xl pointer-events-none group-hover:bg-themeAccent/10 transition-all duration-700"></div>
+
+        
+
+        <div class="relative w-full flex flex-col md:flex-row items-center md:items-center gap-5 sm:gap-6 z-10">
+          
+          <!-- Album Artwork -->
+          <div id="music-cover-wrapper"
+            class="relative w-28 h-28 sm:w-24 sm:h-24 shrink-0 rounded-2xl overflow-hidden border border-themeBorder group-hover:border-themeAccent/50 transition-all duration-500 shadow-md cursor-pointer mx-auto md:mx-0">
+            <div class="absolute inset-0 bg-gradient-to-tr from-black/30 via-transparent to-transparent pointer-events-none z-10"></div>
+            <img id="music-cover"
+              src="ArcticM.jpg"
+              alt="Album Cover"
+              class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              onerror="this.src='505Cov.jpg'; this.onerror=null;">
+          </div>
+
+          <!-- Center: Song Info & Progress Bar -->
+          <div class="flex flex-col justify-center flex-1 w-full min-w-0">
+            <!-- Currently Listening Badge with Live Audio Bars -->
+            <div class="flex items-center gap-2 mb-1.5 justify-center md:justify-start">
+              <div id="equalizer" class="flex items-end gap-[2.5px] h-3 eq-paused transition-all duration-300">
+                <div class="w-[2.5px] h-full bg-themeAccent rounded-t-sm eq-bar shadow-[0_0_4px_rgba(225,29,72,0.8)]"></div>
+                <div class="w-[2.5px] h-full bg-themeAccent rounded-t-sm eq-bar shadow-[0_0_4px_rgba(225,29,72,0.8)]"></div>
+                <div class="w-[2.5px] h-full bg-themeAccent rounded-t-sm eq-bar shadow-[0_0_4px_rgba(225,29,72,0.8)]"></div>
+                <div class="w-[2.5px] h-full bg-themeAccent rounded-t-sm eq-bar shadow-[0_0_4px_rgba(225,29,72,0.8)]"></div>
+                <div class="w-[2.5px] h-full bg-themeAccent rounded-t-sm eq-bar shadow-[0_0_4px_rgba(225,29,72,0.8)]"></div>
+              </div>
+              <span class="text-[9px] font-extrabold tracking-[0.2em] text-textSecondary uppercase">
+                CURRENTLY LISTENING
+              </span>
+            </div>
+
+            <!-- Song Title & Artist Hierarchy -->
+            <div class="flex flex-col md:flex-row items-center md:justify-between mb-3 w-full gap-2 md:gap-0">
+              <div class="min-w-0 md:pr-4 text-center md:text-left w-full md:w-auto">
+                <h4 id="track-title" class="text-lg sm:text-xl font-display font-bold text-textPrimary truncate">
+                  Secret Door
+                </h4>
+                <p id="track-artist" class="text-xs text-themeAccent font-semibold truncate mt-0.5">
+                  Arctic Monkeys
+                </p>
+              </div>
+
+              <!-- Player Auxiliary Buttons: All Songs, Lyrics, AI Sync, Stats -->
+              <div class="flex items-center gap-1.5 shrink-0 flex-wrap sm:flex-nowrap">
+                <button id="btn-all-songs"
+                  class="hide-on-float shrink-0 text-[10px] uppercase tracking-wider font-bold text-textSecondary hover:text-textPrimary border border-themeBorder hover:border-themeAccent/40 bg-surface hover:bg-themeAccent/10 rounded-lg px-2.5 sm:px-3 py-1.5 transition-all flex items-center gap-1.5 shadow-sm cursor-pointer"
+                  title="Daftar Semua Lagu">
+                  <i data-lucide="library" class="w-3 h-3 text-themeAccent"></i> <span class="hidden sm:inline">All</span> Songs
+                </button>
+                <button id="btn-lyrics" onclick="if(window.toggleLyricsPanel) window.toggleLyricsPanel();"
+                  
+                  class="hide-on-float shrink-0 text-[10px] uppercase tracking-wider font-bold text-textSecondary hover:text-textPrimary border border-themeBorder hover:border-themeAccent/40 bg-surface hover:bg-themeAccent/10 rounded-lg px-2.5 sm:px-3 py-1.5 transition-all flex items-center gap-1.5 shadow-sm cursor-pointer">
+                  <i data-lucide="mic-2" class="w-3 h-3 text-themeAccent"></i> <span
+                    class="hidden sm:inline">Show</span> Lyrics
+                </button>
+                <button id="btn-stats"
+                  class="hide-on-float shrink-0 text-[10px] uppercase tracking-wider font-bold text-textSecondary hover:text-textPrimary border border-themeBorder hover:border-themeAccent/40 bg-surface hover:bg-themeAccent/10 rounded-lg px-2 py-1.5 transition-all flex items-center gap-1 shadow-sm cursor-pointer"
+                  title="Statistik Mendengarkan">
+                  <i data-lucide="bar-chart-2" class="w-3 h-3 text-themeAccent"></i>
+                </button>
+              </div>
+            </div>
+
+            <!-- Progress Bar -->
+            <div class="flex items-center gap-3 w-full">
+              <span id="current-time" class="text-[10px] text-textMuted font-mono font-semibold w-8 text-right shrink-0">0:00</span>
+              <div id="progress-container"
+                class="h-1.5 w-full bg-surface border border-themeBorder rounded-full cursor-pointer relative group/progress overflow-hidden">
+                <div id="progress-bar"
+                  class="h-full bg-gradient-to-r from-themeAccent to-themeAccentHover w-0 relative transition-all duration-150 ease-linear rounded-full">
+                  <div class="absolute right-0 top-1/2 -translate-y-1/2 w-2 h-full bg-white opacity-0 group-hover/progress:opacity-100 transition-opacity"></div>
+                </div>
+              </div>
+              <span id="total-time" class="text-[10px] text-textMuted font-mono font-semibold w-8 shrink-0">0:00</span>
+            </div>
+          </div>
+
+          <!-- Right: Controls, Speed & Volume -->
+          <div class="flex flex-col items-center md:items-end justify-center gap-3.5 shrink-0 border-t md:border-t-0 md:border-l border-themeBorder pt-4 md:pt-0 md:pl-6 w-full md:w-auto">
+            <!-- Playback Controls with Shuffle & Repeat -->
+            <div class="flex items-center gap-2 sm:gap-2.5">
+              <button id="btn-shuffle" onclick="if(window.toggleShuffle) window.toggleShuffle(event);" class="ctrl-btn !w-8 !h-8 text-textSecondary hover:text-textPrimary transition-all cursor-pointer" title="Shuffle">
+                <i data-lucide="shuffle" class="w-3.5 h-3.5"></i>
+              </button>
+
+              <button id="btn-prev" class="ctrl-btn !w-8 sm:!w-9 !h-8 sm:!h-9 cursor-pointer" title="Lagu Sebelumnya">
+                <i data-lucide="skip-back" class="w-3.5 sm:w-4 h-3.5 sm:h-4"></i>
+              </button>
+
+              <button id="btn-play-expanded"
+                class="relative w-11 sm:w-12 h-11 sm:h-12 flex items-center justify-center text-white bg-themeAccent hover:bg-themeAccentHover rounded-full transition-all duration-300 active:scale-95 hover:scale-105 shadow-md play-btn-glow cursor-pointer"
+                title="Play / Pause">
+                <i data-lucide="play" class="w-4 sm:w-5 h-4 sm:h-5 ml-0.5" fill="currentColor"></i>
+              </button>
+
+              <button id="btn-next" class="ctrl-btn !w-8 sm:!w-9 !h-8 sm:!h-9 cursor-pointer" title="Lagu Berikutnya">
+                <i data-lucide="skip-forward" class="w-3.5 sm:w-4 h-3.5 sm:h-4"></i>
+              </button>
+
+              <button id="btn-repeat" onclick="if(window.cycleRepeat) window.cycleRepeat(event);" class="ctrl-btn !w-8 !h-8 text-textSecondary hover:text-textPrimary relative transition-all cursor-pointer" title="Repeat (Off / All / One)">
+                <i data-lucide="repeat" class="w-3.5 h-3.5"></i>
+                <span id="repeat-badge" class="hidden absolute -top-1 -right-1 text-[8px] font-black bg-themeAccent text-white rounded-full w-3.5 h-3.5 flex items-center justify-center leading-none">1</span>
+              </button>
+            </div>
+
+            <!-- Volume & Speed Controls -->
+            <div class="hide-on-float flex items-center justify-center md:justify-end gap-2.5 w-full">
+              <!-- Speed Selector -->
+              <div class="relative shrink-0">
+                <button id="btn-speed" onclick="if(window.toggleSpeedDropdown) window.toggleSpeedDropdown(event);"
+                  class="text-[9px] font-bold text-textSecondary hover:text-textPrimary transition-all border border-themeBorder rounded-md px-2 py-1 bg-surface flex items-center gap-1 shadow-sm cursor-pointer">
+                  <span id="speed-label">1x</span>
+                  <i data-lucide="chevron-up" id="speed-chevron" class="w-2.5 h-2.5"></i>
+                </button>
+                <div id="speed-dropdown"
+                  class="absolute bottom-full right-0 mb-2 w-32 bg-card border border-themeBorder rounded-xl p-1.5 opacity-0 pointer-events-none transition-all duration-200 shadow-xl z-50">
+                  <div class="text-[8px] font-bold text-themeAccent uppercase px-2 py-1 border-b border-themeBorder mb-1 text-center">Kecepatan</div>
+                  <button class="speed-option w-full text-left px-2 py-1 text-[10px] text-textSecondary hover:text-textPrimary hover:bg-surface rounded-md transition-colors" data-speed="0.5" onclick="if(window.setPlaybackSpeed) window.setPlaybackSpeed(0.5, event);">0.5x Slow</button>
+                  <button class="speed-option w-full text-left px-2 py-1 text-[10px] text-textSecondary hover:text-textPrimary hover:bg-surface rounded-md transition-colors" data-speed="0.75" onclick="if(window.setPlaybackSpeed) window.setPlaybackSpeed(0.75, event);">0.75x Slower</button>
+                  <button class="speed-option w-full text-left px-2 py-1 text-[10px] text-themeAccent hover:bg-surface rounded-md transition-colors font-bold" data-speed="1" onclick="if(window.setPlaybackSpeed) window.setPlaybackSpeed(1, event);">1x Normal</button>
+                  <button class="speed-option w-full text-left px-2 py-1 text-[10px] text-textSecondary hover:text-textPrimary hover:bg-surface rounded-md transition-colors" data-speed="1.25" onclick="if(window.setPlaybackSpeed) window.setPlaybackSpeed(1.25, event);">1.25x Fast</button>
+                  <button class="speed-option w-full text-left px-2 py-1 text-[10px] text-textSecondary hover:text-textPrimary hover:bg-surface rounded-md transition-colors" data-speed="1.5" onclick="if(window.setPlaybackSpeed) window.setPlaybackSpeed(1.5, event);">1.5x Faster</button>
+                  <button class="speed-option w-full text-left px-2 py-1 text-[10px] text-textSecondary hover:text-textPrimary hover:bg-surface rounded-md transition-colors" data-speed="2" onclick="if(window.setPlaybackSpeed) window.setPlaybackSpeed(2, event);">2x Max</button>
+                </div>
+              </div>
+
+              <!-- Mute / Volume -->
+              <button id="btn-mute" class="text-textMuted hover:text-textPrimary transition-colors" title="Mute / Unmute">
+                <i data-lucide="volume-2" class="w-3.5 h-3.5"></i>
+              </button>
+              <div id="volume-container" class="h-1.5 w-16 bg-surface border border-themeBorder rounded-full cursor-pointer relative overflow-hidden shrink-0">
+                <div id="volume-bar" class="h-full bg-themeAccent rounded-full w-full transition-all duration-150"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Expandable Lyrics Panel: uses max-h-0 â†’ max-h-[480px] so it has zero height when closed -->
+        <div id="lyrics-panel"
+          class="max-h-0 overflow-hidden opacity-0 pointer-events-none transition-[max-height,opacity] duration-500 ease-in-out bg-surface rounded-xl mt-0">
+          <div class="w-full flex flex-col border-t border-themeBorder pt-3 px-2 pb-4">
+            <div class="w-10 h-1 bg-textMuted/30 rounded-full mx-auto mb-3 cursor-pointer hover:bg-themeAccent transition-colors" id="btn-close-lyrics" onclick="if(window.closeLyricsPanel) window.closeLyricsPanel();"></div>
+            <h5 class="text-[10px] font-bold tracking-[0.2em] text-themeAccent uppercase flex items-center justify-center gap-1.5 mb-2">
+              <i data-lucide="music-4" class="w-3 h-3"></i> LYRICS
+            </h5>
+            <div id="lyrics-container"
+              class="h-64 w-full overflow-y-auto scrollbar-hide space-y-3 pb-2 mask-image-fade text-center relative scroll-smooth flex flex-col items-center px-4">
+              <!-- Injected dynamically -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. MAIN CONTENT: Clear Visual Hierarchy Grid -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        
+        <!-- ========= LEFT COLUMN (2/3) ========= -->
+        <div class="lg:col-span-2 space-y-6">
+
+          <!-- PRIMARY CONTENT: Tentang Saya (Elevated Visual Prominence) -->
+          <div class="premium-card rounded-2xl p-6 sm:p-7 bg-card border border-themeBorder shadow-sm space-y-4 relative overflow-hidden">
+            <div class="flex items-center justify-between border-b border-themeBorder pb-3.5">
+              <h4 class="font-display font-extrabold text-base sm:text-lg text-textPrimary tracking-tight flex items-center gap-2.5">
+                <span class="w-8 h-8 rounded-xl bg-themeAccent/10 border border-themeAccent/20 flex items-center justify-center text-themeAccent text-xs shadow-inner">
+                  <i class="fa-solid fa-address-card"></i>
+                </span>
+                Tentang Saya
+              </h4>
+              <span class="text-[10px] font-bold text-themeAccent bg-themeAccent/10 border border-themeAccent/20 px-2.5 py-0.5 rounded-full">
+                Bio &amp; Visi
+              </span>
+            </div>
+            
+            <div class="text-sm text-textSecondary space-y-3.5 leading-relaxed">
+              <p>
+                Halo! Saya <strong class="text-textPrimary font-bold">NA VIAN SEN</strong>, seorang siswa kelas 11 yang memiliki antusiasme mendalam di bidang eksplorasi teknologi, pengembangan web frontend, dan penulisan kreatif. Website ini dibangun sebagai portofolio pribadi terintegrasi sekaligus arsip seluruh karya dan penugasan akademis sekolah.
+              </p>
+              <p>
+                Saya menyukai estetika visual modern, terstruktur, dan fungsional dengan paduan palet warna dark mode beraksen merah yang tegas. Melalui berbagai proyek informatika, saya terus mengasah pemikiran komputasional, algoritma logika pemrograman, serta implementasi antarmuka pengguna yang responsif.
+              </p>
+            </div>
+          </div>
+
+          <!-- SECONDARY CONTENT: Pendidikan Timeline -->
+          <div class="premium-card rounded-2xl p-6 sm:p-7 bg-card border border-themeBorder shadow-sm space-y-5">
+            <div class="flex items-center gap-2.5 border-b border-themeBorder pb-3.5">
+              <div class="w-8 h-8 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-500 text-xs">
+                <i class="fa-solid fa-graduation-cap"></i>
+              </div>
+              <h4 class="font-display font-bold text-sm text-textPrimary uppercase tracking-wider">
+                Pendidikan
+              </h4>
+            </div>
+
+            <div class="relative pl-6 border-l-2 border-themeBorder space-y-6">
+              <!-- Timeline Item 1 (Active) -->
+              <div class="relative group">
+                <span class="absolute -left-[31px] top-1 w-4 h-4 rounded-full bg-themeAccent border-4 border-card shadow-md shadow-themeAccent/30 group-hover:scale-110 transition-transform"></span>
+                <span class="inline-block text-[10px] font-bold text-themeAccent uppercase tracking-wider px-2 py-0.5 rounded bg-themeAccent/10 border border-themeAccent/20">
+                  2025 &mdash; Sekarang
+                </span>
+                <h5 class="text-sm font-bold text-textPrimary mt-1.5">SMA Cinta Kasih Tzu Chi</h5>
+                <p class="text-xs text-textSecondary mt-0.5">Jurusan MIPA / Informatika</p>
+              </div>
+
+              <!-- Timeline Item 2 -->
+              <div class="relative group">
+                <span class="absolute -left-[31px] top-1 w-4 h-4 rounded-full bg-themeBorder border-4 border-card group-hover:scale-110 transition-transform"></span>
+                <span class="text-[10px] font-semibold text-textMuted">2022 &mdash; 2025</span>
+                <h5 class="text-sm font-bold text-textPrimary mt-0.5">SMP Cinta Kasih Tzu Chi</h5>
+                <p class="text-xs text-textSecondary mt-0.5">Fokus Ekstrakurikuler Basket &amp; Bahasa Mandarin</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- SECONDARY CONTENT: Prestasi & Sertifikat -->
+          <div class="premium-card rounded-2xl p-6 sm:p-7 bg-card border border-themeBorder shadow-sm space-y-5">
+            <div class="flex items-center gap-2.5 border-b border-themeBorder pb-3.5">
+              <div class="w-8 h-8 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-500 text-xs">
+                <i class="fa-solid fa-trophy"></i>
+              </div>
+              <h4 class="font-display font-bold text-sm text-textPrimary uppercase tracking-wider">
+                Prestasi &amp; Sertifikat
+              </h4>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+              <!-- Achievement 1 -->
+              <div class="p-4 rounded-xl bg-surface border border-themeBorder hover:border-themeAccent/30 hover:shadow-md transition-all duration-300 flex items-start gap-3.5 group">
+                <div class="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-500 shrink-0 group-hover:scale-105 transition-transform">
+                  <i class="fa-solid fa-medal text-sm"></i>
+                </div>
+                <div>
+                  <h5 class="text-xs font-bold text-textPrimary">Juara 2 Lomba Web Design</h5>
+                  <p class="text-[10px] text-textSecondary mt-0.5">Tingkat Kota &bull; 2025</p>
+                </div>
+              </div>
+
+              <!-- Achievement 2 -->
+              <div class="p-4 rounded-xl bg-surface border border-themeBorder hover:border-themeAccent/30 hover:shadow-md transition-all duration-300 flex items-start gap-3.5 group">
+                <div class="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-500 shrink-0 group-hover:scale-105 transition-transform">
+                  <i class="fa-solid fa-certificate text-sm"></i>
+                </div>
+                <div>
+                  <h5 class="text-xs font-bold text-textPrimary">Sertifikat Dasar Pemrograman</h5>
+                  <p class="text-[10px] text-textSecondary mt-0.5">Dicoding Academy &bull; 2025</p>
+                </div>
+              </div>
+
+              <!-- Achievement 3 -->
+              <div class="p-4 rounded-xl bg-surface border border-themeBorder hover:border-themeAccent/30 hover:shadow-md transition-all duration-300 flex items-start gap-3.5 group">
+                <div class="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-500 shrink-0 group-hover:scale-105 transition-transform">
+                  <i class="fa-solid fa-scroll text-sm"></i>
+                </div>
+                <div>
+                  <h5 class="text-xs font-bold text-textPrimary">Finalis Debat Bahasa Indonesia</h5>
+                  <p class="text-[10px] text-textSecondary mt-0.5">Tingkat Provinsi &bull; 2024</p>
+                </div>
+              </div>
+
+              <!-- Achievement 4 -->
+              <div class="p-4 rounded-xl bg-surface border border-themeBorder hover:border-themeAccent/30 hover:shadow-md transition-all duration-300 flex items-start gap-3.5 group">
+                <div class="w-10 h-10 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-500 shrink-0 group-hover:scale-105 transition-transform">
+                  <i class="fa-solid fa-star text-sm"></i>
+                </div>
+                <div>
+                  <h5 class="text-xs font-bold text-textPrimary">Siswa Berprestasi Kelas XI</h5>
+                  <p class="text-[10px] text-textSecondary mt-0.5">SMA Cinta Kasih &bull; 2025</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- SECONDARY CONTENT: Tech Stack -->
+          <div class="premium-card rounded-2xl p-6 sm:p-7 bg-card border border-themeBorder shadow-sm space-y-5">
+            <div class="flex items-center gap-2.5 border-b border-themeBorder pb-3.5">
+              <div class="w-8 h-8 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-500 text-xs">
+                <i class="fa-solid fa-layer-group"></i>
+              </div>
+              <h4 class="font-display font-bold text-sm text-textPrimary uppercase tracking-wider">
+                Tech Stack
+              </h4>
+            </div>
+
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+              <div class="group flex flex-col items-center gap-2 p-3.5 rounded-xl bg-surface border border-themeBorder hover:border-themeAccent/40 hover:-translate-y-0.5 transition-all duration-200 cursor-default">
+                <i class="fa-brands fa-html5 text-2xl text-orange-500 group-hover:scale-110 transition-transform"></i>
+                <span class="text-[10px] font-bold text-textPrimary uppercase tracking-wider">HTML5</span>
+              </div>
+              <div class="group flex flex-col items-center gap-2 p-3.5 rounded-xl bg-surface border border-themeBorder hover:border-themeAccent/40 hover:-translate-y-0.5 transition-all duration-200 cursor-default">
+                <i class="fa-brands fa-css3-alt text-2xl text-blue-500 group-hover:scale-110 transition-transform"></i>
+                <span class="text-[10px] font-bold text-textPrimary uppercase tracking-wider">CSS3</span>
+              </div>
+              <div class="group flex flex-col items-center gap-2 p-3.5 rounded-xl bg-surface border border-themeBorder hover:border-themeAccent/40 hover:-translate-y-0.5 transition-all duration-200 cursor-default">
+                <i class="fa-brands fa-js text-2xl text-yellow-500 group-hover:scale-110 transition-transform"></i>
+                <span class="text-[10px] font-bold text-textPrimary uppercase tracking-wider">JavaScript</span>
+              </div>
+              <div class="group flex flex-col items-center gap-2 p-3.5 rounded-xl bg-surface border border-themeBorder hover:border-themeAccent/40 hover:-translate-y-0.5 transition-all duration-200 cursor-default">
+                <i class="fa-brands fa-python text-2xl text-sky-400 group-hover:scale-110 transition-transform"></i>
+                <span class="text-[10px] font-bold text-textPrimary uppercase tracking-wider">Python</span>
+              </div>
+              <div class="group flex flex-col items-center gap-2 p-3.5 rounded-xl bg-surface border border-themeBorder hover:border-themeAccent/40 hover:-translate-y-0.5 transition-all duration-200 cursor-default">
+                <i class="fa-brands fa-git-alt text-2xl text-orange-600 group-hover:scale-110 transition-transform"></i>
+                <span class="text-[10px] font-bold text-textPrimary uppercase tracking-wider">Git</span>
+              </div>
+              <div class="group flex flex-col items-center gap-2 p-3.5 rounded-xl bg-surface border border-themeBorder hover:border-themeAccent/40 hover:-translate-y-0.5 transition-all duration-200 cursor-default">
+                <i class="fa-brands fa-node-js text-2xl text-green-500 group-hover:scale-110 transition-transform"></i>
+                <span class="text-[10px] font-bold text-textPrimary uppercase tracking-wider">Node.js</span>
+              </div>
+              <div class="group flex flex-col items-center gap-2 p-3.5 rounded-xl bg-surface border border-themeBorder hover:border-themeAccent/40 hover:-translate-y-0.5 transition-all duration-200 cursor-default">
+                <i class="fa-brands fa-figma text-2xl text-pink-500 group-hover:scale-110 transition-transform"></i>
+                <span class="text-[10px] font-bold text-textPrimary uppercase tracking-wider">Figma</span>
+              </div>
+              <div class="group flex flex-col items-center gap-2 p-3.5 rounded-xl bg-surface border border-themeBorder hover:border-themeAccent/40 hover:-translate-y-0.5 transition-all duration-200 cursor-default">
+                <i class="fa-solid fa-wind text-2xl text-cyan-400 group-hover:scale-110 transition-transform"></i>
+                <span class="text-[10px] font-bold text-textPrimary uppercase tracking-wider">Tailwind</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project CTA -->
+          <div class="premium-card rounded-2xl p-6 flex flex-col sm:flex-row items-center justify-between gap-4 bg-gradient-to-r from-surface via-card to-surface border border-themeBorder">
+            <div class="space-y-1 text-center sm:text-left">
+              <h4 class="font-display font-bold text-sm text-textPrimary">Tertarik melihat proyek dan tugas saya?</h4>
+              <p class="text-xs text-textSecondary">Jelajahi tugas Informatika, artikel sastra, dan kalkulator algoritma.</p>
+            </div>
+            <a href="informatika.html"
+              class="px-5 py-2.5 text-xs font-bold rounded-xl bg-themeAccent hover:bg-themeAccentHover text-white shadow-md hover:shadow-themeAccent/25 active:scale-95 transition-all flex items-center gap-2 shrink-0">
+              <i class="fa-solid fa-rocket text-xs"></i>
+              Lihat Proyek
+            </a>
+          </div>
+        </div>
+
+        <!-- ========= RIGHT COLUMN (1/3) ========= -->
+        <div class="space-y-6">
+
+          <!-- SECONDARY CONTENT: Keahlian Utama (Skill Bars) -->
+          <div class="premium-card rounded-2xl p-6 bg-card border border-themeBorder shadow-sm space-y-4">
+            <div class="flex items-center gap-2.5 border-b border-themeBorder pb-3">
+              <div class="w-7 h-7 rounded-lg bg-themeAccent/10 border border-themeAccent/20 flex items-center justify-center text-themeAccent text-xs">
+                <i class="fa-solid fa-chart-simple"></i>
+              </div>
+              <h4 class="font-display font-bold text-xs text-textPrimary uppercase tracking-wider">
+                Keahlian Utama
+              </h4>
+            </div>
+
+            <div class="space-y-3.5">
+              <div class="space-y-1.5">
+                <div class="flex justify-between text-xs font-medium">
+                  <span class="text-textPrimary">HTML / CSS / Tailwind</span>
+                  <span class="text-themeAccent font-bold">85%</span>
+                </div>
+                <div class="h-1.5 w-full bg-surface rounded-full overflow-hidden border border-themeBorder">
+                  <div class="h-full bg-gradient-to-r from-themeAccent to-themeAccentHover rounded-full" style="width: 85%"></div>
+                </div>
+              </div>
+
+              <div class="space-y-1.5">
+                <div class="flex justify-between text-xs font-medium">
+                  <span class="text-textPrimary">JavaScript &amp; Algoritma</span>
+                  <span class="text-themeAccent font-bold">75%</span>
+                </div>
+                <div class="h-1.5 w-full bg-surface rounded-full overflow-hidden border border-themeBorder">
+                  <div class="h-full bg-gradient-to-r from-themeAccent to-themeAccentHover rounded-full" style="width: 75%"></div>
+                </div>
+              </div>
+
+              <div class="space-y-1.5">
+                <div class="flex justify-between text-xs font-medium">
+                  <span class="text-textPrimary">Kepenulisan &amp; Essay</span>
+                  <span class="text-themeAccent font-bold">90%</span>
+                </div>
+                <div class="h-1.5 w-full bg-surface rounded-full overflow-hidden border border-themeBorder">
+                  <div class="h-full bg-gradient-to-r from-themeAccent to-themeAccentHover rounded-full" style="width: 90%"></div>
+                </div>
+              </div>
+
+              <div class="space-y-1.5">
+                <div class="flex justify-between text-xs font-medium">
+                  <span class="text-textPrimary">Public Speaking</span>
+                  <span class="text-themeAccent font-bold">80%</span>
+                </div>
+                <div class="h-1.5 w-full bg-surface rounded-full overflow-hidden border border-themeBorder">
+                  <div class="h-full bg-gradient-to-r from-themeAccent to-themeAccentHover rounded-full" style="width: 80%"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- SUPPORTING: Detail Kontak & Info -->
+          <div class="premium-card rounded-2xl p-6 bg-card border border-themeBorder shadow-sm space-y-3.5">
+            <h4 class="font-display font-bold text-xs text-textPrimary uppercase tracking-wider flex items-center gap-2">
+              <i class="fa-solid fa-circle-info text-textMuted text-xs"></i>
+              Detail Kontak &amp; Info
+            </h4>
+            <div class="space-y-2.5 text-xs">
+              <div class="flex justify-between items-center py-1.5 border-b border-themeBorder">
+                <span class="text-textMuted">Email</span>
+                <a href="mailto:sennavian@gmail.com" class="text-textPrimary hover:text-themeAccent transition-colors font-medium">sennavian@gmail.com</a>
+              </div>
+              <div class="flex justify-between items-center py-1.5 border-b border-themeBorder">
+                <span class="text-textMuted">Status</span>
+                <span class="text-emerald-500 font-semibold flex items-center gap-1.5">
+                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>Aktif
+                </span>
+              </div>
+              <div class="flex justify-between items-center py-1.5 border-b border-themeBorder">
+                <span class="text-textMuted">Peminatan</span>
+                <span class="text-textPrimary font-medium">Software &amp; Sastra</span>
+              </div>
+              <div class="flex justify-between items-center py-1.5">
+                <span class="text-textMuted">Hobi</span>
+                <span class="text-textPrimary font-medium">Coding, Membaca, Game</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- SUPPORTING: Bahasa -->
+          <div class="premium-card rounded-2xl p-6 bg-card border border-themeBorder shadow-sm space-y-4">
+            <h4 class="font-display font-bold text-xs text-textPrimary uppercase tracking-wider flex items-center gap-2">
+              <i class="fa-solid fa-language text-themeAccent text-xs"></i>
+              Bahasa
+            </h4>
+            <div class="grid grid-cols-3 gap-2 text-center">
+              <div class="flex flex-col items-center gap-1.5">
+                <div class="relative w-12 h-12">
+                  <svg class="w-full h-full transform -rotate-90">
+                    <circle cx="24" cy="24" r="19" class="stroke-themeBorder" stroke-width="3.5" fill="transparent" />
+                    <circle cx="24" cy="24" r="19" class="stroke-brand-red-500 transition-all duration-500" stroke-width="3.5" fill="transparent" stroke-dasharray="119.38" stroke-dashoffset="11&ndash;9" />
+                  </svg>
+                  <span class="absolute inset-0 flex items-center justify-center text-[10px] font-bold text-textPrimary">90%</span>
+                </div>
+                <span class="text-[10px] font-semibold text-textSecondary">Indonesia</span>
+              </div>
+
+              <div class="flex flex-col items-center gap-1.5">
+                <div class="relative w-12 h-12">
+                  <svg class="w-full h-full transform -rotate-90">
+                    <circle cx="24" cy="24" r="19" class="stroke-themeBorder" stroke-width="3.5" fill="transparent" />
+                    <circle cx="24" cy="24" r="19" class="stroke-blue-500 transition-all duration-500" stroke-width="3.5" fill="transparent" stroke-dasharray="119.38" stroke-dashoffset="47.7" />
+                  </svg>
+                  <span class="absolute inset-0 flex items-center justify-center text-[10px] font-bold text-textPrimary">60%</span>
+                </div>
+                <span class="text-[10px] font-semibold text-textSecondary">English</span>
+              </div>
+
+              <div class="flex flex-col items-center gap-1.5">
+                <div class="relative w-12 h-12">
+                  <svg class="w-full h-full transform -rotate-90">
+                    <circle cx="24" cy="24" r="19" class="stroke-themeBorder" stroke-width="3.5" fill="transparent" />
+                    <circle cx="24" cy="24" r="19" class="stroke-amber-500 transition-all duration-500" stroke-width="3.5" fill="transparent" stroke-dasharray="119.38" stroke-dashoffset="83.5" />
+                  </svg>
+                  <span class="absolute inset-0 flex items-center justify-center text-[10px] font-bold text-textPrimary">30%</span>
+                </div>
+                <span class="text-[10px] font-semibold text-textSecondary">Ã¤Â¸Â­Ã¦â€“â€¡</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- SUPPORTING: Skill Tags -->
+          <div class="premium-card rounded-2xl p-6 bg-card border border-themeBorder shadow-sm space-y-3.5">
+            <h4 class="font-display font-bold text-xs text-textPrimary uppercase tracking-wider flex items-center gap-2">
+              <i class="fa-solid fa-tags text-themeAccent text-xs"></i>
+              Skill Tags
+            </h4>
+            <div class="flex flex-wrap gap-1.5">
+              <span class="px-2.5 py-1 text-[10px] font-semibold rounded-lg bg-surface text-textSecondary border border-themeBorder hover:border-themeAccent/30 transition-colors cursor-default">Web Development</span>
+              <span class="px-2.5 py-1 text-[10px] font-semibold rounded-lg bg-surface text-textSecondary border border-themeBorder hover:border-themeAccent/30 transition-colors cursor-default">UI/UX Design</span>
+              <span class="px-2.5 py-1 text-[10px] font-semibold rounded-lg bg-surface text-textSecondary border border-themeBorder hover:border-themeAccent/30 transition-colors cursor-default">Creative Writing</span>
+              <span class="px-2.5 py-1 text-[10px] font-semibold rounded-lg bg-surface text-textSecondary border border-themeBorder hover:border-themeAccent/30 transition-colors cursor-default">Problem Solving</span>
+              <span class="px-2.5 py-1 text-[10px] font-semibold rounded-lg bg-surface text-textSecondary border border-themeBorder hover:border-themeAccent/30 transition-colors cursor-default">Public Speaking</span>
+              <span class="px-2.5 py-1 text-[10px] font-semibold rounded-lg bg-surface text-textSecondary border border-themeBorder hover:border-themeAccent/30 transition-colors cursor-default">Data Analysis</span>
+            </div>
+          </div>
+
+          <!-- SUPPORTING: Minat -->
+          <div class="premium-card rounded-2xl p-6 bg-card border border-themeBorder shadow-sm space-y-3.5">
+            <h4 class="font-display font-bold text-xs text-textPrimary uppercase tracking-wider flex items-center gap-2">
+              <i class="fa-solid fa-heart text-themeAccent text-xs"></i>
+              Minat
+            </h4>
+            <div class="grid grid-cols-2 gap-2">
+              <div class="flex items-center gap-2 p-2.5 rounded-xl bg-surface border border-themeBorder">
+                <i class="fa-solid fa-code text-themeAccent text-xs"></i>
+                <span class="text-[10px] font-semibold text-textPrimary">Coding</span>
+              </div>
+              <div class="flex items-center gap-2 p-2.5 rounded-xl bg-surface border border-themeBorder">
+                <i class="fa-solid fa-book text-blue-500 text-xs"></i>
+                <span class="text-[10px] font-semibold text-textPrimary">Membaca</span>
+              </div>
+              <div class="flex items-center gap-2 p-2.5 rounded-xl bg-surface border border-themeBorder">
+                <i class="fa-solid fa-gamepad text-purple-500 text-xs"></i>
+                <span class="text-[10px] font-semibold text-textPrimary">Gaming</span>
+              </div>
+              <div class="flex items-center gap-2 p-2.5 rounded-xl bg-surface border border-themeBorder">
+                <i class="fa-solid fa-pen-nib text-amber-500 text-xs"></i>
+                <span class="text-[10px] font-semibold text-textPrimary">Menulis</span>
+              </div>
+              <div class="flex items-center gap-2 p-2.5 rounded-xl bg-surface border border-themeBorder">
+                <i class="fa-solid fa-palette text-pink-500 text-xs"></i>
+                <span class="text-[10px] font-semibold text-textPrimary">Desain</span>
+              </div>
+              <div class="flex items-center gap-2 p-2.5 rounded-xl bg-surface border border-themeBorder">
+                <i class="fa-solid fa-robot text-emerald-500 text-xs"></i>
+                <span class="text-[10px] font-semibold text-textPrimary">AI / ML</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <section id="view-informatika" class="view-panel space-y-5 animate-slide-up hidden"> <!-- Sub-Tabs for Informatika -->
+ <div class="flex items-center space-x-4 border-b border-themeBorder pb-2 mb-4"> <button
+ onclick="switchInfoSubTab('tugas')" id="info-subtab-tugas"
+ class="px-2 py-2 text-sm font-bold text-themeAccent border-b-2 border-themeAccent transition-all">Tugas
+ Umum</button> <button onclick="switchInfoSubTab('artikel')" id="info-subtab-artikel"
+ class="px-2 py-2 text-sm font-bold text-textMuted hover:text-textPrimary border-b-2 border-transparent transition-all">Artikel</button>
+ <button onclick="switchInfoSubTab('algoritma')" id="info-subtab-algoritma"
+ class="px-2 py-2 text-sm font-bold text-textMuted hover:text-textPrimary border-b-2 border-transparent transition-all">Algoritma</button>
+ </div> <!-- Sub-View: Tugas Umum -->
+ <div id="info-subview-tugas" class="space-y-5 block animate-fade-in"> <!-- Search & Filters Container -->
+ <div class="premium-card rounded-xl p-4 flex flex-col md:flex-row gap-4 items-center justify-between">
+ <div class="relative w-full md:w-80"> <span
+ class="absolute inset-y-0 left-0 pl-3 flex items-center text-textMuted pointer-events-none"> <i
+ class="fa-solid fa-magnifying-glass text-xs"></i> </span> <input type="text" id="search-info"
+ oninput="filterInformatika()" placeholder="Cari tugas, materi..."
+ class="w-full bg-card border border-themeBorder focus:border-themeAccent focus:ring-1 focus:ring-themeAccent/20 text-xs text-textPrimary placeholder:text-textMuted rounded-lg pl-8 pr-4 py-2 focus:outline-none transition-all">
+ </div>
+ <div class="flex items-center gap-2 w-full md:w-auto overflow-x-auto pb-1 md:pb-0"> <button
+ onclick="filterStatusInfo('semua')" id="btn-info-all"
+ class="px-3 py-1.5 text-xs font-semibold rounded-lg bg-themeAccent text-white border border-themeAccent transition-all shrink-0">Semua</button>
+ <button onclick="filterStatusInfo('Selesai')" id="btn-info-selesai"
+ class="px-3 py-1.5 text-xs font-semibold rounded-lg bg-surface text-textSecondary border border-themeBorder hover:border-borderHover hover:text-textPrimary transition-all shrink-0">Selesai</button>
+ <button onclick="filterStatusInfo('Dalam Pengerjaan')" id="btn-info-progress"
+ class="px-3 py-1.5 text-xs font-semibold rounded-lg bg-surface text-textSecondary border border-themeBorder hover:border-borderHover hover:text-textPrimary transition-all shrink-0">Dalam
+ Pengerjaan</button>
+ </div>
+ </div> <!-- Task Cards Grid -->
+ <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5" id="grid-informatika">
+ <!-- Dynamically populated via JS -->
+ </div>
+ </div> <!-- Sub-View: Artikel -->
+ <div id="info-subview-artikel" class="space-y-5 hidden animate-fade-in">
+ <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5" id="grid-artikel">
+ <!-- Dynamically populated via JS -->
+ </div>
+ </div>
+ <!-- Sub-View: Algoritma -->
+ <div id="info-subview-algoritma" class="space-y-6 hidden animate-fade-in">
+    
+    <!-- Header Banner -->
+    <div class="premium-card rounded-2xl p-6 sm:p-7 bg-card border border-themeBorder shadow-sm relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-80 h-80 bg-themeAccent/5 rounded-full blur-3xl pointer-events-none -mr-20 -mt-20"></div>
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 relative z-10">
+            <div class="space-y-1.5">
+                <span class="text-[10px] text-themeAccent font-bold tracking-widest px-2.5 py-1 rounded-md bg-themeAccent/10 border border-themeAccent/20 inline-flex items-center gap-1.5 shadow-sm">
+                    <i class="fa-solid fa-microchip"></i> INFORMATIKA &bull; TOOLS & ALGORITMA
+                </span>
+                <h3 class="font-display font-extrabold text-2xl sm:text-3xl text-textPrimary tracking-tight">
+                    Kalkulator & Konverter Sistem Komputer
+                </h3>
+                <p class="text-xs sm:text-sm text-textSecondary max-w-2xl leading-relaxed">
+                    Perangkat interaktif untuk konversi sistem bilangan, decoding teks ASCII, dan kalkulasi operasi bitwise logika.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tool Switcher Sub-Tabs -->
+    <div class="flex items-center gap-2 overflow-x-auto pb-1 border-b border-themeBorder">
+        <button onclick="switchAlgoTool('number-system')" id="btn-algo-tool-number"
+            class="px-4 py-2 text-xs font-bold rounded-lg bg-themeAccent text-white border border-themeAccent transition-all shrink-0 flex items-center gap-2 shadow-sm">
+            <i class="fa-solid fa-calculator"></i> Number System Converter
+        </button>
+        <button onclick="switchAlgoTool('ascii')" id="btn-algo-tool-ascii"
+            class="px-4 py-2 text-xs font-bold rounded-lg bg-surface text-textSecondary border border-themeBorder hover:border-borderHover hover:text-textPrimary transition-all shrink-0 flex items-center gap-2">
+            <i class="fa-solid fa-font"></i> ASCII Converter
+        </button>
+        <button onclick="switchAlgoTool('bitwise')" id="btn-algo-tool-bitwise"
+            class="px-4 py-2 text-xs font-bold rounded-lg bg-surface text-textSecondary border border-themeBorder hover:border-borderHover hover:text-textPrimary transition-all shrink-0 flex items-center gap-2">
+            <i class="fa-solid fa-binary"></i> Bitwise Calculator
+        </button>
+        <button onclick="switchAlgoTool('standard-calc')" id="btn-algo-tool-standard"
+            class="px-4 py-2 text-xs font-bold rounded-lg bg-surface text-textSecondary border border-themeBorder hover:border-borderHover hover:text-textPrimary transition-all shrink-0 flex items-center gap-2">
+            <i class="fa-solid fa-calculator"></i> Kalkulator
+        </button>
+    </div>
+
+    <!-- ================= TOOL 1: NUMBER SYSTEM CONVERTER ================= -->
+    <div id="algo-panel-number" class="space-y-6 block animate-fade-in">
+        <div class="premium-card rounded-2xl p-6 sm:p-8 bg-card border border-themeBorder shadow-md space-y-6">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-themeBorder pb-4">
+                <div class="flex items-center gap-2.5">
+                    <div class="w-9 h-9 rounded-xl bg-themeAccent/10 border border-themeAccent/20 flex items-center justify-center text-themeAccent shadow-inner">
+                        <i class="fa-solid fa-arrow-right-arrow-left text-sm"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-display font-bold text-base text-textPrimary">Number System Converter</h4>
+                        <p class="text-[11px] text-textMuted">Konversi instan antar basis Binary, Octal, Decimal, dan Hexadecimal</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-2">
+                    <button id="calc-btn-clear" onclick="clearCalculator()" class="px-3 py-1.5 text-xs font-semibold text-textSecondary hover:text-textPrimary bg-surface border border-themeBorder hover:border-themeAccent/30 rounded-lg transition-all flex items-center gap-1.5" title="Hapus input">
+                        <i class="fa-solid fa-delete-left text-xs text-textMuted"></i> Clear
+                    </button>
+                    <button id="calc-btn-reset" onclick="resetCalculator()" class="px-3 py-1.5 text-xs font-semibold text-themeAccent hover:text-white hover:bg-themeAccent bg-themeAccent/10 border border-themeAccent/20 rounded-lg transition-all flex items-center gap-1.5" title="Kembalikan ke awal">
+                        <i class="fa-solid fa-rotate-left text-xs"></i> Reset
+                    </button>
+                </div>
+            </div>
+
+            <!-- Input & Dropdown -->
+            <div class="flex flex-col md:flex-row gap-3">
+                <div class="relative flex-1">
+                    <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-textMuted">
+                        <i class="fa-solid fa-terminal text-xs"></i>
+                    </div>
+                    <input type="text" id="calc-input" value="101101" placeholder="Masukkan angka (contoh: 101101, 255, FF)..." autocomplete="off" spellcheck="false"
+                        class="w-full bg-surface border border-themeBorder focus:border-themeAccent focus:ring-2 focus:ring-themeAccent/20 text-textPrimary text-sm font-mono rounded-xl pl-10 pr-4 py-3 focus:outline-none transition-all"
+                        oninput="runNumberConversion()" />
+                </div>
+
+                <div class="w-full md:w-64">
+                    <select id="calc-base" onchange="runNumberConversion()"
+                        class="w-full bg-surface border border-themeBorder focus:border-themeAccent focus:ring-2 focus:ring-themeAccent/20 text-textPrimary text-xs font-bold rounded-xl px-3.5 py-3 focus:outline-none transition-all cursor-pointer">
+                        <option value="2" selected>Binary (Base 2)</option>
+                        <option value="8">Octal (Base 8)</option>
+                        <option value="10">Decimal (Base 10)</option>
+                        <option value="16">Hexadecimal (Base 16)</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Error Message Alert -->
+            <div id="calc-error-msg" class="hidden p-3.5 rounded-xl bg-red-500/10 border border-red-500/20 text-red-500 dark:text-red-400 text-xs flex items-center gap-2.5 animate-fade-in">
+                <i class="fa-solid fa-triangle-exclamation shrink-0"></i>
+                <span id="calc-error-text">Nilai tidak valid untuk sistem bilangan ini.</span>
+            </div>
+
+            <!-- Results Grid (4 Cards) -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-1">
+                <!-- BINARY CARD -->
+                <div class="p-4 rounded-xl bg-surface border border-themeBorder hover:border-themeAccent/40 transition-all flex flex-col justify-between group shadow-sm">
+                    <div>
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-[10px] font-black uppercase tracking-wider text-themeAccent flex items-center gap-1.5">
+                                <span class="w-1.5 h-1.5 rounded-full bg-themeAccent"></span> BINARY
+                            </span>
+                            <span class="text-[9px] font-bold text-textMuted px-1.5 py-0.5 rounded bg-card border border-themeBorder">Base 2</span>
+                        </div>
+                        <div id="res-binary" class="font-mono font-bold text-base sm:text-lg text-textPrimary break-all select-all py-1 min-h-[32px]">
+                            101101
+                        </div>
+                    </div>
+                    <div class="pt-3 mt-2 border-t border-themeBorder flex items-center justify-between">
+                        <span class="text-[9px] text-textMuted font-mono">0, 1</span>
+                        <button onclick="copyResultValue('res-binary', this)" class="px-2.5 py-1 text-[10px] font-bold text-textSecondary hover:text-textPrimary bg-card border border-themeBorder hover:border-themeAccent rounded-md transition-all flex items-center gap-1.5 active:scale-95">
+                            <i class="fa-regular fa-copy text-[10px]"></i> <span>Copy</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- OCTAL CARD -->
+                <div class="p-4 rounded-xl bg-surface border border-themeBorder hover:border-amber-500/40 transition-all flex flex-col justify-between group shadow-sm">
+                    <div>
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-[10px] font-black uppercase tracking-wider text-amber-500 flex items-center gap-1.5">
+                                <span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span> OCTAL
+                            </span>
+                            <span class="text-[9px] font-bold text-textMuted px-1.5 py-0.5 rounded bg-card border border-themeBorder">Base 8</span>
+                        </div>
+                        <div id="res-octal" class="font-mono font-bold text-base sm:text-lg text-textPrimary break-all select-all py-1 min-h-[32px]">
+                            55
+                        </div>
+                    </div>
+                    <div class="pt-3 mt-2 border-t border-themeBorder flex items-center justify-between">
+                        <span class="text-[9px] text-textMuted font-mono">0&ndash;7</span>
+                        <button onclick="copyResultValue('res-octal', this)" class="px-2.5 py-1 text-[10px] font-bold text-textSecondary hover:text-textPrimary bg-card border border-themeBorder hover:border-amber-500 rounded-md transition-all flex items-center gap-1.5 active:scale-95">
+                            <i class="fa-regular fa-copy text-[10px]"></i> <span>Copy</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- DECIMAL CARD -->
+                <div class="p-4 rounded-xl bg-surface border border-themeBorder hover:border-emerald-500/40 transition-all flex flex-col justify-between group shadow-sm">
+                    <div>
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-[10px] font-black uppercase tracking-wider text-emerald-500 flex items-center gap-1.5">
+                                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> DECIMAL
+                            </span>
+                            <span class="text-[9px] font-bold text-textMuted px-1.5 py-0.5 rounded bg-card border border-themeBorder">Base 10</span>
+                        </div>
+                        <div id="res-decimal" class="font-mono font-bold text-base sm:text-lg text-textPrimary break-all select-all py-1 min-h-[32px]">
+                            45
+                        </div>
+                    </div>
+                    <div class="pt-3 mt-2 border-t border-themeBorder flex items-center justify-between">
+                        <span class="text-[9px] text-textMuted font-mono">0&ndash;9</span>
+                        <button onclick="copyResultValue('res-decimal', this)" class="px-2.5 py-1 text-[10px] font-bold text-textSecondary hover:text-textPrimary bg-card border border-themeBorder hover:border-emerald-500 rounded-md transition-all flex items-center gap-1.5 active:scale-95">
+                            <i class="fa-regular fa-copy text-[10px]"></i> <span>Copy</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- HEXADECIMAL CARD -->
+                <div class="p-4 rounded-xl bg-surface border border-themeBorder hover:border-blue-500/40 transition-all flex flex-col justify-between group shadow-sm">
+                    <div>
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-[10px] font-black uppercase tracking-wider text-blue-500 dark:text-blue-400 flex items-center gap-1.5">
+                                <span class="w-1.5 h-1.5 rounded-full bg-blue-500"></span> HEXADECIMAL
+                            </span>
+                            <span class="text-[9px] font-bold text-textMuted px-1.5 py-0.5 rounded bg-card border border-themeBorder">Base 16</span>
+                        </div>
+                        <div id="res-hex" class="font-mono font-bold text-base sm:text-lg text-textPrimary break-all select-all py-1 min-h-[32px]">
+                            2D
+                        </div>
+                    </div>
+                    <div class="pt-3 mt-2 border-t border-themeBorder flex items-center justify-between">
+                        <span class="text-[9px] text-textMuted font-mono">0&ndash;9, A&ndash;F</span>
+                        <button onclick="copyResultValue('res-hex', this)" class="px-2.5 py-1 text-[10px] font-bold text-textSecondary hover:text-textPrimary bg-card border border-themeBorder hover:border-blue-500 rounded-md transition-all flex items-center gap-1.5 active:scale-95">
+                            <i class="fa-regular fa-copy text-[10px]"></i> <span>Copy</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Conversion Buttons -->
+            <div class="pt-4 border-t border-themeBorder space-y-2.5">
+                <div class="flex items-center gap-2">
+                    <i class="fa-solid fa-wand-magic-sparkles text-xs text-themeAccent"></i>
+                    <h5 class="text-xs font-bold text-textPrimary uppercase tracking-wider">Quick Conversion</h5>
+                    <span class="text-[10px] text-textMuted">(Klik untuk mencoba contoh instan)</span>
+                </div>
+                <div class="flex flex-wrap gap-2 pt-1">
+                    <button onclick="setQuickConversion('1010', 2)" class="px-3 py-1.5 rounded-lg text-xs font-mono font-bold bg-surface border border-themeBorder hover:border-themeAccent hover:text-themeAccent hover:bg-card transition-all active:scale-95">
+                        1010<sub class="text-[9px]">2</sub>
+                    </button>
+                    <button onclick="setQuickConversion('11111111', 2)" class="px-3 py-1.5 rounded-lg text-xs font-mono font-bold bg-surface border border-themeBorder hover:border-themeAccent hover:text-themeAccent hover:bg-card transition-all active:scale-95">
+                        11111111<sub class="text-[9px]">2</sub>
+                    </button>
+                    <button onclick="setQuickConversion('255', 10)" class="px-3 py-1.5 rounded-lg text-xs font-mono font-bold bg-surface border border-themeBorder hover:border-emerald-500 hover:text-emerald-500 hover:bg-card transition-all active:scale-95">
+                        255<sub class="text-[9px]">10</sub>
+                    </button>
+                    <button onclick="setQuickConversion('64', 10)" class="px-3 py-1.5 rounded-lg text-xs font-mono font-bold bg-surface border border-themeBorder hover:border-emerald-500 hover:text-emerald-500 hover:bg-card transition-all active:scale-95">
+                        64<sub class="text-[9px]">10</sub>
+                    </button>
+                    <button onclick="setQuickConversion('FF', 16)" class="px-3 py-1.5 rounded-lg text-xs font-mono font-bold bg-surface border border-themeBorder hover:border-blue-500 hover:text-blue-500 hover:bg-card transition-all active:scale-95">
+                        FF<sub class="text-[9px]">16</sub>
+                    </button>
+                    <button onclick="setQuickConversion('100', 8)" class="px-3 py-1.5 rounded-lg text-xs font-mono font-bold bg-surface border border-themeBorder hover:border-amber-500 hover:text-amber-500 hover:bg-card transition-all active:scale-95">
+                        100<sub class="text-[9px]">8</sub>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= TOOL 2: ASCII CONVERTER ================= -->
+    <div id="algo-panel-ascii" class="space-y-6 hidden animate-fade-in">
+        <div class="premium-card rounded-2xl p-6 sm:p-8 bg-card border border-themeBorder shadow-md space-y-6">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-themeBorder pb-4">
+                <div class="flex items-center gap-2.5">
+                    <div class="w-9 h-9 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-500 shadow-inner">
+                        <i class="fa-solid fa-font text-sm"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-display font-bold text-base text-textPrimary">ASCII Converter</h4>
+                        <p class="text-[11px] text-textMuted">Konversi dua arah Text &harr; ASCII Decimal &harr; Binary &harr; Hexadecimal</p>
+                    </div>
+                </div>
+                <!-- ASCII Mode Sub-Tabs -->
+                <div class="flex items-center gap-1.5 bg-surface p-1 rounded-xl border border-themeBorder">
+                    <button onclick="switchAsciiMode('text-to-ascii')" id="btn-ascii-m1"
+                        class="px-3 py-1.5 text-xs font-bold rounded-lg bg-themeAccent text-white transition-all shadow-sm">
+                        Text &rarr; ASCII
+                    </button>
+                    <button onclick="switchAsciiMode('ascii-to-text')" id="btn-ascii-m2"
+                        class="px-3 py-1.5 text-xs font-bold rounded-lg text-textSecondary hover:text-textPrimary transition-all">
+                        ASCII &rarr; Text
+                    </button>
+                    <button onclick="switchAsciiMode('binary-to-text')" id="btn-ascii-m3"
+                        class="px-3 py-1.5 text-xs font-bold rounded-lg text-textSecondary hover:text-textPrimary transition-all">
+                        Binary &rarr; Text
+                    </button>
+                </div>
+            </div>
+
+            <!-- MODE A: TEXT -> ASCII -->
+            <div id="ascii-mode-text-to-ascii" class="space-y-5 block">
+                <div class="space-y-2">
+                    <label class="text-xs font-bold text-textPrimary flex items-center justify-between">
+                        <span>Input Teks</span>
+                        <button onclick="copyAsciiTableSummary()" id="btn-copy-ascii-all" class="px-2.5 py-1 text-[10px] font-bold text-textSecondary hover:text-themeAccent bg-surface border border-themeBorder rounded-md transition-all flex items-center gap-1.5">
+                            <i class="fa-regular fa-copy"></i> Copy All
+                        </button>
+                    </label>
+                    <input type="text" id="ascii-text-input" value="Hello" placeholder="Ketik teks di sini (contoh: Hello)..."
+                        class="w-full bg-surface border border-themeBorder focus:border-themeAccent focus:ring-2 focus:ring-themeAccent/20 text-textPrimary text-sm font-sans rounded-xl px-4 py-3 focus:outline-none transition-all"
+                        oninput="runAsciiConversion()" />
+                </div>
+
+                <!-- ASCII Table Container -->
+                <div class="overflow-x-auto rounded-xl border border-themeBorder bg-surface">
+                    <table class="w-full text-left text-xs">
+                        <thead>
+                            <tr class="border-b border-themeBorder bg-card/60 text-textSecondary uppercase font-bold text-[10px] tracking-wider">
+                                <th class="py-3 px-4">Character</th>
+                                <th class="py-3 px-4">ASCII Decimal</th>
+                                <th class="py-3 px-4">Binary (8-bit)</th>
+                                <th class="py-3 px-4">Hex</th>
+                            </tr>
+                        </thead>
+                        <tbody id="ascii-table-body" class="divide-y divide-themeBorder font-mono">
+                            <!-- Populated dynamically via JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- MODE B: ASCII -> TEXT -->
+            <div id="ascii-mode-ascii-to-text" class="space-y-5 hidden">
+                <div class="space-y-2">
+                    <label class="text-xs font-bold text-textPrimary">Input ASCII Decimal (Dipisahkan spasi)</label>
+                    <input type="text" id="ascii-dec-input" value="72 101 108 108 111" placeholder="Contoh: 72 101 108 108 111"
+                        class="w-full bg-surface border border-themeBorder focus:border-themeAccent focus:ring-2 focus:ring-themeAccent/20 text-textPrimary text-sm font-mono rounded-xl px-4 py-3 focus:outline-none transition-all"
+                        oninput="runAsciiDecToText()" />
+                </div>
+                <div id="ascii-dec-error" class="hidden p-3 rounded-xl bg-red-500/10 border border-red-500/20 text-red-500 text-xs">
+                    Format ASCII Decimal tidak valid. Masukkan angka bulat 0&ndash;255 dipisahkan spasi.
+                </div>
+                <div class="p-4 rounded-xl bg-surface border border-themeBorder space-y-2">
+                    <div class="flex items-center justify-between">
+                        <span class="text-[10px] font-bold text-textMuted uppercase tracking-wider">Hasil Teks (Decoded)</span>
+                        <button onclick="copyElementText('ascii-dec-output-text', this)" class="px-2.5 py-1 text-[10px] font-bold text-textSecondary hover:text-textPrimary bg-card border border-themeBorder hover:border-themeAccent rounded-md transition-all flex items-center gap-1.5">
+                            <i class="fa-regular fa-copy"></i> Copy
+                        </button>
+                    </div>
+                    <div id="ascii-dec-output-text" class="font-sans font-bold text-lg text-textPrimary py-1 break-all select-all">
+                        Hello
+                    </div>
+                </div>
+            </div>
+
+            <!-- MODE C: BINARY -> TEXT -->
+            <div id="ascii-mode-binary-to-text" class="space-y-5 hidden">
+                <div class="space-y-2">
+                    <label class="text-xs font-bold text-textPrimary">Input Binary 8-bit (Dipisahkan spasi atau urut)</label>
+                    <textarea id="ascii-bin-input" rows="2" placeholder="Contoh: 01001000 01100101 01101100 01101100 01101111"
+                        class="w-full bg-surface border border-themeBorder focus:border-themeAccent focus:ring-2 focus:ring-themeAccent/20 text-textPrimary text-sm font-mono rounded-xl p-3.5 focus:outline-none transition-all resize-none"
+                        oninput="runAsciiBinToText()">01001000 01100101 01101100 01101100 01101111</textarea>
+                </div>
+                <div id="ascii-bin-error" class="hidden p-3 rounded-xl bg-red-500/10 border border-red-500/20 text-red-500 text-xs">
+                    Format Biner tidak valid. Gunakan digit 0 dan 1 (kelipatan 8-bit).
+                </div>
+                <div class="p-4 rounded-xl bg-surface border border-themeBorder space-y-2">
+                    <div class="flex items-center justify-between">
+                        <span class="text-[10px] font-bold text-textMuted uppercase tracking-wider">Hasil Teks (Decoded)</span>
+                        <button onclick="copyElementText('ascii-bin-output-text', this)" class="px-2.5 py-1 text-[10px] font-bold text-textSecondary hover:text-textPrimary bg-card border border-themeBorder hover:border-themeAccent rounded-md transition-all flex items-center gap-1.5">
+                            <i class="fa-regular fa-copy"></i> Copy
+                        </button>
+                    </div>
+                    <div id="ascii-bin-output-text" class="font-sans font-bold text-lg text-textPrimary py-1 break-all select-all">
+                        Hello
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= TOOL 3: BITWISE CALCULATOR ================= -->
+    <div id="algo-panel-bitwise" class="space-y-6 hidden animate-fade-in">
+        <div class="premium-card rounded-2xl p-6 sm:p-8 bg-card border border-themeBorder shadow-md space-y-6">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-themeBorder pb-4">
+                <div class="flex items-center gap-2.5">
+                    <div class="w-9 h-9 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-500 shadow-inner">
+                        <i class="fa-solid fa-code-branch text-sm"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-display font-bold text-base text-textPrimary">Bitwise Calculator</h4>
+                        <p class="text-[11px] text-textMuted">Kalkulator operasi logika biner integer (AND, OR, XOR, NOT, Shift)</p>
+                    </div>
+                </div>
+                <!-- Base selector for bitwise inputs -->
+                <div class="flex items-center gap-2">
+                    <span class="text-[10px] font-bold text-textMuted uppercase">Input Base:</span>
+                    <select id="bw-input-base" onchange="runBitwiseCalculation()"
+                        class="bg-surface border border-themeBorder text-textPrimary text-xs font-bold rounded-lg px-2.5 py-1.5 focus:outline-none focus:border-themeAccent">
+                        <option value="10" selected>Decimal</option>
+                        <option value="2">Binary</option>
+                        <option value="16">Hexadecimal</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Two Inputs (A & B) -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div class="space-y-1.5">
+                    <label class="text-xs font-bold text-textPrimary flex items-center justify-between">
+                        <span>Input A</span>
+                        <span id="bw-base-label-a" class="text-[10px] text-textMuted font-mono">Decimal</span>
+                    </label>
+                    <input type="text" id="bw-input-a" value="12" placeholder="Masukkan nilai A..."
+                        class="w-full bg-surface border border-themeBorder focus:border-themeAccent focus:ring-2 focus:ring-themeAccent/20 text-textPrimary text-sm font-mono rounded-xl px-4 py-2.5 focus:outline-none transition-all"
+                        oninput="runBitwiseCalculation()" />
+                </div>
+                <div id="bw-input-b-container" class="space-y-1.5">
+                    <label class="text-xs font-bold text-textPrimary flex items-center justify-between">
+                        <span>Input B</span>
+                        <span id="bw-base-label-b" class="text-[10px] text-textMuted font-mono">Decimal</span>
+                    </label>
+                    <input type="text" id="bw-input-b" value="10" placeholder="Masukkan nilai B..."
+                        class="w-full bg-surface border border-themeBorder focus:border-themeAccent focus:ring-2 focus:ring-themeAccent/20 text-textPrimary text-sm font-mono rounded-xl px-4 py-2.5 focus:outline-none transition-all"
+                        oninput="runBitwiseCalculation()" />
+                </div>
+            </div>
+
+            <!-- Error message for bitwise -->
+            <div id="bw-error-msg" class="hidden p-3 rounded-xl bg-red-500/10 border border-red-500/20 text-red-500 text-xs">
+                Nilai input tidak valid untuk basis yang dipilih.
+            </div>
+
+            <!-- Operation Buttons -->
+            <div class="space-y-2">
+                <span class="text-[10px] font-bold text-textMuted uppercase tracking-wider">Pilih Operasi:</span>
+                <div class="grid grid-cols-2 sm:grid-cols-6 gap-2">
+                    <button onclick="setBitwiseOp('AND')" id="btn-bw-and"
+                        class="px-3 py-2 text-xs font-bold font-mono rounded-xl bg-themeAccent text-white border border-themeAccent transition-all shadow-sm">
+                        AND (&amp;)
+                    </button>
+                    <button onclick="setBitwiseOp('OR')" id="btn-bw-or"
+                        class="px-3 py-2 text-xs font-bold font-mono rounded-xl bg-surface text-textSecondary border border-themeBorder hover:border-borderHover hover:text-textPrimary transition-all">
+                        OR (|)
+                    </button>
+                    <button onclick="setBitwiseOp('XOR')" id="btn-bw-xor"
+                        class="px-3 py-2 text-xs font-bold font-mono rounded-xl bg-surface text-textSecondary border border-themeBorder hover:border-borderHover hover:text-textPrimary transition-all">
+                        XOR (^)
+                    </button>
+                    <button onclick="setBitwiseOp('NOT')" id="btn-bw-not"
+                        class="px-3 py-2 text-xs font-bold font-mono rounded-xl bg-surface text-textSecondary border border-themeBorder hover:border-borderHover hover:text-textPrimary transition-all">
+                        NOT (~)
+                    </button>
+                    <button onclick="setBitwiseOp('SHL')" id="btn-bw-shl"
+                        class="px-3 py-2 text-xs font-bold font-mono rounded-xl bg-surface text-textSecondary border border-themeBorder hover:border-borderHover hover:text-textPrimary transition-all">
+                        A &lt;&lt; B
+                    </button>
+                    <button onclick="setBitwiseOp('SHR')" id="btn-bw-shr"
+                        class="px-3 py-2 text-xs font-bold font-mono rounded-xl bg-surface text-textSecondary border border-themeBorder hover:border-borderHover hover:text-textPrimary transition-all">
+                        A &gt;&gt; B
+                    </button>
+                </div>
+            </div>
+
+            <!-- Bitwise Results Cards -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-1">
+                <div class="p-4 rounded-xl bg-surface border border-themeBorder flex flex-col justify-between">
+                    <div>
+                        <span class="text-[10px] font-bold text-textMuted uppercase tracking-wider block mb-1">Result (Decimal)</span>
+                        <div id="bw-res-dec" class="font-mono font-bold text-lg text-emerald-500 py-1 break-all select-all min-h-[32px]">
+                            8
+                        </div>
+                    </div>
+                    <div class="pt-2 mt-1 border-t border-themeBorder flex justify-end">
+                        <button onclick="copyElementText('bw-res-dec', this)" class="px-2.5 py-1 text-[10px] font-bold text-textSecondary hover:text-textPrimary bg-card border border-themeBorder hover:border-emerald-500 rounded-md transition-all flex items-center gap-1.5">
+                            <i class="fa-regular fa-copy text-[10px]"></i> Copy
+                        </button>
+                    </div>
+                </div>
+
+                <div class="p-4 rounded-xl bg-surface border border-themeBorder flex flex-col justify-between">
+                    <div>
+                        <span class="text-[10px] font-bold text-textMuted uppercase tracking-wider block mb-1">Result (Binary)</span>
+                        <div id="bw-res-bin" class="font-mono font-bold text-lg text-themeAccent py-1 break-all select-all min-h-[32px]">
+                            00001000
+                        </div>
+                    </div>
+                    <div class="pt-2 mt-1 border-t border-themeBorder flex justify-end">
+                        <button onclick="copyElementText('bw-res-bin', this)" class="px-2.5 py-1 text-[10px] font-bold text-textSecondary hover:text-textPrimary bg-card border border-themeBorder hover:border-themeAccent rounded-md transition-all flex items-center gap-1.5">
+                            <i class="fa-regular fa-copy text-[10px]"></i> Copy
+                        </button>
+                    </div>
+                </div>
+
+                <div class="p-4 rounded-xl bg-surface border border-themeBorder flex flex-col justify-between">
+                    <div>
+                        <span class="text-[10px] font-bold text-textMuted uppercase tracking-wider block mb-1">Result (Hexadecimal)</span>
+                        <div id="bw-res-hex" class="font-mono font-bold text-lg text-blue-500 py-1 break-all select-all min-h-[32px]">
+                            08
+                        </div>
+                    </div>
+                    <div class="pt-2 mt-1 border-t border-themeBorder flex justify-end">
+                        <button onclick="copyElementText('bw-res-hex', this)" class="px-2.5 py-1 text-[10px] font-bold text-textSecondary hover:text-textPrimary bg-card border border-themeBorder hover:border-blue-500 rounded-md transition-all flex items-center gap-1.5">
+                            <i class="fa-regular fa-copy text-[10px]"></i> Copy
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bitwise Binary Operation Visualizer -->
+            <div class="p-5 rounded-xl bg-surface border border-themeBorder space-y-2.5">
+                <div class="flex items-center justify-between">
+                    <span class="text-[10px] font-bold text-textMuted uppercase tracking-wider flex items-center gap-1.5">
+                        <i class="fa-solid fa-align-left text-themeAccent"></i> Binary Bit Alignment Visualizer
+                    </span>
+                    <span id="bw-op-badge" class="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-themeAccent/10 text-themeAccent border border-themeAccent/20">
+                        AND (&amp;)
+                    </span>
+                </div>
+                <div id="bw-visualizer-box" class="p-4 rounded-lg bg-card border border-themeBorder font-mono text-xs sm:text-sm text-textPrimary leading-relaxed overflow-x-auto space-y-1">
+                    <!-- Populated dynamically via JS -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= TOOL 4: STANDARD CALCULATOR ================= -->
+    <div id="algo-panel-standard" class="space-y-6 hidden animate-fade-in">
+        <div class="max-w-md mx-auto premium-card rounded-2xl p-6 sm:p-7 bg-card border border-themeBorder shadow-xl space-y-5">
+            <!-- Header of Card -->
+            <div class="flex items-center justify-between border-b border-themeBorder pb-3.5">
+                <div class="flex items-center gap-2.5">
+                    <div class="w-9 h-9 rounded-xl bg-themeAccent/10 border border-themeAccent/20 flex items-center justify-center text-themeAccent shadow-inner">
+                        <i class="fa-solid fa-calculator text-sm"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-display font-bold text-base text-textPrimary">Kalkulator</h4>
+                        <p class="text-[11px] text-textMuted">Kalkulator standar untuk operasi matematika.</p>
+                    </div>
+                </div>
+                <span class="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-surface border border-themeBorder text-textSecondary">
+                    Standard
+                </span>
+            </div>
+
+            <!-- Calculator Screen Display -->
+            <div class="p-4 rounded-xl bg-surface border border-themeBorder text-right space-y-1 overflow-hidden shadow-inner">
+                <div id="std-calc-expression" class="font-mono text-xs text-textMuted min-h-[18px] truncate tracking-wider">
+                    &nbsp;
+                </div>
+                <div id="std-calc-display" class="font-mono font-bold text-2xl sm:text-3xl text-textPrimary truncate tracking-tight select-all">
+                    0
+                </div>
+            </div>
+
+            <!-- Calculator Keypad Grid -->
+            <div class="grid grid-cols-4 gap-2 sm:gap-2.5">
+                <!-- Row 1: ( ) % AC -->
+                <button onclick="stdCalcInput('(')" class="p-3 text-sm font-bold font-mono rounded-xl bg-surface text-textSecondary border border-themeBorder hover:border-themeAccent/40 hover:text-textPrimary hover:bg-card active:scale-95 transition-all shadow-sm">
+                    (
+                </button>
+                <button onclick="stdCalcInput(')')" class="p-3 text-sm font-bold font-mono rounded-xl bg-surface text-textSecondary border border-themeBorder hover:border-themeAccent/40 hover:text-textPrimary hover:bg-card active:scale-95 transition-all shadow-sm">
+                    )
+                </button>
+                <button onclick="stdCalcInput('%')" class="p-3 text-sm font-bold font-mono rounded-xl bg-surface text-textSecondary border border-themeBorder hover:border-themeAccent/40 hover:text-textPrimary hover:bg-card active:scale-95 transition-all shadow-sm">
+                    %
+                </button>
+                <button onclick="stdCalcClear()" class="p-3 text-sm font-bold font-mono rounded-xl bg-red-500/10 text-red-500 border border-red-500/20 hover:bg-red-500 hover:text-white active:scale-95 transition-all shadow-sm" title="Clear / Reset (Escape)">
+                    AC
+                </button>
+
+                <!-- Row 2: 7 8 9 Ã· -->
+                <button onclick="stdCalcInput('7')" class="p-3.5 text-base font-bold font-mono rounded-xl bg-surface text-textPrimary border border-themeBorder hover:border-themeBorder hover:bg-card active:scale-95 transition-all shadow-sm">
+                    7
+                </button>
+                <button onclick="stdCalcInput('8')" class="p-3.5 text-base font-bold font-mono rounded-xl bg-surface text-textPrimary border border-themeBorder hover:border-themeBorder hover:bg-card active:scale-95 transition-all shadow-sm">
+                    8
+                </button>
+                <button onclick="stdCalcInput('9')" class="p-3.5 text-base font-bold font-mono rounded-xl bg-surface text-textPrimary border border-themeBorder hover:border-themeBorder hover:bg-card active:scale-95 transition-all shadow-sm">
+                    9
+                </button>
+                <button onclick="stdCalcInput('Ã·')" class="p-3.5 text-base font-bold font-mono rounded-xl bg-themeAccent/10 text-themeAccent border border-themeAccent/20 hover:bg-themeAccent hover:text-white active:scale-95 transition-all shadow-sm">
+                    &divide;
+                </button>
+
+                <!-- Row 3: 4 5 6 Ã— -->
+                <button onclick="stdCalcInput('4')" class="p-3.5 text-base font-bold font-mono rounded-xl bg-surface text-textPrimary border border-themeBorder hover:border-themeBorder hover:bg-card active:scale-95 transition-all shadow-sm">
+                    4
+                </button>
+                <button onclick="stdCalcInput('5')" class="p-3.5 text-base font-bold font-mono rounded-xl bg-surface text-textPrimary border border-themeBorder hover:border-themeBorder hover:bg-card active:scale-95 transition-all shadow-sm">
+                    5
+                </button>
+                <button onclick="stdCalcInput('6')" class="p-3.5 text-base font-bold font-mono rounded-xl bg-surface text-textPrimary border border-themeBorder hover:border-themeBorder hover:bg-card active:scale-95 transition-all shadow-sm">
+                    6
+                </button>
+                <button onclick="stdCalcInput('Ã—')" class="p-3.5 text-base font-bold font-mono rounded-xl bg-themeAccent/10 text-themeAccent border border-themeAccent/20 hover:bg-themeAccent hover:text-white active:scale-95 transition-all shadow-sm">
+                    &times;
+                </button>
+
+                <!-- Row 4: 1 2 3 âˆ’ -->
+                <button onclick="stdCalcInput('1')" class="p-3.5 text-base font-bold font-mono rounded-xl bg-surface text-textPrimary border border-themeBorder hover:border-themeBorder hover:bg-card active:scale-95 transition-all shadow-sm">
+                    1
+                </button>
+                <button onclick="stdCalcInput('2')" class="p-3.5 text-base font-bold font-mono rounded-xl bg-surface text-textPrimary border border-themeBorder hover:border-themeBorder hover:bg-card active:scale-95 transition-all shadow-sm">
+                    2
+                </button>
+                <button onclick="stdCalcInput('3')" class="p-3.5 text-base font-bold font-mono rounded-xl bg-surface text-textPrimary border border-themeBorder hover:border-themeBorder hover:bg-card active:scale-95 transition-all shadow-sm">
+                    3
+                </button>
+                <button onclick="stdCalcInput('âˆ’')" class="p-3.5 text-base font-bold font-mono rounded-xl bg-themeAccent/10 text-themeAccent border border-themeAccent/20 hover:bg-themeAccent hover:text-white active:scale-95 transition-all shadow-sm">
+                    &minus;
+                </button>
+
+                <!-- Row 5: 0 . +/- + -->
+                <button onclick="stdCalcInput('0')" class="p-3.5 text-base font-bold font-mono rounded-xl bg-surface text-textPrimary border border-themeBorder hover:border-themeBorder hover:bg-card active:scale-95 transition-all shadow-sm">
+                    0
+                </button>
+                <button onclick="stdCalcInput('.')" class="p-3.5 text-base font-bold font-mono rounded-xl bg-surface text-textPrimary border border-themeBorder hover:border-themeBorder hover:bg-card active:scale-95 transition-all shadow-sm">
+                    .
+                </button>
+                <button onclick="stdCalcToggleSign()" class="p-3.5 text-sm font-bold font-mono rounded-xl bg-surface text-textSecondary border border-themeBorder hover:border-themeAccent/40 hover:text-textPrimary hover:bg-card active:scale-95 transition-all shadow-sm" title="Toggle Negatif / Positif">
+                    &plusmn;
+                </button>
+                <button onclick="stdCalcInput('+')" class="p-3.5 text-base font-bold font-mono rounded-xl bg-themeAccent/10 text-themeAccent border border-themeAccent/20 hover:bg-themeAccent hover:text-white active:scale-95 transition-all shadow-sm">
+                    +
+                </button>
+
+                <!-- Row 6: Backspace & Equal -->
+                <button onclick="stdCalcBackspace()" class="col-span-1 p-3 text-sm font-bold font-mono rounded-xl bg-surface text-textSecondary border border-themeBorder hover:border-themeAccent/40 hover:text-textPrimary hover:bg-card active:scale-95 transition-all shadow-sm flex items-center justify-center gap-1" title="Backspace">
+                    <i class="fa-solid fa-delete-left text-xs"></i> âŒ«
+                </button>
+                <button onclick="stdCalcCalculate()" class="col-span-3 p-3.5 text-base font-extrabold font-mono rounded-xl bg-themeAccent hover:bg-themeAccentHover text-white shadow-md hover:shadow-themeAccent/30 active:scale-[0.98] transition-all flex items-center justify-center gap-2" title="Calculate (Enter)">
+                    =
+                </button>
+            </div>
+
+            <!-- Keyboard shortcut guide badge -->
+            <div class="pt-2 text-center text-[10px] text-textMuted flex items-center justify-center gap-3">
+                <span><kbd class="px-1.5 py-0.5 rounded bg-surface border border-themeBorder text-[9px] font-mono">Enter</kbd> = Hitung</span>
+                <span><kbd class="px-1.5 py-0.5 rounded bg-surface border border-themeBorder text-[9px] font-mono">Esc</kbd> = AC</span>
+                <span><kbd class="px-1.5 py-0.5 rounded bg-surface border border-themeBorder text-[9px] font-mono">âŒ«</kbd> = Hapus</span>
+            </div>
+        </div>
+    </div>
+
+ </div>
+ </section>
+
+    <section id="view-bahasa" class="view-panel space-y-5 animate-slide-up hidden"> <!-- Sub-Tabs for Bahasa Indonesia --> <div class="flex items-center space-x-4 border-b border-themeBorder pb-2 mb-4"> <button onclick="switchBahasaSubTab('tugas')" id="bahasa-subtab-tugas" class="px-2 py-2 text-sm font-bold text-themeAccent border-b-2 border-themeAccent transition-all">Tugas Umum</button> <button onclick="switchBahasaSubTab('artikel')" id="bahasa-subtab-artikel" class="px-2 py-2 text-sm font-bold text-textSecondary hover:text-textSecondary border-b-2 border-transparent transition-all">Artikel</button> </div> <!-- Sub-View: Tugas Umum --> <div id="bahasa-subview-tugas" class="space-y-5 block animate-fade-in"> <!-- Search & Filters Container --> <div class="premium-card rounded-xl p-4 flex flex-col md:flex-row gap-4 items-center justify-between"> <div class="relative w-full md:w-80"> <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-textMuted pointer-events-none"> <i class="fa-solid fa-magnifying-glass text-xs"></i> </span> <input type="text" id="search-indo" oninput="filterIndo()" placeholder="Cari tugas bahasa indonesia..." class="w-full bg-card border border-themeBorder focus:border-themeAccent focus:ring-1 focus:ring-themeAccent/20 text-xs text-textPrimary placeholder-textMuted rounded-lg pl-8 pr-4 py-2 focus:outline-none transition-all"> </div> <div class="flex items-center gap-2 w-full md:w-auto overflow-x-auto pb-1 md:pb-0"> <button onclick="filterStatusIndo('semua')" id="btn-indo-all" class="px-3 py-1.5 text-xs font-semibold rounded-lg bg-themeAccent text-white border border-themeAccent transition-all shrink-0">Semua</button> <button onclick="filterStatusIndo('Selesai')" id="btn-indo-selesai" class="px-3 py-1.5 text-xs font-semibold rounded-lg bg-surface text-textSecondary border border-themeBorder hover:border-borderHover hover:text-textPrimary transition-all shrink-0">Selesai</button> <button onclick="filterStatusIndo('Dalam Pengerjaan')" id="btn-indo-progress" class="px-3 py-1.5 text-xs font-semibold rounded-lg bg-surface text-textSecondary border border-themeBorder hover:border-borderHover hover:text-textPrimary transition-all shrink-0">Dalam Pengerjaan</button> </div> </div> <!-- Task Cards Grid --> <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5" id="grid-indo"> <!-- Dynamically populated via JS --> </div> </div> <!-- Sub-View: Artikel --> <div id="bahasa-subview-artikel" class="space-y-5 hidden animate-fade-in"> <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5" id="grid-artikel-bahasa"> <!-- Dynamically populated via JS --> </div> </div> </section>
+
+    <section id="view-jadwal" class="view-panel space-y-6 animate-slide-up">
+ <!-- Header Info Card -->
+ <div
+ class="relative overflow-hidden rounded-xl bg-gradient-to-br from-surface to-card border border-themeBorder p-6 sm:p-8 shadow-lg dark:shadow-[0_12px_40px_rgba(0,0,0,0.8)]">
+ <div class="absolute -right-16 -top-16 w-48 h-48 bg-themeAccent/5 rounded-full blur-3xl pointer-events-none">
+ </div>
+ <div class="absolute -left-16 -bottom-16 w-48 h-48 bg-themeAccent/5 rounded-full blur-3xl pointer-events-none">
+ </div>
+ <div class="z-10 relative flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+ <div class="space-y-2">
+ <span
+ class="text-[9px] font-bold text-[#ff1a40] uppercase tracking-widest px-2 py-0.5 rounded bg-themeAccent/5 border border-themeAccent/10">
+ JADWAL RESMI </span>
+ <h3 class="font-display font-extrabold text-textPrimary text-xl sm:text-2xl tracking-tight"> Jadwal Mata
+ Pelajaran </h3>
+ <p class="text-xs text-textSecondary"> SMA Cinta Kasih Tzu Chi &bull; Semester Ganjil Tahun Pelajaran 2026/2027
+ </p>
+ </div>
+ <div class="flex items-center gap-3 flex-wrap">
+ <span
+ class="text-[10px] font-semibold text-textSecondary px-3 py-1.5 rounded-lg bg-surface border border-themeBorder flex items-center gap-1.5">
+ <i class="fa-solid fa-school text-themeAccent text-[9px]">
+ </i> Kelas XI-3 </span>
+ <span
+ class="text-[10px] font-semibold text-textSecondary px-3 py-1.5 rounded-lg bg-surface border border-themeBorder flex items-center gap-1.5">
+ <i class="fa-solid fa-clock text-themeAccent text-[9px]">
+ </i> Senin &ndash; Jumat </span>
+ </div>
+ </div>
+ </div>
+ <!-- Day Filter Tabs -->
+ <div class="premium-card rounded-xl p-3 flex items-center gap-2 overflow-x-auto">
+ <button onclick="filterJadwalDay('semua')" id="btn-jadwal-semua"
+ class="jadwal-day-btn px-3.5 py-1.5 text-xs font-semibold rounded-lg bg-themeAccent text-white border border-themeAccent transition-all shrink-0">Semua
+ Hari</button>
+ <button onclick="filterJadwalDay('senin')" id="btn-jadwal-senin"
+ class="jadwal-day-btn px-3.5 py-1.5 text-xs font-semibold rounded-lg bg-surface text-textSecondary border border-themeBorder hover:border-themeBorder hover:text-textPrimary transition-all shrink-0">Senin</button>
+ <button onclick="filterJadwalDay('selasa')" id="btn-jadwal-selasa"
+ class="jadwal-day-btn px-3.5 py-1.5 text-xs font-semibold rounded-lg bg-surface text-textSecondary border border-themeBorder hover:border-themeBorder hover:text-textPrimary transition-all shrink-0">Selasa</button>
+ <button onclick="filterJadwalDay('rabu')" id="btn-jadwal-rabu"
+ class="jadwal-day-btn px-3.5 py-1.5 text-xs font-semibold rounded-lg bg-surface text-textSecondary border border-themeBorder hover:border-themeBorder hover:text-textPrimary transition-all shrink-0">Rabu</button>
+ <button onclick="filterJadwalDay('kamis')" id="btn-jadwal-kamis"
+ class="jadwal-day-btn px-3.5 py-1.5 text-xs font-semibold rounded-lg bg-surface text-textSecondary border border-themeBorder hover:border-themeBorder hover:text-textPrimary transition-all shrink-0">Kamis</button>
+ <button onclick="filterJadwalDay('jumat')" id="btn-jadwal-jumat"
+ class="jadwal-day-btn px-3.5 py-1.5 text-xs font-semibold rounded-lg bg-surface text-textSecondary border border-themeBorder hover:border-themeBorder hover:text-textPrimary transition-all shrink-0">Jumat</button>
+ </div>
+ <!-- Schedule Table -->
+ <div id="jadwal-container" class="space-y-5">
+ <!-- Dynamically populated by JS -->
+ </div>
+ <!-- Kode Guru Section -->
+ <div class="premium-card rounded-xl p-6 space-y-4">
+ <h4 class="font-display font-bold text-sm text-textPrimary uppercase tracking-wider flex items-center gap-2">
+ <i class="fa-solid fa-chalkboard-user text-themeAccent text-xs">
+ </i> KODE GURU PENGAJAR
+ </h4>
+ <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2" id="guru-list">
+ <!-- Dynamically populated -->
+ </div>
+ </div>
+ </section>
+
+  
+    <!-- ================= SECTION: MINI GAMES (SPA VIEW) ================= -->
+    <section id="view-minigames" class="view-panel space-y-6 animate-slide-up hidden">
+      <!-- Quick Game Selector Tabs -->
+      <div class="flex items-center gap-1.5 p-1 bg-surface border border-themeBorder rounded-xl overflow-x-auto max-w-full">
+        <button onclick="switchGameTab('hub')" id="tab-btn-hub"
+          class="game-tab-btn active px-3.5 py-1.5 text-xs font-bold rounded-lg border border-transparent transition-all flex items-center gap-1.5 text-textSecondary hover:text-textPrimary shrink-0">
+          <i class="fa-solid fa-table-cells-large text-xs"></i> Hub
+        </button>
+        <button onclick="switchGameTab('sudoku')" id="tab-btn-sudoku"
+          class="game-tab-btn px-3.5 py-1.5 text-xs font-bold rounded-lg border border-transparent transition-all flex items-center gap-1.5 text-textSecondary hover:text-textPrimary shrink-0">
+          <i class="fa-solid fa-puzzle-piece text-xs"></i> Sudoku
+        </button>
+        <button onclick="switchGameTab('snake')" id="tab-btn-snake"
+          class="game-tab-btn px-3.5 py-1.5 text-xs font-bold rounded-lg border border-transparent transition-all flex items-center gap-1.5 text-textSecondary hover:text-textPrimary shrink-0">
+          <i class="fa-solid fa-worm text-xs"></i> Snake
+        </button>
+      </div>
+    </header>
+
+    <!-- ================= SECTION 1: GAME HUB DASHBOARD ================= -->
+    <section id="game-view-hub" class="game-view-panel space-y-6 animate-slide-up block">
+      <!-- Hero Banner -->
+      <div class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-surface to-page border border-themeBorder p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6 shadow-[0_12px_40px_rgba(0,0,0,0.3)]">
+        <div class="absolute -right-16 -top-16 w-56 h-56 bg-brand-red-500/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="z-10 space-y-2 max-w-xl">
+          <span class="text-[9px] font-bold text-brand-red-500 uppercase tracking-widest px-2.5 py-1 rounded bg-brand-red-500/10 border border-brand-red-500/20 inline-flex items-center gap-1.5">
+            <i class="fa-solid fa-gamepad text-xs"></i> RELAX & PLAY
+          </span>
+          <h3 class="font-display font-black text-2xl sm:text-3xl text-textPrimary tracking-tight">
+            Pilih Permainan Favoritmu
+          </h3>
+          <p class="text-xs sm:text-sm text-textSecondary leading-relaxed">
+            Tantang logika matematikamu dengan puzzle Sudoku klasik atau uji refleks kecepatanmu di permainan Snake legendaris.
+          </p>
+        </div>
+        <div class="z-10 flex items-center gap-3 shrink-0">
+          <div class="p-3.5 rounded-2xl bg-card border border-themeBorder shadow-md text-center">
+            <span class="text-[10px] text-textMuted font-bold uppercase tracking-wider">Sudoku Menang</span>
+            <p class="text-xl font-display font-black text-brand-red-500" id="hub-sudoku-wins">0</p>
+          </div>
+          <div class="p-3.5 rounded-2xl bg-card border border-themeBorder shadow-md text-center">
+            <span class="text-[10px] text-textMuted font-bold uppercase tracking-wider">Snake High Score</span>
+            <p class="text-xl font-display font-black text-emerald-500" id="hub-snake-high">0</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Game Cards Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Game Card 1: Sudoku -->
+        <div class="premium-card rounded-2xl p-6 flex flex-col justify-between relative overflow-hidden group hover:border-themeAccent/50 transition-all duration-300">
+          <div class="absolute top-0 right-0 w-32 h-32 bg-brand-red-500/5 rounded-full blur-2xl group-hover:bg-brand-red-500/15 transition-all"></div>
+          <div class="space-y-4 relative z-10">
+            <div class="flex items-center justify-between">
+              <div class="w-12 h-12 rounded-xl bg-brand-red-500/10 border border-brand-red-500/25 flex items-center justify-center text-brand-red-500 text-xl group-hover:scale-110 transition-transform duration-300 shadow-inner">
+                <i class="fa-solid fa-puzzle-piece"></i>
+              </div>
+              <span class="text-[10px] font-bold px-2.5 py-1 rounded-full bg-surface border border-themeBorder text-textSecondary uppercase tracking-wider">
+                Logika & Otak
+              </span>
+            </div>
+            <div>
+              <h4 class="font-display font-extrabold text-xl text-textPrimary group-hover:text-themeAccent transition-colors">
+                Sudoku Master 9&times;9
+              </h4>
+              <p class="text-xs text-textSecondary mt-2 leading-relaxed font-light">
+                Isi kotak 9&times;9 tanpa angka berulang di setiap baris, kolom, dan blok 3&times;3. Lengkap dengan pemilihan tingkat kesulitan (Easy, Medium, Hard), timer, dan highlight interaktif.
+              </p>
+            </div>
+            <div class="flex flex-wrap gap-2 pt-1 text-[10px] font-medium text-textMuted">
+              <span class="px-2 py-0.5 rounded bg-surface border border-themeBorder">3 Kesulitan</span>
+              <span class="px-2 py-0.5 rounded bg-surface border border-themeBorder">Realtime Check</span>
+              <span class="px-2 py-0.5 rounded bg-surface border border-themeBorder">Timer & Hint</span>
+            </div>
+          </div>
+          <div class="pt-6 mt-4 border-t border-themeBorder flex items-center justify-between relative z-10">
+            <span class="text-xs text-textMuted font-semibold">Tantang Fokusmu</span>
+            <button onclick="switchGameTab('sudoku')"
+              class="px-5 py-2 text-xs font-bold rounded-xl bg-brand-red-500 hover:bg-brand-accent text-white shadow-lg hover:shadow-brand-red-500/30 active:scale-95 transition-all flex items-center gap-2">
+              <i class="fa-solid fa-play text-[10px]"></i> Main Sudoku
+            </button>
+          </div>
+        </div>
+
+        <!-- Game Card 2: Snake -->
+        <div class="premium-card rounded-2xl p-6 flex flex-col justify-between relative overflow-hidden group hover:border-emerald-500/50 transition-all duration-300">
+          <div class="absolute top-0 right-0 w-32 h-32 bg-emerald-500/5 rounded-full blur-2xl group-hover:bg-emerald-500/15 transition-all"></div>
+          <div class="space-y-4 relative z-10">
+            <div class="flex items-center justify-between">
+              <div class="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/25 flex items-center justify-center text-emerald-500 text-xl group-hover:scale-110 transition-transform duration-300 shadow-inner">
+                <i class="fa-solid fa-worm"></i>
+              </div>
+              <span class="text-[10px] font-bold px-2.5 py-1 rounded-full bg-surface border border-themeBorder text-textSecondary uppercase tracking-wider">
+                Refleks & Arcade
+              </span>
+            </div>
+            <div>
+              <h4 class="font-display font-extrabold text-xl text-textPrimary group-hover:text-emerald-400 transition-colors">
+                Retro Neon Snake
+              </h4>
+              <p class="text-xs text-textSecondary mt-2 leading-relaxed font-light">
+                Kendalikan ular untuk memakan makanan sebanyak mungkin. Semakin panjang ular, semakin cepat pergerakannya. Hindari tabrakan dengan dinding dan tubuh sendiri!
+              </p>
+            </div>
+            <div class="flex flex-wrap gap-2 pt-1 text-[10px] font-medium text-textMuted">
+              <span class="px-2 py-0.5 rounded bg-surface border border-themeBorder">WASD / Arrow Keys</span>
+              <span class="px-2 py-0.5 rounded bg-surface border border-themeBorder">Touch D-Pad</span>
+              <span class="px-2 py-0.5 rounded bg-surface border border-themeBorder">High Score System</span>
+            </div>
+          </div>
+          <div class="pt-6 mt-4 border-t border-themeBorder flex items-center justify-between relative z-10">
+            <span class="text-xs text-textMuted font-semibold">Raih Skor Tertinggi</span>
+            <button onclick="switchGameTab('snake')"
+              class="px-5 py-2 text-xs font-bold rounded-xl bg-emerald-500 hover:bg-emerald-400 text-white shadow-lg hover:shadow-emerald-500/30 active:scale-95 transition-all flex items-center gap-2">
+              <i class="fa-solid fa-play text-[10px]"></i> Main Snake
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SECTION 2: SUDOKU GAME ================= -->
+    <section id="game-view-sudoku" class="game-view-panel space-y-6 animate-slide-up hidden">
+      <div class="flex flex-col lg:flex-row gap-6 items-start">
+        <!-- Left / Center: Sudoku Board -->
+        <div class="w-full lg:w-7/12 flex flex-col items-center">
+          <div class="w-full max-w-[480px]">
+            <!-- Sudoku Control Bar Top -->
+            <div class="flex items-center justify-between mb-3 px-1">
+              <div class="flex items-center gap-2">
+                <span class="text-[11px] font-semibold text-textMuted flex items-center gap-1.5 bg-surface px-3 py-1 rounded-lg border border-themeBorder">
+                  <i class="fa-regular fa-clock text-themeAccent"></i>
+                  <span id="sudoku-timer" class="font-mono font-bold text-textPrimary">00:00</span>
+                </span>
+                <span class="text-[11px] font-semibold text-textMuted flex items-center gap-1.5 bg-surface px-3 py-1 rounded-lg border border-themeBorder">
+                  <i class="fa-solid fa-triangle-exclamation text-amber-500"></i>
+                  <span>Salah: <strong id="sudoku-mistakes" class="text-amber-500">0</strong>/3</span>
+                </span>
+              </div>
+
+              <!-- Difficulty Selector -->
+              <div class="flex items-center gap-1 bg-surface p-1 rounded-lg border border-themeBorder">
+                <button onclick="setSudokuDifficulty('easy')" id="diff-btn-easy"
+                  class="px-2.5 py-1 text-[10px] font-bold rounded-md bg-themeAccent text-white transition-all">Easy</button>
+                <button onclick="setSudokuDifficulty('medium')" id="diff-btn-medium"
+                  class="px-2.5 py-1 text-[10px] font-bold rounded-md text-textSecondary hover:text-textPrimary transition-all">Med</button>
+                <button onclick="setSudokuDifficulty('hard')" id="diff-btn-hard"
+                  class="px-2.5 py-1 text-[10px] font-bold rounded-md text-textSecondary hover:text-textPrimary transition-all">Hard</button>
+              </div>
+            </div>
+
+            <!-- 9x9 Sudoku Board Container -->
+            <div id="sudoku-board" class="sudoku-grid">
+              <!-- Dynamically populated 81 cells -->
+            </div>
+
+            <!-- Sudoku Number Input Pad (1&ndash;9) -->
+            <div class="mt-4 grid grid-cols-9 gap-1 sm:gap-2">
+              <button onclick="inputSudokuNumber(1)" class="p-2 sm:p-3 text-sm sm:text-base font-display font-bold rounded-xl bg-surface hover:bg-themeAccent hover:text-white border border-themeBorder hover:border-themeAccent active:scale-95 transition-all shadow-sm">1</button>
+              <button onclick="inputSudokuNumber(2)" class="p-2 sm:p-3 text-sm sm:text-base font-display font-bold rounded-xl bg-surface hover:bg-themeAccent hover:text-white border border-themeBorder hover:border-themeAccent active:scale-95 transition-all shadow-sm">2</button>
+              <button onclick="inputSudokuNumber(3)" class="p-2 sm:p-3 text-sm sm:text-base font-display font-bold rounded-xl bg-surface hover:bg-themeAccent hover:text-white border border-themeBorder hover:border-themeAccent active:scale-95 transition-all shadow-sm">3</button>
+              <button onclick="inputSudokuNumber(4)" class="p-2 sm:p-3 text-sm sm:text-base font-display font-bold rounded-xl bg-surface hover:bg-themeAccent hover:text-white border border-themeBorder hover:border-themeAccent active:scale-95 transition-all shadow-sm">4</button>
+              <button onclick="inputSudokuNumber(5)" class="p-2 sm:p-3 text-sm sm:text-base font-display font-bold rounded-xl bg-surface hover:bg-themeAccent hover:text-white border border-themeBorder hover:border-themeAccent active:scale-95 transition-all shadow-sm">5</button>
+              <button onclick="inputSudokuNumber(6)" class="p-2 sm:p-3 text-sm sm:text-base font-display font-bold rounded-xl bg-surface hover:bg-themeAccent hover:text-white border border-themeBorder hover:border-themeAccent active:scale-95 transition-all shadow-sm">6</button>
+              <button onclick="inputSudokuNumber(7)" class="p-2 sm:p-3 text-sm sm:text-base font-display font-bold rounded-xl bg-surface hover:bg-themeAccent hover:text-white border border-themeBorder hover:border-themeAccent active:scale-95 transition-all shadow-sm">7</button>
+              <button onclick="inputSudokuNumber(8)" class="p-2 sm:p-3 text-sm sm:text-base font-display font-bold rounded-xl bg-surface hover:bg-themeAccent hover:text-white border border-themeBorder hover:border-themeAccent active:scale-95 transition-all shadow-sm">8</button>
+              <button onclick="inputSudokuNumber(9)" class="p-2 sm:p-3 text-sm sm:text-base font-display font-bold rounded-xl bg-surface hover:bg-themeAccent hover:text-white border border-themeBorder hover:border-themeAccent active:scale-95 transition-all shadow-sm">9</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Side: Actions, Controls & Instructions -->
+        <div class="w-full lg:w-5/12 space-y-4">
+          <div class="premium-card rounded-2xl p-5 space-y-4">
+            <h4 class="font-display font-bold text-sm text-textPrimary uppercase tracking-wider flex items-center gap-2">
+              <i class="fa-solid fa-sliders text-themeAccent"></i> OPSI PERMAINAN
+            </h4>
+            <div class="grid grid-cols-2 gap-2.5">
+              <button onclick="eraseSudokuCell()"
+                class="px-4 py-2.5 text-xs font-bold rounded-xl bg-surface hover:bg-card border border-themeBorder hover:border-borderHover text-textPrimary active:scale-95 transition-all flex items-center justify-center gap-2 shadow-sm">
+                <i class="fa-solid fa-eraser text-amber-500"></i> Hapus (Del)
+              </button>
+              <button onclick="giveSudokuHint()"
+                class="px-4 py-2.5 text-xs font-bold rounded-xl bg-surface hover:bg-card border border-themeBorder hover:border-borderHover text-textPrimary active:scale-95 transition-all flex items-center justify-center gap-2 shadow-sm">
+                <i class="fa-solid fa-lightbulb text-yellow-400"></i> Petunjuk / Hint
+              </button>
+              <button onclick="checkSudokuSolution()"
+                class="px-4 py-2.5 text-xs font-bold rounded-xl bg-surface hover:bg-card border border-themeBorder hover:border-borderHover text-textPrimary active:scale-95 transition-all flex items-center justify-center gap-2 shadow-sm">
+                <i class="fa-solid fa-circle-check text-emerald-500"></i> Cek Jawaban
+              </button>
+              <button onclick="resetSudokuBoard()"
+                class="px-4 py-2.5 text-xs font-bold rounded-xl bg-surface hover:bg-card border border-themeBorder hover:border-borderHover text-textPrimary active:scale-95 transition-all flex items-center justify-center gap-2 shadow-sm">
+                <i class="fa-solid fa-rotate-left text-blue-400"></i> Reset Ulang
+              </button>
+            </div>
+
+            <button onclick="generateNewSudoku()"
+              class="w-full py-3 text-xs font-extrabold rounded-xl bg-gradient-to-r from-brand-red-600 to-brand-red-500 hover:from-brand-red-500 hover:to-brand-red-400 text-white shadow-lg hover:shadow-brand-red-500/25 active:scale-[0.98] transition-all flex items-center justify-center gap-2">
+              <i class="fa-solid fa-plus-circle"></i> Game Baru
+            </button>
+          </div>
+
+          <!-- Rules Card -->
+          <div class="premium-card rounded-2xl p-5 space-y-3">
+            <h4 class="font-display font-bold text-xs text-textPrimary uppercase tracking-wider flex items-center gap-2">
+              <i class="fa-solid fa-circle-info text-themeAccent"></i> CARA BERMAIN SUDOKU
+            </h4>
+            <ul class="text-xs text-textSecondary space-y-2 leading-relaxed list-disc list-inside">
+              <li>Pilih sel yang kosong lalu ketik angka 1&ndash;9 melalui keyboard atau tombol angka.</li>
+              <li>Gunakan tombol panah keyboard (<kbd class="px-1 py-0.5 rounded bg-surface border border-themeBorder font-mono text-[10px]">↑</kbd><kbd class="px-1 py-0.5 rounded bg-surface border border-themeBorder font-mono text-[10px]">↓</kbd><kbd class="px-1 py-0.5 rounded bg-surface border border-themeBorder font-mono text-[10px]">←</kbd><kbd class="px-1 py-0.5 rounded bg-surface border border-themeBorder font-mono text-[10px]">→</kbd>) untuk navigasi sel.</li>
+              <li>Setiap baris, kolom, dan kotak 3×3 harus berisi angka 1&ndash;9 tanpa ada yang berulang.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SECTION 3: SNAKE GAME ================= -->
+    <section id="game-view-snake" class="game-view-panel space-y-6 animate-slide-up hidden">
+      <div class="flex flex-col lg:flex-row gap-6 items-start justify-center">
+        <!-- Canvas Board Wrapper -->
+        <div class="w-full lg:w-7/12 flex flex-col items-center">
+          <div class="w-full max-w-[440px]">
+            <!-- Snake Score Bar -->
+            <div class="flex items-center justify-between mb-3 px-2 py-2 rounded-xl bg-card border border-themeBorder shadow-sm">
+              <div class="flex items-center gap-2">
+                <span class="text-xs text-textMuted font-bold uppercase tracking-wider">Score:</span>
+                <span id="snake-score" class="font-display font-black text-xl text-emerald-500">0</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <i class="fa-solid fa-trophy text-amber-400 text-xs"></i>
+                <span class="text-xs text-textMuted font-bold uppercase tracking-wider">High:</span>
+                <span id="snake-high-score" class="font-display font-black text-xl text-textPrimary">0</span>
+              </div>
+            </div>
+
+            <!-- Canvas Grid with Overlays -->
+            <div class="snake-canvas-wrapper">
+              <canvas id="snake-canvas" width="400" height="400"></canvas>
+
+              <!-- Start / Pause / Game Over Overlay -->
+              <div id="snake-overlay" class="absolute inset-0 bg-black/80 backdrop-blur-sm flex flex-col items-center justify-center p-6 text-center z-20 transition-all duration-300">
+                <div class="space-y-3 max-w-xs">
+                  <div class="w-14 h-14 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 text-2xl mx-auto shadow-lg shadow-emerald-500/20">
+                    <i id="snake-overlay-icon" class="fa-solid fa-gamepad"></i>
+                  </div>
+                  <h3 id="snake-overlay-title" class="font-display font-extrabold text-2xl text-white">
+                    Retro Snake
+                  </h3>
+                  <p id="snake-overlay-desc" class="text-xs text-zinc-300 leading-relaxed">
+                    Tekan tombol Mulai atau Spasi untuk menjalankan ular!
+                  </p>
+                  <button onclick="startOrResumeSnake()" id="snake-overlay-btn"
+                    class="mt-2 px-6 py-2.5 text-xs font-black rounded-xl bg-emerald-500 hover:bg-emerald-400 text-white shadow-lg hover:shadow-emerald-500/40 active:scale-95 transition-all flex items-center justify-center gap-2 mx-auto">
+                    <i class="fa-solid fa-play text-[11px]"></i> Main Sekarang
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Virtual Touch D-Pad for Mobile & Quick Play -->
+            <div class="mt-4 flex flex-col items-center md:hidden">
+              <button onclick="handleVirtualKey('ArrowUp')" class="dpad-btn w-12 h-12 rounded-xl bg-surface border border-themeBorder flex items-center justify-center text-lg active:bg-themeAccent active:text-white shadow-sm mb-1">
+                <i class="fa-solid fa-chevron-up"></i>
+              </button>
+              <div class="flex gap-4">
+                <button onclick="handleVirtualKey('ArrowLeft')" class="dpad-btn w-12 h-12 rounded-xl bg-surface border border-themeBorder flex items-center justify-center text-lg active:bg-themeAccent active:text-white shadow-sm">
+                  <i class="fa-solid fa-chevron-left"></i>
+                </button>
+                <button onclick="togglePauseSnake()" class="dpad-btn w-12 h-12 rounded-xl bg-surface border border-themeBorder flex items-center justify-center text-xs font-bold text-textMuted active:bg-themeAccent active:text-white shadow-sm">
+                  <i class="fa-solid fa-pause"></i>
+                </button>
+                <button onclick="handleVirtualKey('ArrowRight')" class="dpad-btn w-12 h-12 rounded-xl bg-surface border border-themeBorder flex items-center justify-center text-lg active:bg-themeAccent active:text-white shadow-sm">
+                  <i class="fa-solid fa-chevron-right"></i>
+                </button>
+              </div>
+              <button onclick="handleVirtualKey('ArrowDown')" class="dpad-btn w-12 h-12 rounded-xl bg-surface border border-themeBorder flex items-center justify-center text-lg active:bg-themeAccent active:text-white shadow-sm mt-1">
+                <i class="fa-solid fa-chevron-down"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Side: Snake Controls & Info -->
+        <div class="w-full lg:w-5/12 space-y-4">
+          <div class="premium-card rounded-2xl p-5 space-y-4">
+            <h4 class="font-display font-bold text-sm text-textPrimary uppercase tracking-wider flex items-center gap-2">
+              <i class="fa-solid fa-gamepad text-emerald-500"></i> KONTROL PERMAINAN
+            </h4>
+            <div class="grid grid-cols-2 gap-2.5">
+              <button onclick="togglePauseSnake()" id="btn-snake-pause"
+                class="px-4 py-2.5 text-xs font-bold rounded-xl bg-surface hover:bg-card border border-themeBorder hover:border-borderHover text-textPrimary active:scale-95 transition-all flex items-center justify-center gap-2 shadow-sm">
+                <i class="fa-solid fa-pause text-amber-500"></i> Jeda (Space)
+              </button>
+              <button onclick="restartSnakeGame()"
+                class="px-4 py-2.5 text-xs font-bold rounded-xl bg-surface hover:bg-card border border-themeBorder hover:border-borderHover text-textPrimary active:scale-95 transition-all flex items-center justify-center gap-2 shadow-sm">
+                <i class="fa-solid fa-rotate-left text-blue-400"></i> Main Ulang
+              </button>
+            </div>
+
+            <!-- Speed & Food Info -->
+            <div class="pt-2 border-t border-themeBorder space-y-2">
+              <div class="flex justify-between text-xs font-medium">
+                <span class="text-textMuted">Kecepatan Ular:</span>
+                <span id="snake-speed-label" class="font-bold text-emerald-500">Normal (1.0x)</span>
+              </div>
+              <div class="flex justify-between text-xs font-medium">
+                <span class="text-textMuted">Makanan Dimakan:</span>
+                <span id="snake-food-count" class="font-bold text-textPrimary">0 apel</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Controls Guide -->
+          <div class="premium-card rounded-2xl p-5 space-y-3">
+            <h4 class="font-display font-bold text-xs text-textPrimary uppercase tracking-wider flex items-center gap-2">
+              <i class="fa-solid fa-keyboard text-emerald-500"></i> TOMBOL KONTROL
+            </h4>
+            <div class="space-y-2 text-xs text-textSecondary">
+              <div class="flex items-center justify-between py-1 border-b border-themeBorder">
+                <span>Atas / Naik</span>
+                <span class="font-mono text-textPrimary font-bold"><kbd class="px-1.5 py-0.5 rounded bg-surface border border-themeBorder">↑</kbd> atau <kbd class="px-1.5 py-0.5 rounded bg-surface border border-themeBorder">W</kbd></span>
+              </div>
+              <div class="flex items-center justify-between py-1 border-b border-themeBorder">
+                <span>Bawah / Turun</span>
+                <span class="font-mono text-textPrimary font-bold"><kbd class="px-1.5 py-0.5 rounded bg-surface border border-themeBorder">↓</kbd> atau <kbd class="px-1.5 py-0.5 rounded bg-surface border border-themeBorder">S</kbd></span>
+              </div>
+              <div class="flex items-center justify-between py-1 border-b border-themeBorder">
+                <span>Kiri / Kanan</span>
+                <span class="font-mono text-textPrimary font-bold"><kbd class="px-1.5 py-0.5 rounded bg-surface border border-themeBorder">←</kbd> <kbd class="px-1.5 py-0.5 rounded bg-surface border border-themeBorder">→</kbd> atau <kbd class="px-1.5 py-0.5 rounded bg-surface border border-themeBorder">A</kbd> <kbd class="px-1.5 py-0.5 rounded bg-surface border border-themeBorder">D</kbd></span>
+              </div>
+              <div class="flex items-center justify-between py-1">
+                <span>Pause / Resume</span>
+                <span class="font-mono text-textPrimary font-bold"><kbd class="px-2 py-0.5 rounded bg-surface border border-themeBorder">Space</kbd></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    </section>
+  </main>
+
+  <!-- ================= DETAIL TASK MODAL ================= -->
+ <div id="task-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-describedby="modal-desc"
+ class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-card/60 backdrop-blur-md hidden opacity-0 transition-opacity duration-300">
+ <div
+ class="premium-card modal-container rounded-xl w-full max-w-[95%] md:max-w-[90%] lg:max-w-[1000px] xl:max-w-[1200px] overflow-hidden transform scale-95 transition-transform duration-300 max-h-[90vh] flex flex-col shadow-2xl dark:shadow-[0_24px_50px_rgba(0,0,0,0.9)] relative">
+ <!-- Close X Button (floating) -->
+ <button onclick="closeModal()"
+ class="absolute top-5 right-5 z-30 text-textMuted hover:text-textPrimary p-2.5 rounded-lg bg-card/90 backdrop-blur-md hover:bg-surface border border-themeBorder hover:border-themeBorder transition-all shadow-sm">
+ <i class="fa-solid fa-xmark text-sm"></i>
+ </button>
+ <!-- Scrollable Content -->
+ <div class="overflow-y-auto flex-1 relative">
+ <!-- 1. Badge Artikel + 2. Judul Artikel (Sticky) -->
+ <div
+ class="sticky top-0 z-20 px-6 md:px-8 lg:px-10 xl:px-12 py-6 bg-card bg-gradient-to-r from-brand-red-50/80 via-card to-card dark:from-brand-red-950/20 dark:via-card dark:to-card border-b border-themeBorder border-themeBorder/50 shadow-sm">
+ <span id="modal-subject"
+ class="text-[10px] font-bold text-themeAccent uppercase tracking-widest px-2.5 py-1 rounded-md bg-themeAccent/10 border border-themeAccent/20 shadow-sm inline-flex items-center gap-1.5"><i
+ class="fa-solid fa-tag"></i> Informatika</span>
+ <h4 id="modal-title"
+ class="font-display font-bold text-3xl sm:text-4xl lg:text-[44px] text-textPrimary mt-4 leading-[1.1] pr-14">
+ Judul Tugas</h4>
+ </div>
+ <!-- 3. Gambar Artikel -->
+ <div class="px-4 sm:px-6 lg:px-8 pt-6 pb-2">
+ <div id="modal-image-container"
+ class="relative w-full h-[280px] sm:h-[340px] lg:h-[380px] rounded-2xl overflow-hidden hidden shrink-0 shadow-lg border border-themeBorder/50">
+ <img id="modal-image" src="" alt="Ilustrasi Artikel" class="w-full h-full object-cover">
+ <div class="absolute inset-0 bg-black/10 dark:bg-card/40 pointer-events-none"></div>
+ </div>
+ </div>
+ <div class="px-6 md:px-8 lg:px-10 xl:px-12 pb-10 space-y-8 sm:space-y-10">
+ <!-- 4. Informasi Tugas -->
+ <div class="grid grid-cols-1 md:grid-cols-2 gap-5 bg-surface p-6 rounded-2xl border border-themeBorder">
+ <div>
+ <p class="text-[10px] text-textMuted uppercase tracking-widest font-bold flex items-center gap-1.5">
+ <i class="fa-solid fa-circle-check text-themeAccent"></i> Status Pengumpulan
+ </p>
+ <div class="mt-2">
+ <span id="modal-status"
+ class="inline-flex items-center gap-1 text-xs font-bold px-2.5 py-1 rounded-full">Selesai</span>
+ </div>
+ </div>
+ <div>
+ <p class="text-[10px] text-textMuted uppercase tracking-widest font-bold flex items-center gap-1.5">
+ <i class="fa-regular fa-calendar text-themeAccent"></i> Batas Pengumpulan
+ </p>
+ <p id="modal-date" class="mt-2 text-sm text-textPrimary font-semibold">12 Februari 2026</p>
+ </div>
+ <div>
+ <p class="text-[10px] text-textMuted uppercase tracking-widest font-bold flex items-center gap-1.5">
+ <i class="fa-solid fa-user-tie text-themeAccent"></i> Guru Pengampu
+ </p>
+ <p id="modal-teacher" class="mt-2 text-sm text-textPrimary font-semibold">Bp. Budi Cahyono</p>
+ </div>
+ <div>
+ <p class="text-[10px] text-textMuted uppercase tracking-widest font-bold flex items-center gap-1.5">
+ <i class="fa-solid fa-star text-themeAccent"></i> Nilai Akhir
+ </p>
+ <p id="modal-grade" class="mt-2 text-sm text-themeAccent font-bold">95 / 100</p>
+ </div>
+ </div>
+ <!-- 5. Isi Artikel -->
+ <div class="space-y-4">
+ <h5 id="modal-desc-title"
+ class="text-xs font-bold text-textPrimary uppercase tracking-widest flex items-center gap-2 border-b border-themeBorder pb-3 max-w-[850px]">
+ <i class="fa-solid fa-book-open text-themeAccent"></i> Deskripsi Tugas
+ </h5>
+ <div id="modal-desc"
+ class="text-[17px] sm:text-[18px] text-textSecondary leading-[1.8] font-normal space-y-6 text-justify max-w-[850px]">
+ Deskripsi tugas akan ditampilkan secara dinamis di sini...
+ </div>
+ </div>
+ <!-- 6. Kesimpulan -->
+ <div id="modal-conclusion-section"
+ class="hidden p-6 sm:p-8 rounded-2xl bg-brand-red-50/50 dark:bg-brand-red-950/20 border border-brand-red-100 dark:border-themeAccent/10 shadow-sm max-w-[850px]">
+ <h5 class="text-xs font-bold text-themeAccent uppercase tracking-widest flex items-center gap-2 mb-4">
+ <i class="fa-solid fa-file-lines"></i> Kesimpulan
+ </h5>
+ <p id="modal-conclusion" class="text-[17px] sm:text-[18px] text-textPrimary leading-[1.8] italic">
+ Kesimpulan akan ditampilkan di sini...
+ </p>
+ </div>
+ <!-- 7. Tags/Kategori -->
+ <div id="modal-tags-section" class="space-y-4">
+ <h5 class="text-xs font-bold text-textPrimary uppercase tracking-widest flex items-center gap-2 border-b border-themeBorder pb-3">
+ <i class="fa-solid fa-tags text-themeAccent"></i> Tags / Kategori
+ </h5>
+ <div id="modal-tags" class="flex flex-wrap gap-2.5 pt-1">
+ <!-- Dynamic badges -->
+ </div>
+ </div>
+ </div>
+ </div>
+
+    <!-- ================= SUDOKU WIN MODAL ================= -->
+  <div id="sudoku-win-modal" role="dialog" aria-modal="true"
+    class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-md hidden opacity-0 transition-opacity duration-300">
+    <div class="premium-card rounded-2xl w-full max-w-sm p-6 text-center space-y-4 transform scale-95 transition-transform duration-300 shadow-2xl border border-brand-red-500/40">
+      <div class="w-16 h-16 rounded-full bg-brand-red-500/15 border border-brand-red-500/30 text-brand-accent text-3xl flex items-center justify-center mx-auto animate-bounce-subtle">
+        <i class="fa-solid fa-trophy"></i>
+      </div>
+      <div class="space-y-1">
+        <h4 class="font-display font-black text-2xl text-textPrimary">Luar Biasa!</h4>
+        <p class="text-xs text-textSecondary">Kamu berhasil menyelesaikan puzzle Sudoku dengan tepat.</p>
+      </div>
+      <div class="bg-surface p-3.5 rounded-xl border border-themeBorder flex justify-around text-xs">
+        <div>
+          <span class="text-[10px] text-textMuted uppercase font-bold">Waktu</span>
+          <p id="win-modal-time" class="font-mono font-bold text-textPrimary text-sm mt-0.5">00:00</p>
+        </div>
+        <div class="w-px bg-themeBorder"></div>
+        <div>
+          <span class="text-[10px] text-textMuted uppercase font-bold">Kesulitan</span>
+          <p id="win-modal-diff" class="font-bold text-themeAccent text-sm mt-0.5">Easy</p>
+        </div>
+      </div>
+      <div class="flex gap-2 pt-2">
+        <button onclick="closeSudokuWinModal(); generateNewSudoku();"
+          class="flex-1 py-2.5 text-xs font-bold rounded-xl bg-brand-red-500 hover:bg-brand-accent text-white shadow-lg hover:shadow-brand-red-500/30 transition-all">
+          Main Lagi
+        </button>
+        <button onclick="closeSudokuWinModal()"
+          class="px-4 py-2.5 text-xs font-semibold rounded-xl bg-surface border border-themeBorder text-textSecondary hover:text-textPrimary transition-all">
+          Tutup
+        </button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Footer -->
+  <footer class="w-full py-6 border-t border-themeBorder mt-auto">
+    <div class="max-w-7xl mx-auto px-4 text-center">
+      <p class="text-[10px] text-textMuted tracking-wider uppercase font-semibold">© 2026 NA VIAN SEN. ALL RIGHTS RESERVED.</p>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+  <script src="spaRouter.js"></script>
+  <script src="iwannabeyoursLyrics.js"></script>
+  <script src="no1PartyAnthemLyrics.js"></script>
+  <script src="secretDoorLyrics.js"></script>
+  <script src="505Lyrics.js"></script>
+  <script src="bestfriendLyrics.js"></script>
+  <script src="happinessLyrics.js"></script>
+  <script src="minigames.js"></script>
+  <script src="audioManager.js"></script>
+  <script src="musicPlayer.js"></script>
+</body>
+
+</html>
+

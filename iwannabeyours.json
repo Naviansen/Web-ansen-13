@@ -1,0 +1,343 @@
+{
+  "version": 1,
+  "resultType": "line_end",
+  "language": "korean",
+  "lines": [
+    {
+      "startTime": 17.9,
+      "endTime": 20.4,
+      "text": "I wanna be your vacuum cleaner",
+      "confidence": 94,
+      "startConfidence": 94,
+      "endConfidence": 94
+    },
+    {
+      "startTime": 21.8,
+      "endTime": 24.1,
+      "text": "Breathin' in your dust",
+      "confidence": 95,
+      "startConfidence": 95,
+      "endConfidence": 95
+    },
+    {
+      "startTime": 25,
+      "endTime": 27.6,
+      "text": "I wanna be your Ford Cortina",
+      "confidence": 96,
+      "startConfidence": 96,
+      "endConfidence": 96
+    },
+    {
+      "startTime": 28.7,
+      "endTime": 31.3,
+      "text": "I will never rust",
+      "confidence": 94,
+      "startConfidence": 94,
+      "endConfidence": 94
+    },
+    {
+      "startTime": 32.4,
+      "endTime": 35.5,
+      "text": "If you like your coffee hot",
+      "confidence": 95,
+      "startConfidence": 95,
+      "endConfidence": 95
+    },
+    {
+      "startTime": 36,
+      "endTime": 38.2,
+      "text": "Let me be your coffee pot",
+      "confidence": 96,
+      "startConfidence": 96,
+      "endConfidence": 96
+    },
+    {
+      "startTime": 39.5,
+      "endTime": 41.7,
+      "text": "You call the shots, babe",
+      "confidence": 95,
+      "startConfidence": 95,
+      "endConfidence": 95
+    },
+    {
+      "startTime": 42,
+      "endTime": 45.5,
+      "text": "I just wanna be yours",
+      "confidence": 97,
+      "startConfidence": 97,
+      "endConfidence": 97
+    },
+    {
+      "startTime": 46.2,
+      "endTime": 49.5,
+      "text": "Secrets I have held in my heart",
+      "confidence": 95,
+      "startConfidence": 95,
+      "endConfidence": 95
+    },
+    {
+      "startTime": 49.8,
+      "endTime": 52.9,
+      "text": "Are harder to hide than I thought",
+      "confidence": 95,
+      "startConfidence": 95,
+      "endConfidence": 95
+    },
+    {
+      "startTime": 53.4,
+      "endTime": 56.2,
+      "text": "Maybe I just wanna be yours",
+      "confidence": 97,
+      "startConfidence": 97,
+      "endConfidence": 97
+    },
+    {
+      "startTime": 56.5,
+      "endTime": 61.6,
+      "text": "I wanna be yours, I wanna be yours",
+      "confidence": 97,
+      "startConfidence": 97,
+      "endConfidence": 97
+    },
+    {
+      "startTime": 62.3,
+      "endTime": 65,
+      "text": "Wanna be yours",
+      "confidence": 96,
+      "startConfidence": 96,
+      "endConfidence": 96
+    },
+    {
+      "startTime": 65.7,
+      "endTime": 68.5,
+      "text": "Wanna be yours",
+      "confidence": 97,
+      "startConfidence": 97,
+      "endConfidence": 97
+    },
+    {
+      "startTime": 69.3,
+      "endTime": 74.2,
+      "text": "Wanna be yours",
+      "confidence": 97,
+      "startConfidence": 97,
+      "endConfidence": 97
+    },
+    {
+      "startTime": 74.9,
+      "endTime": 77.3,
+      "text": "Let me be your 'leccy meter",
+      "confidence": 96,
+      "startConfidence": 96,
+      "endConfidence": 96
+    },
+    {
+      "startTime": 78.4,
+      "endTime": 80.8,
+      "text": "And I'll never run out",
+      "confidence": 95,
+      "startConfidence": 95,
+      "endConfidence": 95
+    },
+    {
+      "startTime": 81.3,
+      "endTime": 84.5,
+      "text": "Let me be the portable heater",
+      "confidence": 96,
+      "startConfidence": 96,
+      "endConfidence": 96
+    },
+    {
+      "startTime": 85.6,
+      "endTime": 88,
+      "text": "That you'll get cold without",
+      "confidence": 96,
+      "startConfidence": 96,
+      "endConfidence": 96
+    },
+    {
+      "startTime": 89,
+      "endTime": 91.6,
+      "text": "I wanna be your setting lotion (wanna be)",
+      "confidence": 95,
+      "startConfidence": 95,
+      "endConfidence": 95
+    },
+    {
+      "startTime": 92.7,
+      "endTime": 96,
+      "text": "Hold your hair in deep devotion (how deep?)",
+      "confidence": 96,
+      "startConfidence": 96,
+      "endConfidence": 96
+    },
+    {
+      "startTime": 96,
+      "endTime": 99.1,
+      "text": "At least as deep as the Pacific Ocean",
+      "confidence": 97,
+      "startConfidence": 97,
+      "endConfidence": 97
+    },
+    {
+      "startTime": 99.1,
+      "endTime": 102.2,
+      "text": "I wanna be yours",
+      "confidence": 97,
+      "startConfidence": 97,
+      "endConfidence": 97
+    },
+    {
+      "startTime": 103.1,
+      "endTime": 106.3,
+      "text": "Secrets I have held in my heart",
+      "confidence": 95,
+      "startConfidence": 95,
+      "endConfidence": 95
+    },
+    {
+      "startTime": 106.7,
+      "endTime": 109.9,
+      "text": "Are harder to hide than I thought",
+      "confidence": 95,
+      "startConfidence": 95,
+      "endConfidence": 95
+    },
+    {
+      "startTime": 110.2,
+      "endTime": 113.4,
+      "text": "Maybe I just wanna be yours",
+      "confidence": 96,
+      "startConfidence": 96,
+      "endConfidence": 96
+    },
+    {
+      "startTime": 113.4,
+      "endTime": 118.7,
+      "text": "I wanna be yours, I wanna be yours",
+      "confidence": 98,
+      "startConfidence": 98,
+      "endConfidence": 98
+    },
+    {
+      "startTime": 119.1,
+      "endTime": 121.8,
+      "text": "Wanna be yours",
+      "confidence": 92,
+      "startConfidence": 92,
+      "endConfidence": 92
+    },
+    {
+      "startTime": 122.6,
+      "endTime": 125.9,
+      "text": "Wanna be yours",
+      "confidence": 80,
+      "startConfidence": 80,
+      "endConfidence": 80
+    },
+    {
+      "startTime": 126.2,
+      "endTime": 129,
+      "text": "Wanna be yours",
+      "confidence": 66,
+      "startConfidence": 66,
+      "endConfidence": 66
+    },
+    {
+      "startTime": 129.7,
+      "endTime": 132.9,
+      "text": "Wanna be yours",
+      "confidence": 65,
+      "startConfidence": 65,
+      "endConfidence": 65
+    },
+    {
+      "startTime": 133.3,
+      "endTime": 136,
+      "text": "Wanna be yours",
+      "confidence": 50,
+      "startConfidence": 50,
+      "endConfidence": 50
+    },
+    {
+      "startTime": 136.8,
+      "endTime": 140,
+      "text": "Wanna be yours",
+      "confidence": 70,
+      "startConfidence": 70,
+      "endConfidence": 70
+    },
+    {
+      "startTime": 139.6,
+      "endTime": 140.1,
+      "text": "Wanna be yours",
+      "confidence": 71,
+      "startConfidence": 71,
+      "endConfidence": 71
+    },
+    {
+      "startTime": 140.4,
+      "endTime": 144.4,
+      "text": "(Wanna be yours)",
+      "confidence": 63,
+      "startConfidence": 63,
+      "endConfidence": 63
+    },
+    {
+      "startTime": 145.7,
+      "endTime": 148.8,
+      "text": "I wanna be your vacuum cleaner (wanna be yours)",
+      "confidence": 96,
+      "startConfidence": 96,
+      "endConfidence": 96
+    },
+    {
+      "startTime": 149.7,
+      "endTime": 152.5,
+      "text": "Breathin' in your dust (wanna be yours)",
+      "confidence": 95,
+      "startConfidence": 95,
+      "endConfidence": 95
+    },
+    {
+      "startTime": 152.8,
+      "endTime": 156.9,
+      "text": "I wanna be your Ford Cortina (wanna be yours)",
+      "confidence": 95,
+      "startConfidence": 95,
+      "endConfidence": 95
+    },
+    {
+      "startTime": 156.9,
+      "endTime": 161.6,
+      "text": "I will never rust (wanna be yours)",
+      "confidence": 35,
+      "startConfidence": 35,
+      "endConfidence": 35
+    },
+    {
+      "startTime": 162.3,
+      "endTime": 162.7,
+      "text": "I just wanna be yours (wanna be yours)",
+      "confidence": 33,
+      "startConfidence": 33,
+      "endConfidence": 33
+    },
+    {
+      "startTime": 162.8,
+      "endTime": 166.2,
+      "text": "I just wanna be yours (wanna be yours)",
+      "confidence": 69,
+      "startConfidence": 69,
+      "endConfidence": 69
+    },
+    {
+      "startTime": 166.4,
+      "endTime": 182,
+      "text": "I just wanna be yours (wanna be yours)",
+      "confidence": 96,
+      "startConfidence": 96,
+      "endConfidence": 96
+    }
+  ]
+}

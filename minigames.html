@@ -1,0 +1,1877 @@
+﻿<!DOCTYPE html>
+<html lang="id" class="dark">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mini Games - Portofolio & Repositori Tugas Sekolah</title>
+  <!-- Inline script to detect and apply theme quickly before rendering -->
+  <script>
+    (function () {
+      const savedTheme = localStorage.getItem('theme');
+      const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
+        document.documentElement.classList.add('dark');
+      } else if (savedTheme === 'light' || (!savedTheme && !systemPrefersDark)) {
+        document.documentElement.classList.remove('dark');
+      }
+    })();
+  </script>
+  <!-- SEO Meta Tags -->
+  <meta name="description"
+    content="Koleksi Mini Games interaktif (Sudoku & Snake) di website portofolio Na Vian Sen dengan desain modern dan responsif.">
+  <meta name="author" content="NA VIAN SEN">
+  <!-- Tailwind CSS v3 Play CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              red: {
+                50: '#fff1f2',
+                100: '#ffe4e6',
+                200: '#fecdd3',
+                300: '#fda4af',
+                400: '#fb7185',
+                500: '#e00f3c',
+                600: '#c20930',
+                700: '#a30024',
+                800: '#84001b',
+                900: '#660012',
+                950: '#3d0007',
+                accent: '#ff1a40',
+              },
+            },
+            page: 'rgb(var(--color-page) / <alpha-value>)',
+            card: 'rgb(var(--color-card) / <alpha-value>)',
+            surface: 'rgb(var(--color-secondary) / <alpha-value>)',
+            themeBorder: 'rgb(var(--color-border) / <alpha-value>)',
+            borderHover: 'rgb(var(--color-border-hover) / <alpha-value>)',
+            textPrimary: 'rgb(var(--color-primary) / <alpha-value>)',
+            textSecondary: 'rgb(var(--color-secondary-text) / <alpha-value>)',
+            textMuted: 'rgb(var(--color-muted) / <alpha-value>)',
+            themeAccent: 'rgb(var(--color-accent) / <alpha-value>)',
+            themeAccentHover: 'rgb(var(--color-accent-hover) / <alpha-value>)',
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            display: ['Outfit', 'sans-serif'],
+          },
+          animation: {
+            'glow-pulse': 'glowPulse 3s infinite alternate',
+            'fade-in': 'fadeIn 0.3s ease-out forwards',
+            'slide-up': 'slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+            'bounce-subtle': 'bounceSubtle 2s infinite ease-in-out',
+            'pop': 'pop 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards',
+          },
+          keyframes: {
+            glowPulse: {
+              '0%': { boxShadow: '0 0 5px var(--color-accent-glow), 0 0 10px var(--color-accent-glow)' },
+              '100%': { boxShadow: '0 0 15px var(--color-accent-glow-strong), 0 0 25px var(--color-accent-glow-strong)' }
+            },
+            fadeIn: {
+              '0%': { opacity: '0' },
+              '100%': { opacity: '1' }
+            },
+            slideUp: {
+              '0%': { transform: 'translateY(12px)', opacity: '0' },
+              '100%': { transform: 'translateY(0)', opacity: '1' }
+            },
+            bounceSubtle: {
+              '0%, 100%': { transform: 'translateY(0)' },
+              '50%': { transform: 'translateY(-4px)' }
+            },
+            pop: {
+              '0%': { transform: 'scale(0.85)' },
+              '100%': { transform: 'scale(1)' }
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <!-- Google Fonts: Inter & Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap"
+    rel="stylesheet">
+  <!-- FontAwesome Icons for Social Media and UI Elements -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    /* Sudoku Board Specific Styling */
+    .sudoku-grid {
+      display: grid;
+      grid-template-columns: repeat(9, minmax(0, 1fr));
+      aspect-ratio: 1 / 1;
+      max-width: 480px;
+      width: 100%;
+      margin: 0 auto;
+      border: 3px solid rgba(225, 29, 72, 0.4);
+      border-radius: 14px;
+      overflow: hidden;
+      background: rgb(var(--color-card));
+      box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.3), 0 0 20px rgba(225, 29, 72, 0.15);
+    }
+
+    .sudoku-cell {
+      aspect-ratio: 1 / 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      border-right: 1px solid rgba(var(--color-border), 0.7);
+      border-bottom: 1px solid rgba(var(--color-border), 0.7);
+      cursor: pointer;
+      user-select: none;
+      transition: all 0.15s ease;
+      position: relative;
+    }
+
+    @media (max-width: 480px) {
+      .sudoku-cell {
+        font-size: 1.05rem;
+      }
+    }
+
+    /* 3x3 block borders */
+    .sudoku-cell:nth-child(3n) {
+      border-right: 2.5px solid rgba(225, 29, 72, 0.5);
+    }
+    .sudoku-cell:nth-child(9n) {
+      border-right: none;
+    }
+    .sudoku-cell:nth-child(n+19):nth-child(-n+27),
+    .sudoku-cell:nth-child(n+46):nth-child(-n+54) {
+      border-bottom: 2.5px solid rgba(225, 29, 72, 0.5);
+    }
+    .sudoku-cell:nth-child(n+73):nth-child(-n+81) {
+      border-bottom: none;
+    }
+
+    /* Cell States */
+    .sudoku-cell.prefilled {
+      color: rgb(var(--color-primary));
+      font-weight: 800;
+      background-color: rgba(var(--color-secondary), 0.35);
+    }
+
+    .sudoku-cell.user-filled {
+      color: rgb(var(--color-accent));
+    }
+
+    .sudoku-cell.selected {
+      background-color: rgba(225, 29, 72, 0.25) !important;
+      box-shadow: inset 0 0 0 2px rgb(var(--color-accent));
+      z-index: 2;
+    }
+
+    .sudoku-cell.highlight-peer {
+      background-color: rgba(225, 29, 72, 0.07);
+    }
+
+    .sudoku-cell.highlight-same {
+      background-color: rgba(225, 29, 72, 0.18);
+      color: rgb(var(--color-accent)) !important;
+    }
+
+    .sudoku-cell.invalid {
+      background-color: rgba(239, 68, 68, 0.25) !important;
+      color: #ef4444 !important;
+      animation: shake 0.3s ease-in-out;
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-3px); }
+      75% { transform: translateX(3px); }
+    }
+
+    /* Snake Canvas styling */
+    .snake-canvas-wrapper {
+      position: relative;
+      width: 100%;
+      max-width: 440px;
+      margin: 0 auto;
+      aspect-ratio: 1 / 1;
+      border: 3px solid rgba(225, 29, 72, 0.4);
+      border-radius: 16px;
+      overflow: hidden;
+      background: #0b0d11;
+      box-shadow: 0 12px 35px -5px rgba(0, 0, 0, 0.5), 0 0 25px rgba(225, 29, 72, 0.18);
+    }
+
+    #snake-canvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+      image-rendering: pixelated;
+    }
+
+    /* Game Tab active badge */
+    .game-tab-btn.active {
+      background-color: rgb(var(--color-accent));
+      color: #ffffff !important;
+      border-color: rgb(var(--color-accent));
+      box-shadow: 0 4px 15px rgba(225, 29, 72, 0.35);
+    }
+
+    /* D-pad Buttons */
+    .dpad-btn {
+      touch-action: manipulation;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+  </style>
+</head>
+
+<body class="min-h-screen flex flex-col antialiased overflow-x-hidden bg-page text-textPrimary transition-colors duration-300">
+  <!-- ================= TOP HEADER NAVBAR ================= -->
+  <header
+    class="sticky top-0 z-50 w-full bg-card/85 backdrop-blur-md border-b border-themeBorder transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <!-- Brand Logo / Name -->
+      <a href="index.html" class="flex items-center space-x-3 group">
+        <div
+          class="w-9 h-9 rounded-lg bg-gradient-to-tr from-brand-red-600 to-brand-red-500 flex items-center justify-center text-white font-display font-bold text-lg shadow-lg shadow-brand-red-950/20 group-hover:scale-105 transition-transform duration-200">
+          N
+        </div>
+        <div>
+          <h1
+            class="font-display font-bold text-textPrimary tracking-wide text-xs group-hover:text-textPrimary transition-colors">
+            NA VIAN SEN</h1>
+          <p class="text-[9px] text-textMuted font-medium tracking-wide">Siswa Kelas 11.3</p>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Menu Links -->
+      <nav class="hidden md:flex items-center space-x-1" id="nav-container-desktop">
+        <a href="index.html" id="nav-dashboard"
+          class="nav-item text-textMuted flex items-center space-x-2 px-3 py-1.5 rounded-lg hover:text-textPrimary hover:bg-surface border border-transparent hover:border-themeBorder transition-all duration-200 text-xs font-semibold tracking-wide">
+          <i class="fa-solid fa-chart-pie w-4 text-center"></i>
+          <span>DASHBOARD</span>
+        </a>
+        <a href="profil.html" id="nav-profil"
+          class="nav-item text-textMuted flex items-center space-x-2 px-3 py-1.5 rounded-lg hover:text-textPrimary hover:bg-surface border border-transparent hover:border-themeBorder transition-all duration-200 text-xs font-semibold tracking-wide">
+          <i class="fa-solid fa-user w-4 text-center"></i>
+          <span>PROFIL SAYA</span>
+        </a>
+        <a href="informatika.html" id="nav-informatika"
+          class="nav-item text-textMuted flex items-center space-x-2 px-3 py-1.5 rounded-lg hover:text-textPrimary hover:bg-surface border border-transparent hover:border-themeBorder transition-all duration-200 text-xs font-semibold tracking-wide">
+          <i class="fa-solid fa-code w-4 text-center"></i>
+          <span>INFORMATIKA</span>
+        </a>
+        <a href="bahasa.html" id="nav-bahasa-indonesia"
+          class="nav-item text-textMuted flex items-center space-x-2 px-3 py-1.5 rounded-lg hover:text-textPrimary hover:bg-surface border border-transparent hover:border-themeBorder transition-all duration-200 text-xs font-semibold tracking-wide">
+          <i class="fa-solid fa-book-open w-4 text-center"></i>
+          <span>BAHASA INDONESIA</span>
+        </a>
+        <a href="jadwal.html" id="nav-jadwal-pelajaran"
+          class="nav-item text-textMuted flex items-center space-x-2 px-3 py-1.5 rounded-lg hover:text-textPrimary hover:bg-surface border border-transparent hover:border-themeBorder transition-all duration-200 text-xs font-semibold tracking-wide">
+          <i class="fa-solid fa-calendar-days w-4 text-center"></i>
+          <span>JADWAL PELAJARAN</span>
+        </a>
+        <a href="minigames.html" id="nav-minigames"
+          class="nav-item active-nav-item text-brand-red-500 flex items-center space-x-2 px-3 py-1.5 rounded-lg hover:text-textPrimary hover:bg-surface border border-transparent hover:border-themeBorder transition-all duration-200 text-xs font-semibold tracking-wide">
+          <i class="fa-solid fa-gamepad w-4 text-center"></i>
+          <span>MINI GAMES</span>
+        </a>
+      </nav>
+
+      <!-- Desktop Right-side utilities (Social + Toggle) -->
+      <div class="hidden md:flex items-center space-x-2">
+        <a href="https://www.instagram.com/naviansenn/" target="_blank" rel="noopener noreferrer"
+          class="w-8 h-8 rounded-lg bg-surface border border-themeBorder hover:border-brand-red-500/20 hover:bg-brand-red-500/5 hover:text-brand-accent flex items-center justify-center text-textMuted transition-all duration-200"
+          title="Instagram">
+          <i class="fa-brands fa-instagram text-xs"></i>
+        </a>
+        <a href="mailto:sennavian@gmail.com"
+          class="w-8 h-8 rounded-lg bg-surface border border-themeBorder hover:border-brand-red-500/20 hover:bg-brand-red-500/5 hover:text-brand-accent flex items-center justify-center text-textMuted transition-all duration-200"
+          title="Kirim Email">
+          <i class="fa-solid fa-envelope text-xs"></i>
+        </a>
+        <!-- Vertical Divider -->
+        <span class="h-4 w-px bg-themeBorder mx-1"></span>
+        <!-- Theme Toggle -->
+        <button onclick="toggleTheme()" id="theme-toggle-desktop"
+          class="w-8 h-8 rounded-lg bg-surface border border-themeBorder hover:border-brand-red-500/20 hover:bg-brand-red-500/5 hover:text-brand-accent flex items-center justify-center text-textMuted transition-all duration-200"
+          title="Toggle Tema">
+          <i class="fa-solid fa-sun text-xs dark:hidden"></i>
+          <i class="fa-solid fa-moon text-xs hidden dark:inline-block"></i>
+        </button>
+      </div>
+
+      <!-- Mobile Right-side Actions -->
+      <div class="md:hidden flex items-center space-x-2">
+        <button onclick="toggleTheme()" id="theme-toggle-mobile"
+          class="text-textMuted hover:text-textPrimary p-2 rounded-lg bg-surface border border-themeBorder focus:outline-none transition-all"
+          title="Toggle Tema">
+          <i class="fa-solid fa-sun text-xs dark:hidden"></i>
+          <i class="fa-solid fa-moon text-xs hidden dark:inline-block"></i>
+        </button>
+        <button onclick="toggleMobileMenu()" id="btn-mobile-menu"
+          class="text-textMuted hover:text-textPrimary p-2 rounded-lg bg-surface border border-themeBorder focus:outline-none transition-all">
+          <i class="fa-solid fa-bars-staggered text-xs"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Navigation Drawer Overlay (Slides down from Navbar) -->
+    <div id="mobile-menu" class="hidden md:hidden border-t border-themeBorder bg-card px-4 py-3 space-y-3 shadow-lg">
+      <nav class="flex flex-col space-y-1.5" id="nav-container-mobile">
+        <a href="index.html" id="mobile-nav-dashboard"
+          class="nav-item w-full flex items-center space-x-3 px-3 py-2 rounded-lg hover:bg-surface border border-transparent hover:border-themeBorder transition-all duration-200 text-xs font-semibold tracking-wide">
+          <i class="fa-solid fa-chart-pie w-4 text-center"></i>
+          <span>DASHBOARD</span>
+        </a>
+        <a href="profil.html" id="mobile-nav-profil"
+          class="nav-item w-full flex items-center space-x-3 px-3 py-2 rounded-lg hover:bg-surface border border-transparent hover:border-themeBorder transition-all duration-200 text-xs font-semibold tracking-wide">
+          <i class="fa-solid fa-user w-4 text-center"></i>
+          <span>PROFIL SAYA</span>
+        </a>
+        <a href="informatika.html" id="mobile-nav-informatika"
+          class="nav-item w-full flex items-center space-x-3 px-3 py-2 rounded-lg hover:bg-surface border border-transparent hover:border-themeBorder transition-all duration-200 text-xs font-semibold tracking-wide">
+          <i class="fa-solid fa-code w-4 text-center"></i>
+          <span>INFORMATIKA</span>
+        </a>
+        <a href="bahasa.html" id="mobile-nav-bahasa-indonesia"
+          class="nav-item w-full flex items-center space-x-3 px-3 py-2 rounded-lg hover:bg-surface border border-transparent hover:border-themeBorder transition-all duration-200 text-xs font-semibold tracking-wide">
+          <i class="fa-solid fa-book-open w-4 text-center"></i>
+          <span>BAHASA INDONESIA</span>
+        </a>
+        <a href="jadwal.html" id="mobile-nav-jadwal-pelajaran"
+          class="nav-item w-full flex items-center space-x-3 px-3 py-2 rounded-lg hover:bg-surface border border-transparent hover:border-themeBorder transition-all duration-200 text-xs font-semibold tracking-wide">
+          <i class="fa-solid fa-calendar-days w-4 text-center"></i>
+          <span>JADWAL PELAJARAN</span>
+        </a>
+        <a href="minigames.html" id="mobile-nav-minigames"
+          class="nav-item active-nav-item w-full flex items-center space-x-3 px-3 py-2 rounded-lg hover:bg-surface border border-transparent hover:border-themeBorder transition-all duration-200 text-xs font-semibold tracking-wide text-brand-red-500">
+          <i class="fa-solid fa-gamepad w-4 text-center"></i>
+          <span>MINI GAMES</span>
+        </a>
+      </nav>
+      <!-- Social Media Links (Mobile Drawer Footer) -->
+      <div class="pt-3 border-t border-themeBorder flex items-center justify-between px-2">
+        <span class="text-[10px] text-textMuted font-semibold tracking-widest uppercase">SOSIAL MEDIA</span>
+        <div class="flex space-x-2">
+          <a href="https://www.instagram.com/naviansenn/" target="_blank" rel="noopener noreferrer"
+            class="w-7 h-7 rounded-lg bg-surface border border-themeBorder hover:text-themeAccent flex items-center justify-center text-textMuted transition-all"
+            title="Instagram">
+            <i class="fa-brands fa-instagram text-xs"></i>
+          </a>
+          <a href="mailto:sennavian@gmail.com"
+            class="w-7 h-7 rounded-lg bg-surface border border-themeBorder hover:text-themeAccent flex items-center justify-center text-textMuted transition-all"
+            title="Kirim Email">
+            <i class="fa-solid fa-envelope text-xs"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= MAIN CONTENT WRAPPER ================= -->
+  <main class="flex-1 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col min-h-[calc(100vh-64px)]">
+    <!-- HEADER AREA -->
+    <header class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6 pb-4 border-b border-themeBorder">
+      <div class="space-y-1 mt-1 sm:mt-0">
+        <div class="flex items-center gap-2">
+          <h2 id="page-title" class="font-display font-bold text-xl sm:text-2xl text-textPrimary tracking-tight">Mini Games</h2>
+          <span class="text-[10px] font-bold text-white bg-brand-red-500 px-2 py-0.5 rounded-full uppercase tracking-wider shadow-sm animate-pulse">Arcade</span>
+        </div>
+        <p id="page-subtitle" class="text-xs text-textMuted mt-1">Take a break and have some fun 🎮</p>
+      </div>
+
+      <!-- Quick Game Selector Tabs -->
+      <div class="flex items-center gap-1.5 p-1 bg-surface border border-themeBorder rounded-xl overflow-x-auto max-w-full">
+        <button onclick="switchGameTab('hub')" id="tab-btn-hub"
+          class="game-tab-btn active px-3.5 py-1.5 text-xs font-bold rounded-lg border border-transparent transition-all flex items-center gap-1.5 text-textSecondary hover:text-textPrimary shrink-0">
+          <i class="fa-solid fa-table-cells-large text-xs"></i> Hub
+        </button>
+        <button onclick="switchGameTab('sudoku')" id="tab-btn-sudoku"
+          class="game-tab-btn px-3.5 py-1.5 text-xs font-bold rounded-lg border border-transparent transition-all flex items-center gap-1.5 text-textSecondary hover:text-textPrimary shrink-0">
+          <i class="fa-solid fa-puzzle-piece text-xs"></i> Sudoku
+        </button>
+        <button onclick="switchGameTab('snake')" id="tab-btn-snake"
+          class="game-tab-btn px-3.5 py-1.5 text-xs font-bold rounded-lg border border-transparent transition-all flex items-center gap-1.5 text-textSecondary hover:text-textPrimary shrink-0">
+          <i class="fa-solid fa-worm text-xs"></i> Snake
+        </button>
+      </div>
+    </header>
+
+    <!-- ================= SECTION 1: GAME HUB DASHBOARD ================= -->
+    <section id="game-view-hub" class="game-view-panel space-y-6 animate-slide-up block">
+      <!-- Hero Banner -->
+      <div class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-surface to-page border border-themeBorder p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6 shadow-[0_12px_40px_rgba(0,0,0,0.3)]">
+        <div class="absolute -right-16 -top-16 w-56 h-56 bg-brand-red-500/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="z-10 space-y-2 max-w-xl">
+          <span class="text-[9px] font-bold text-brand-red-500 uppercase tracking-widest px-2.5 py-1 rounded bg-brand-red-500/10 border border-brand-red-500/20 inline-flex items-center gap-1.5">
+            <i class="fa-solid fa-gamepad text-xs"></i> RELAX & PLAY
+          </span>
+          <h3 class="font-display font-black text-2xl sm:text-3xl text-textPrimary tracking-tight">
+            Pilih Permainan Favoritmu
+          </h3>
+          <p class="text-xs sm:text-sm text-textSecondary leading-relaxed">
+            Tantang logika matematikamu dengan puzzle Sudoku klasik atau uji refleks kecepatanmu di permainan Snake legendaris.
+          </p>
+        </div>
+        <div class="z-10 flex items-center gap-3 shrink-0">
+          <div class="p-3.5 rounded-2xl bg-card border border-themeBorder shadow-md text-center">
+            <span class="text-[10px] text-textMuted font-bold uppercase tracking-wider">Sudoku Menang</span>
+            <p class="text-xl font-display font-black text-brand-red-500" id="hub-sudoku-wins">0</p>
+          </div>
+          <div class="p-3.5 rounded-2xl bg-card border border-themeBorder shadow-md text-center">
+            <span class="text-[10px] text-textMuted font-bold uppercase tracking-wider">Snake High Score</span>
+            <p class="text-xl font-display font-black text-emerald-500" id="hub-snake-high">0</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Game Cards Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Game Card 1: Sudoku -->
+        <div class="premium-card rounded-2xl p-6 flex flex-col justify-between relative overflow-hidden group hover:border-themeAccent/50 transition-all duration-300">
+          <div class="absolute top-0 right-0 w-32 h-32 bg-brand-red-500/5 rounded-full blur-2xl group-hover:bg-brand-red-500/15 transition-all"></div>
+          <div class="space-y-4 relative z-10">
+            <div class="flex items-center justify-between">
+              <div class="w-12 h-12 rounded-xl bg-brand-red-500/10 border border-brand-red-500/25 flex items-center justify-center text-brand-red-500 text-xl group-hover:scale-110 transition-transform duration-300 shadow-inner">
+                <i class="fa-solid fa-puzzle-piece"></i>
+              </div>
+              <span class="text-[10px] font-bold px-2.5 py-1 rounded-full bg-surface border border-themeBorder text-textSecondary uppercase tracking-wider">
+                Logika & Otak
+              </span>
+            </div>
+            <div>
+              <h4 class="font-display font-extrabold text-xl text-textPrimary group-hover:text-themeAccent transition-colors">
+                Sudoku Master 9&times;9
+              </h4>
+              <p class="text-xs text-textSecondary mt-2 leading-relaxed font-light">
+                Isi kotak 9&times;9 tanpa angka berulang di setiap baris, kolom, dan blok 3&times;3. Lengkap dengan pemilihan tingkat kesulitan (Easy, Medium, Hard), timer, dan highlight interaktif.
+              </p>
+            </div>
+            <div class="flex flex-wrap gap-2 pt-1 text-[10px] font-medium text-textMuted">
+              <span class="px-2 py-0.5 rounded bg-surface border border-themeBorder">3 Kesulitan</span>
+              <span class="px-2 py-0.5 rounded bg-surface border border-themeBorder">Realtime Check</span>
+              <span class="px-2 py-0.5 rounded bg-surface border border-themeBorder">Timer & Hint</span>
+            </div>
+          </div>
+          <div class="pt-6 mt-4 border-t border-themeBorder flex items-center justify-between relative z-10">
+            <span class="text-xs text-textMuted font-semibold">Tantang Fokusmu</span>
+            <button onclick="switchGameTab('sudoku')"
+              class="px-5 py-2 text-xs font-bold rounded-xl bg-brand-red-500 hover:bg-brand-accent text-white shadow-lg hover:shadow-brand-red-500/30 active:scale-95 transition-all flex items-center gap-2">
+              <i class="fa-solid fa-play text-[10px]"></i> Main Sudoku
+            </button>
+          </div>
+        </div>
+
+        <!-- Game Card 2: Snake -->
+        <div class="premium-card rounded-2xl p-6 flex flex-col justify-between relative overflow-hidden group hover:border-emerald-500/50 transition-all duration-300">
+          <div class="absolute top-0 right-0 w-32 h-32 bg-emerald-500/5 rounded-full blur-2xl group-hover:bg-emerald-500/15 transition-all"></div>
+          <div class="space-y-4 relative z-10">
+            <div class="flex items-center justify-between">
+              <div class="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/25 flex items-center justify-center text-emerald-500 text-xl group-hover:scale-110 transition-transform duration-300 shadow-inner">
+                <i class="fa-solid fa-worm"></i>
+              </div>
+              <span class="text-[10px] font-bold px-2.5 py-1 rounded-full bg-surface border border-themeBorder text-textSecondary uppercase tracking-wider">
+                Refleks & Arcade
+              </span>
+            </div>
+            <div>
+              <h4 class="font-display font-extrabold text-xl text-textPrimary group-hover:text-emerald-400 transition-colors">
+                Retro Neon Snake
+              </h4>
+              <p class="text-xs text-textSecondary mt-2 leading-relaxed font-light">
+                Kendalikan ular untuk memakan makanan sebanyak mungkin. Semakin panjang ular, semakin cepat pergerakannya. Hindari tabrakan dengan dinding dan tubuh sendiri!
+              </p>
+            </div>
+            <div class="flex flex-wrap gap-2 pt-1 text-[10px] font-medium text-textMuted">
+              <span class="px-2 py-0.5 rounded bg-surface border border-themeBorder">WASD / Arrow Keys</span>
+              <span class="px-2 py-0.5 rounded bg-surface border border-themeBorder">Touch D-Pad</span>
+              <span class="px-2 py-0.5 rounded bg-surface border border-themeBorder">High Score System</span>
+            </div>
+          </div>
+          <div class="pt-6 mt-4 border-t border-themeBorder flex items-center justify-between relative z-10">
+            <span class="text-xs text-textMuted font-semibold">Raih Skor Tertinggi</span>
+            <button onclick="switchGameTab('snake')"
+              class="px-5 py-2 text-xs font-bold rounded-xl bg-emerald-500 hover:bg-emerald-400 text-white shadow-lg hover:shadow-emerald-500/30 active:scale-95 transition-all flex items-center gap-2">
+              <i class="fa-solid fa-play text-[10px]"></i> Main Snake
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SECTION 2: SUDOKU GAME ================= -->
+    <section id="game-view-sudoku" class="game-view-panel space-y-6 animate-slide-up hidden">
+      <div class="flex flex-col lg:flex-row gap-6 items-start">
+        <!-- Left / Center: Sudoku Board -->
+        <div class="w-full lg:w-7/12 flex flex-col items-center">
+          <div class="w-full max-w-[480px]">
+            <!-- Sudoku Control Bar Top -->
+            <div class="flex items-center justify-between mb-3 px-1">
+              <div class="flex items-center gap-2">
+                <span class="text-[11px] font-semibold text-textMuted flex items-center gap-1.5 bg-surface px-3 py-1 rounded-lg border border-themeBorder">
+                  <i class="fa-regular fa-clock text-themeAccent"></i>
+                  <span id="sudoku-timer" class="font-mono font-bold text-textPrimary">00:00</span>
+                </span>
+                <span class="text-[11px] font-semibold text-textMuted flex items-center gap-1.5 bg-surface px-3 py-1 rounded-lg border border-themeBorder">
+                  <i class="fa-solid fa-triangle-exclamation text-amber-500"></i>
+                  <span>Salah: <strong id="sudoku-mistakes" class="text-amber-500">0</strong>/3</span>
+                </span>
+              </div>
+
+              <!-- Difficulty Selector -->
+              <div class="flex items-center gap-1 bg-surface p-1 rounded-lg border border-themeBorder">
+                <button onclick="setSudokuDifficulty('easy')" id="diff-btn-easy"
+                  class="px-2.5 py-1 text-[10px] font-bold rounded-md bg-themeAccent text-white transition-all">Easy</button>
+                <button onclick="setSudokuDifficulty('medium')" id="diff-btn-medium"
+                  class="px-2.5 py-1 text-[10px] font-bold rounded-md text-textSecondary hover:text-textPrimary transition-all">Med</button>
+                <button onclick="setSudokuDifficulty('hard')" id="diff-btn-hard"
+                  class="px-2.5 py-1 text-[10px] font-bold rounded-md text-textSecondary hover:text-textPrimary transition-all">Hard</button>
+              </div>
+            </div>
+
+            <!-- 9x9 Sudoku Board Container -->
+            <div id="sudoku-board" class="sudoku-grid">
+              <!-- Dynamically populated 81 cells -->
+            </div>
+
+            <!-- Sudoku Number Input Pad (1&ndash;9) -->
+            <div class="mt-4 grid grid-cols-9 gap-1 sm:gap-2">
+              <button onclick="inputSudokuNumber(1)" class="p-2 sm:p-3 text-sm sm:text-base font-display font-bold rounded-xl bg-surface hover:bg-themeAccent hover:text-white border border-themeBorder hover:border-themeAccent active:scale-95 transition-all shadow-sm">1</button>
+              <button onclick="inputSudokuNumber(2)" class="p-2 sm:p-3 text-sm sm:text-base font-display font-bold rounded-xl bg-surface hover:bg-themeAccent hover:text-white border border-themeBorder hover:border-themeAccent active:scale-95 transition-all shadow-sm">2</button>
+              <button onclick="inputSudokuNumber(3)" class="p-2 sm:p-3 text-sm sm:text-base font-display font-bold rounded-xl bg-surface hover:bg-themeAccent hover:text-white border border-themeBorder hover:border-themeAccent active:scale-95 transition-all shadow-sm">3</button>
+              <button onclick="inputSudokuNumber(4)" class="p-2 sm:p-3 text-sm sm:text-base font-display font-bold rounded-xl bg-surface hover:bg-themeAccent hover:text-white border border-themeBorder hover:border-themeAccent active:scale-95 transition-all shadow-sm">4</button>
+              <button onclick="inputSudokuNumber(5)" class="p-2 sm:p-3 text-sm sm:text-base font-display font-bold rounded-xl bg-surface hover:bg-themeAccent hover:text-white border border-themeBorder hover:border-themeAccent active:scale-95 transition-all shadow-sm">5</button>
+              <button onclick="inputSudokuNumber(6)" class="p-2 sm:p-3 text-sm sm:text-base font-display font-bold rounded-xl bg-surface hover:bg-themeAccent hover:text-white border border-themeBorder hover:border-themeAccent active:scale-95 transition-all shadow-sm">6</button>
+              <button onclick="inputSudokuNumber(7)" class="p-2 sm:p-3 text-sm sm:text-base font-display font-bold rounded-xl bg-surface hover:bg-themeAccent hover:text-white border border-themeBorder hover:border-themeAccent active:scale-95 transition-all shadow-sm">7</button>
+              <button onclick="inputSudokuNumber(8)" class="p-2 sm:p-3 text-sm sm:text-base font-display font-bold rounded-xl bg-surface hover:bg-themeAccent hover:text-white border border-themeBorder hover:border-themeAccent active:scale-95 transition-all shadow-sm">8</button>
+              <button onclick="inputSudokuNumber(9)" class="p-2 sm:p-3 text-sm sm:text-base font-display font-bold rounded-xl bg-surface hover:bg-themeAccent hover:text-white border border-themeBorder hover:border-themeAccent active:scale-95 transition-all shadow-sm">9</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Side: Actions, Controls & Instructions -->
+        <div class="w-full lg:w-5/12 space-y-4">
+          <div class="premium-card rounded-2xl p-5 space-y-4">
+            <h4 class="font-display font-bold text-sm text-textPrimary uppercase tracking-wider flex items-center gap-2">
+              <i class="fa-solid fa-sliders text-themeAccent"></i> OPSI PERMAINAN
+            </h4>
+            <div class="grid grid-cols-2 gap-2.5">
+              <button onclick="eraseSudokuCell()"
+                class="px-4 py-2.5 text-xs font-bold rounded-xl bg-surface hover:bg-card border border-themeBorder hover:border-borderHover text-textPrimary active:scale-95 transition-all flex items-center justify-center gap-2 shadow-sm">
+                <i class="fa-solid fa-eraser text-amber-500"></i> Hapus (Del)
+              </button>
+              <button onclick="giveSudokuHint()"
+                class="px-4 py-2.5 text-xs font-bold rounded-xl bg-surface hover:bg-card border border-themeBorder hover:border-borderHover text-textPrimary active:scale-95 transition-all flex items-center justify-center gap-2 shadow-sm">
+                <i class="fa-solid fa-lightbulb text-yellow-400"></i> Petunjuk / Hint
+              </button>
+              <button onclick="checkSudokuSolution()"
+                class="px-4 py-2.5 text-xs font-bold rounded-xl bg-surface hover:bg-card border border-themeBorder hover:border-borderHover text-textPrimary active:scale-95 transition-all flex items-center justify-center gap-2 shadow-sm">
+                <i class="fa-solid fa-circle-check text-emerald-500"></i> Cek Jawaban
+              </button>
+              <button onclick="resetSudokuBoard()"
+                class="px-4 py-2.5 text-xs font-bold rounded-xl bg-surface hover:bg-card border border-themeBorder hover:border-borderHover text-textPrimary active:scale-95 transition-all flex items-center justify-center gap-2 shadow-sm">
+                <i class="fa-solid fa-rotate-left text-blue-400"></i> Reset Ulang
+              </button>
+            </div>
+
+            <button onclick="generateNewSudoku()"
+              class="w-full py-3 text-xs font-extrabold rounded-xl bg-gradient-to-r from-brand-red-600 to-brand-red-500 hover:from-brand-red-500 hover:to-brand-red-400 text-white shadow-lg hover:shadow-brand-red-500/25 active:scale-[0.98] transition-all flex items-center justify-center gap-2">
+              <i class="fa-solid fa-plus-circle"></i> Game Baru
+            </button>
+          </div>
+
+          <!-- Rules Card -->
+          <div class="premium-card rounded-2xl p-5 space-y-3">
+            <h4 class="font-display font-bold text-xs text-textPrimary uppercase tracking-wider flex items-center gap-2">
+              <i class="fa-solid fa-circle-info text-themeAccent"></i> CARA BERMAIN SUDOKU
+            </h4>
+            <ul class="text-xs text-textSecondary space-y-2 leading-relaxed list-disc list-inside">
+              <li>Pilih sel yang kosong lalu ketik angka 1&ndash;9 melalui keyboard atau tombol angka.</li>
+              <li>Gunakan tombol panah keyboard (<kbd class="px-1 py-0.5 rounded bg-surface border border-themeBorder font-mono text-[10px]">↑</kbd><kbd class="px-1 py-0.5 rounded bg-surface border border-themeBorder font-mono text-[10px]">↓</kbd><kbd class="px-1 py-0.5 rounded bg-surface border border-themeBorder font-mono text-[10px]">←</kbd><kbd class="px-1 py-0.5 rounded bg-surface border border-themeBorder font-mono text-[10px]">→</kbd>) untuk navigasi sel.</li>
+              <li>Setiap baris, kolom, dan kotak 3×3 harus berisi angka 1&ndash;9 tanpa ada yang berulang.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SECTION 3: SNAKE GAME ================= -->
+    <section id="game-view-snake" class="game-view-panel space-y-6 animate-slide-up hidden">
+      <div class="flex flex-col lg:flex-row gap-6 items-start justify-center">
+        <!-- Canvas Board Wrapper -->
+        <div class="w-full lg:w-7/12 flex flex-col items-center">
+          <div class="w-full max-w-[440px]">
+            <!-- Snake Score Bar -->
+            <div class="flex items-center justify-between mb-3 px-2 py-2 rounded-xl bg-card border border-themeBorder shadow-sm">
+              <div class="flex items-center gap-2">
+                <span class="text-xs text-textMuted font-bold uppercase tracking-wider">Score:</span>
+                <span id="snake-score" class="font-display font-black text-xl text-emerald-500">0</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <i class="fa-solid fa-trophy text-amber-400 text-xs"></i>
+                <span class="text-xs text-textMuted font-bold uppercase tracking-wider">High:</span>
+                <span id="snake-high-score" class="font-display font-black text-xl text-textPrimary">0</span>
+              </div>
+            </div>
+
+            <!-- Canvas Grid with Overlays -->
+            <div class="snake-canvas-wrapper">
+              <canvas id="snake-canvas" width="400" height="400"></canvas>
+
+              <!-- Start / Pause / Game Over Overlay -->
+              <div id="snake-overlay" class="absolute inset-0 bg-black/80 backdrop-blur-sm flex flex-col items-center justify-center p-6 text-center z-20 transition-all duration-300">
+                <div class="space-y-3 max-w-xs">
+                  <div class="w-14 h-14 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 text-2xl mx-auto shadow-lg shadow-emerald-500/20">
+                    <i id="snake-overlay-icon" class="fa-solid fa-gamepad"></i>
+                  </div>
+                  <h3 id="snake-overlay-title" class="font-display font-extrabold text-2xl text-white">
+                    Retro Snake
+                  </h3>
+                  <p id="snake-overlay-desc" class="text-xs text-zinc-300 leading-relaxed">
+                    Tekan tombol Mulai atau Spasi untuk menjalankan ular!
+                  </p>
+                  <button onclick="startOrResumeSnake()" id="snake-overlay-btn"
+                    class="mt-2 px-6 py-2.5 text-xs font-black rounded-xl bg-emerald-500 hover:bg-emerald-400 text-white shadow-lg hover:shadow-emerald-500/40 active:scale-95 transition-all flex items-center justify-center gap-2 mx-auto">
+                    <i class="fa-solid fa-play text-[11px]"></i> Main Sekarang
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Virtual Touch D-Pad for Mobile & Quick Play -->
+            <div class="mt-4 flex flex-col items-center md:hidden">
+              <button onclick="handleVirtualKey('ArrowUp')" class="dpad-btn w-12 h-12 rounded-xl bg-surface border border-themeBorder flex items-center justify-center text-lg active:bg-themeAccent active:text-white shadow-sm mb-1">
+                <i class="fa-solid fa-chevron-up"></i>
+              </button>
+              <div class="flex gap-4">
+                <button onclick="handleVirtualKey('ArrowLeft')" class="dpad-btn w-12 h-12 rounded-xl bg-surface border border-themeBorder flex items-center justify-center text-lg active:bg-themeAccent active:text-white shadow-sm">
+                  <i class="fa-solid fa-chevron-left"></i>
+                </button>
+                <button onclick="togglePauseSnake()" class="dpad-btn w-12 h-12 rounded-xl bg-surface border border-themeBorder flex items-center justify-center text-xs font-bold text-textMuted active:bg-themeAccent active:text-white shadow-sm">
+                  <i class="fa-solid fa-pause"></i>
+                </button>
+                <button onclick="handleVirtualKey('ArrowRight')" class="dpad-btn w-12 h-12 rounded-xl bg-surface border border-themeBorder flex items-center justify-center text-lg active:bg-themeAccent active:text-white shadow-sm">
+                  <i class="fa-solid fa-chevron-right"></i>
+                </button>
+              </div>
+              <button onclick="handleVirtualKey('ArrowDown')" class="dpad-btn w-12 h-12 rounded-xl bg-surface border border-themeBorder flex items-center justify-center text-lg active:bg-themeAccent active:text-white shadow-sm mt-1">
+                <i class="fa-solid fa-chevron-down"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Side: Snake Controls & Info -->
+        <div class="w-full lg:w-5/12 space-y-4">
+          <div class="premium-card rounded-2xl p-5 space-y-4">
+            <h4 class="font-display font-bold text-sm text-textPrimary uppercase tracking-wider flex items-center gap-2">
+              <i class="fa-solid fa-gamepad text-emerald-500"></i> KONTROL PERMAINAN
+            </h4>
+            <div class="grid grid-cols-2 gap-2.5">
+              <button onclick="togglePauseSnake()" id="btn-snake-pause"
+                class="px-4 py-2.5 text-xs font-bold rounded-xl bg-surface hover:bg-card border border-themeBorder hover:border-borderHover text-textPrimary active:scale-95 transition-all flex items-center justify-center gap-2 shadow-sm">
+                <i class="fa-solid fa-pause text-amber-500"></i> Jeda (Space)
+              </button>
+              <button onclick="restartSnakeGame()"
+                class="px-4 py-2.5 text-xs font-bold rounded-xl bg-surface hover:bg-card border border-themeBorder hover:border-borderHover text-textPrimary active:scale-95 transition-all flex items-center justify-center gap-2 shadow-sm">
+                <i class="fa-solid fa-rotate-left text-blue-400"></i> Main Ulang
+              </button>
+            </div>
+
+            <!-- Speed & Food Info -->
+            <div class="pt-2 border-t border-themeBorder space-y-2">
+              <div class="flex justify-between text-xs font-medium">
+                <span class="text-textMuted">Kecepatan Ular:</span>
+                <span id="snake-speed-label" class="font-bold text-emerald-500">Normal (1.0x)</span>
+              </div>
+              <div class="flex justify-between text-xs font-medium">
+                <span class="text-textMuted">Makanan Dimakan:</span>
+                <span id="snake-food-count" class="font-bold text-textPrimary">0 apel</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Controls Guide -->
+          <div class="premium-card rounded-2xl p-5 space-y-3">
+            <h4 class="font-display font-bold text-xs text-textPrimary uppercase tracking-wider flex items-center gap-2">
+              <i class="fa-solid fa-keyboard text-emerald-500"></i> TOMBOL KONTROL
+            </h4>
+            <div class="space-y-2 text-xs text-textSecondary">
+              <div class="flex items-center justify-between py-1 border-b border-themeBorder">
+                <span>Atas / Naik</span>
+                <span class="font-mono text-textPrimary font-bold"><kbd class="px-1.5 py-0.5 rounded bg-surface border border-themeBorder">↑</kbd> atau <kbd class="px-1.5 py-0.5 rounded bg-surface border border-themeBorder">W</kbd></span>
+              </div>
+              <div class="flex items-center justify-between py-1 border-b border-themeBorder">
+                <span>Bawah / Turun</span>
+                <span class="font-mono text-textPrimary font-bold"><kbd class="px-1.5 py-0.5 rounded bg-surface border border-themeBorder">↓</kbd> atau <kbd class="px-1.5 py-0.5 rounded bg-surface border border-themeBorder">S</kbd></span>
+              </div>
+              <div class="flex items-center justify-between py-1 border-b border-themeBorder">
+                <span>Kiri / Kanan</span>
+                <span class="font-mono text-textPrimary font-bold"><kbd class="px-1.5 py-0.5 rounded bg-surface border border-themeBorder">←</kbd> <kbd class="px-1.5 py-0.5 rounded bg-surface border border-themeBorder">→</kbd> atau <kbd class="px-1.5 py-0.5 rounded bg-surface border border-themeBorder">A</kbd> <kbd class="px-1.5 py-0.5 rounded bg-surface border border-themeBorder">D</kbd></span>
+              </div>
+              <div class="flex items-center justify-between py-1">
+                <span>Pause / Resume</span>
+                <span class="font-mono text-textPrimary font-bold"><kbd class="px-2 py-0.5 rounded bg-surface border border-themeBorder">Space</kbd></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  
+    <!-- ================= SECTION: MINI GAMES (SPA VIEW) ================= -->
+    <section id="view-minigames" class="view-panel space-y-6 animate-slide-up hidden">
+      <!-- Quick Game Selector Tabs -->
+      <div class="flex items-center gap-1.5 p-1 bg-surface border border-themeBorder rounded-xl overflow-x-auto max-w-full">
+        <button onclick="switchGameTab('hub')" id="tab-btn-hub"
+          class="game-tab-btn active px-3.5 py-1.5 text-xs font-bold rounded-lg border border-transparent transition-all flex items-center gap-1.5 text-textSecondary hover:text-textPrimary shrink-0">
+          <i class="fa-solid fa-table-cells-large text-xs"></i> Hub
+        </button>
+        <button onclick="switchGameTab('sudoku')" id="tab-btn-sudoku"
+          class="game-tab-btn px-3.5 py-1.5 text-xs font-bold rounded-lg border border-transparent transition-all flex items-center gap-1.5 text-textSecondary hover:text-textPrimary shrink-0">
+          <i class="fa-solid fa-puzzle-piece text-xs"></i> Sudoku
+        </button>
+        <button onclick="switchGameTab('snake')" id="tab-btn-snake"
+          class="game-tab-btn px-3.5 py-1.5 text-xs font-bold rounded-lg border border-transparent transition-all flex items-center gap-1.5 text-textSecondary hover:text-textPrimary shrink-0">
+          <i class="fa-solid fa-worm text-xs"></i> Snake
+        </button>
+      </div>
+    </header>
+
+    <!-- ================= SECTION 1: GAME HUB DASHBOARD ================= -->
+    <section id="game-view-hub" class="game-view-panel space-y-6 animate-slide-up block">
+      <!-- Hero Banner -->
+      <div class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-surface to-page border border-themeBorder p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6 shadow-[0_12px_40px_rgba(0,0,0,0.3)]">
+        <div class="absolute -right-16 -top-16 w-56 h-56 bg-brand-red-500/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="z-10 space-y-2 max-w-xl">
+          <span class="text-[9px] font-bold text-brand-red-500 uppercase tracking-widest px-2.5 py-1 rounded bg-brand-red-500/10 border border-brand-red-500/20 inline-flex items-center gap-1.5">
+            <i class="fa-solid fa-gamepad text-xs"></i> RELAX & PLAY
+          </span>
+          <h3 class="font-display font-black text-2xl sm:text-3xl text-textPrimary tracking-tight">
+            Pilih Permainan Favoritmu
+          </h3>
+          <p class="text-xs sm:text-sm text-textSecondary leading-relaxed">
+            Tantang logika matematikamu dengan puzzle Sudoku klasik atau uji refleks kecepatanmu di permainan Snake legendaris.
+          </p>
+        </div>
+        <div class="z-10 flex items-center gap-3 shrink-0">
+          <div class="p-3.5 rounded-2xl bg-card border border-themeBorder shadow-md text-center">
+            <span class="text-[10px] text-textMuted font-bold uppercase tracking-wider">Sudoku Menang</span>
+            <p class="text-xl font-display font-black text-brand-red-500" id="hub-sudoku-wins">0</p>
+          </div>
+          <div class="p-3.5 rounded-2xl bg-card border border-themeBorder shadow-md text-center">
+            <span class="text-[10px] text-textMuted font-bold uppercase tracking-wider">Snake High Score</span>
+            <p class="text-xl font-display font-black text-emerald-500" id="hub-snake-high">0</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Game Cards Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Game Card 1: Sudoku -->
+        <div class="premium-card rounded-2xl p-6 flex flex-col justify-between relative overflow-hidden group hover:border-themeAccent/50 transition-all duration-300">
+          <div class="absolute top-0 right-0 w-32 h-32 bg-brand-red-500/5 rounded-full blur-2xl group-hover:bg-brand-red-500/15 transition-all"></div>
+          <div class="space-y-4 relative z-10">
+            <div class="flex items-center justify-between">
+              <div class="w-12 h-12 rounded-xl bg-brand-red-500/10 border border-brand-red-500/25 flex items-center justify-center text-brand-red-500 text-xl group-hover:scale-110 transition-transform duration-300 shadow-inner">
+                <i class="fa-solid fa-puzzle-piece"></i>
+              </div>
+              <span class="text-[10px] font-bold px-2.5 py-1 rounded-full bg-surface border border-themeBorder text-textSecondary uppercase tracking-wider">
+                Logika & Otak
+              </span>
+            </div>
+            <div>
+              <h4 class="font-display font-extrabold text-xl text-textPrimary group-hover:text-themeAccent transition-colors">
+                Sudoku Master 9&times;9
+              </h4>
+              <p class="text-xs text-textSecondary mt-2 leading-relaxed font-light">
+                Isi kotak 9&times;9 tanpa angka berulang di setiap baris, kolom, dan blok 3&times;3. Lengkap dengan pemilihan tingkat kesulitan (Easy, Medium, Hard), timer, dan highlight interaktif.
+              </p>
+            </div>
+            <div class="flex flex-wrap gap-2 pt-1 text-[10px] font-medium text-textMuted">
+              <span class="px-2 py-0.5 rounded bg-surface border border-themeBorder">3 Kesulitan</span>
+              <span class="px-2 py-0.5 rounded bg-surface border border-themeBorder">Realtime Check</span>
+              <span class="px-2 py-0.5 rounded bg-surface border border-themeBorder">Timer & Hint</span>
+            </div>
+          </div>
+          <div class="pt-6 mt-4 border-t border-themeBorder flex items-center justify-between relative z-10">
+            <span class="text-xs text-textMuted font-semibold">Tantang Fokusmu</span>
+            <button onclick="switchGameTab('sudoku')"
+              class="px-5 py-2 text-xs font-bold rounded-xl bg-brand-red-500 hover:bg-brand-accent text-white shadow-lg hover:shadow-brand-red-500/30 active:scale-95 transition-all flex items-center gap-2">
+              <i class="fa-solid fa-play text-[10px]"></i> Main Sudoku
+            </button>
+          </div>
+        </div>
+
+        <!-- Game Card 2: Snake -->
+        <div class="premium-card rounded-2xl p-6 flex flex-col justify-between relative overflow-hidden group hover:border-emerald-500/50 transition-all duration-300">
+          <div class="absolute top-0 right-0 w-32 h-32 bg-emerald-500/5 rounded-full blur-2xl group-hover:bg-emerald-500/15 transition-all"></div>
+          <div class="space-y-4 relative z-10">
+            <div class="flex items-center justify-between">
+              <div class="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/25 flex items-center justify-center text-emerald-500 text-xl group-hover:scale-110 transition-transform duration-300 shadow-inner">
+                <i class="fa-solid fa-worm"></i>
+              </div>
+              <span class="text-[10px] font-bold px-2.5 py-1 rounded-full bg-surface border border-themeBorder text-textSecondary uppercase tracking-wider">
+                Refleks & Arcade
+              </span>
+            </div>
+            <div>
+              <h4 class="font-display font-extrabold text-xl text-textPrimary group-hover:text-emerald-400 transition-colors">
+                Retro Neon Snake
+              </h4>
+              <p class="text-xs text-textSecondary mt-2 leading-relaxed font-light">
+                Kendalikan ular untuk memakan makanan sebanyak mungkin. Semakin panjang ular, semakin cepat pergerakannya. Hindari tabrakan dengan dinding dan tubuh sendiri!
+              </p>
+            </div>
+            <div class="flex flex-wrap gap-2 pt-1 text-[10px] font-medium text-textMuted">
+              <span class="px-2 py-0.5 rounded bg-surface border border-themeBorder">WASD / Arrow Keys</span>
+              <span class="px-2 py-0.5 rounded bg-surface border border-themeBorder">Touch D-Pad</span>
+              <span class="px-2 py-0.5 rounded bg-surface border border-themeBorder">High Score System</span>
+            </div>
+          </div>
+          <div class="pt-6 mt-4 border-t border-themeBorder flex items-center justify-between relative z-10">
+            <span class="text-xs text-textMuted font-semibold">Raih Skor Tertinggi</span>
+            <button onclick="switchGameTab('snake')"
+              class="px-5 py-2 text-xs font-bold rounded-xl bg-emerald-500 hover:bg-emerald-400 text-white shadow-lg hover:shadow-emerald-500/30 active:scale-95 transition-all flex items-center gap-2">
+              <i class="fa-solid fa-play text-[10px]"></i> Main Snake
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SECTION 2: SUDOKU GAME ================= -->
+    <section id="game-view-sudoku" class="game-view-panel space-y-6 animate-slide-up hidden">
+      <div class="flex flex-col lg:flex-row gap-6 items-start">
+        <!-- Left / Center: Sudoku Board -->
+        <div class="w-full lg:w-7/12 flex flex-col items-center">
+          <div class="w-full max-w-[480px]">
+            <!-- Sudoku Control Bar Top -->
+            <div class="flex items-center justify-between mb-3 px-1">
+              <div class="flex items-center gap-2">
+                <span class="text-[11px] font-semibold text-textMuted flex items-center gap-1.5 bg-surface px-3 py-1 rounded-lg border border-themeBorder">
+                  <i class="fa-regular fa-clock text-themeAccent"></i>
+                  <span id="sudoku-timer" class="font-mono font-bold text-textPrimary">00:00</span>
+                </span>
+                <span class="text-[11px] font-semibold text-textMuted flex items-center gap-1.5 bg-surface px-3 py-1 rounded-lg border border-themeBorder">
+                  <i class="fa-solid fa-triangle-exclamation text-amber-500"></i>
+                  <span>Salah: <strong id="sudoku-mistakes" class="text-amber-500">0</strong>/3</span>
+                </span>
+              </div>
+
+              <!-- Difficulty Selector -->
+              <div class="flex items-center gap-1 bg-surface p-1 rounded-lg border border-themeBorder">
+                <button onclick="setSudokuDifficulty('easy')" id="diff-btn-easy"
+                  class="px-2.5 py-1 text-[10px] font-bold rounded-md bg-themeAccent text-white transition-all">Easy</button>
+                <button onclick="setSudokuDifficulty('medium')" id="diff-btn-medium"
+                  class="px-2.5 py-1 text-[10px] font-bold rounded-md text-textSecondary hover:text-textPrimary transition-all">Med</button>
+                <button onclick="setSudokuDifficulty('hard')" id="diff-btn-hard"
+                  class="px-2.5 py-1 text-[10px] font-bold rounded-md text-textSecondary hover:text-textPrimary transition-all">Hard</button>
+              </div>
+            </div>
+
+            <!-- 9x9 Sudoku Board Container -->
+            <div id="sudoku-board" class="sudoku-grid">
+              <!-- Dynamically populated 81 cells -->
+            </div>
+
+            <!-- Sudoku Number Input Pad (1&ndash;9) -->
+            <div class="mt-4 grid grid-cols-9 gap-1 sm:gap-2">
+              <button onclick="inputSudokuNumber(1)" class="p-2 sm:p-3 text-sm sm:text-base font-display font-bold rounded-xl bg-surface hover:bg-themeAccent hover:text-white border border-themeBorder hover:border-themeAccent active:scale-95 transition-all shadow-sm">1</button>
+              <button onclick="inputSudokuNumber(2)" class="p-2 sm:p-3 text-sm sm:text-base font-display font-bold rounded-xl bg-surface hover:bg-themeAccent hover:text-white border border-themeBorder hover:border-themeAccent active:scale-95 transition-all shadow-sm">2</button>
+              <button onclick="inputSudokuNumber(3)" class="p-2 sm:p-3 text-sm sm:text-base font-display font-bold rounded-xl bg-surface hover:bg-themeAccent hover:text-white border border-themeBorder hover:border-themeAccent active:scale-95 transition-all shadow-sm">3</button>
+              <button onclick="inputSudokuNumber(4)" class="p-2 sm:p-3 text-sm sm:text-base font-display font-bold rounded-xl bg-surface hover:bg-themeAccent hover:text-white border border-themeBorder hover:border-themeAccent active:scale-95 transition-all shadow-sm">4</button>
+              <button onclick="inputSudokuNumber(5)" class="p-2 sm:p-3 text-sm sm:text-base font-display font-bold rounded-xl bg-surface hover:bg-themeAccent hover:text-white border border-themeBorder hover:border-themeAccent active:scale-95 transition-all shadow-sm">5</button>
+              <button onclick="inputSudokuNumber(6)" class="p-2 sm:p-3 text-sm sm:text-base font-display font-bold rounded-xl bg-surface hover:bg-themeAccent hover:text-white border border-themeBorder hover:border-themeAccent active:scale-95 transition-all shadow-sm">6</button>
+              <button onclick="inputSudokuNumber(7)" class="p-2 sm:p-3 text-sm sm:text-base font-display font-bold rounded-xl bg-surface hover:bg-themeAccent hover:text-white border border-themeBorder hover:border-themeAccent active:scale-95 transition-all shadow-sm">7</button>
+              <button onclick="inputSudokuNumber(8)" class="p-2 sm:p-3 text-sm sm:text-base font-display font-bold rounded-xl bg-surface hover:bg-themeAccent hover:text-white border border-themeBorder hover:border-themeAccent active:scale-95 transition-all shadow-sm">8</button>
+              <button onclick="inputSudokuNumber(9)" class="p-2 sm:p-3 text-sm sm:text-base font-display font-bold rounded-xl bg-surface hover:bg-themeAccent hover:text-white border border-themeBorder hover:border-themeAccent active:scale-95 transition-all shadow-sm">9</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Side: Actions, Controls & Instructions -->
+        <div class="w-full lg:w-5/12 space-y-4">
+          <div class="premium-card rounded-2xl p-5 space-y-4">
+            <h4 class="font-display font-bold text-sm text-textPrimary uppercase tracking-wider flex items-center gap-2">
+              <i class="fa-solid fa-sliders text-themeAccent"></i> OPSI PERMAINAN
+            </h4>
+            <div class="grid grid-cols-2 gap-2.5">
+              <button onclick="eraseSudokuCell()"
+                class="px-4 py-2.5 text-xs font-bold rounded-xl bg-surface hover:bg-card border border-themeBorder hover:border-borderHover text-textPrimary active:scale-95 transition-all flex items-center justify-center gap-2 shadow-sm">
+                <i class="fa-solid fa-eraser text-amber-500"></i> Hapus (Del)
+              </button>
+              <button onclick="giveSudokuHint()"
+                class="px-4 py-2.5 text-xs font-bold rounded-xl bg-surface hover:bg-card border border-themeBorder hover:border-borderHover text-textPrimary active:scale-95 transition-all flex items-center justify-center gap-2 shadow-sm">
+                <i class="fa-solid fa-lightbulb text-yellow-400"></i> Petunjuk / Hint
+              </button>
+              <button onclick="checkSudokuSolution()"
+                class="px-4 py-2.5 text-xs font-bold rounded-xl bg-surface hover:bg-card border border-themeBorder hover:border-borderHover text-textPrimary active:scale-95 transition-all flex items-center justify-center gap-2 shadow-sm">
+                <i class="fa-solid fa-circle-check text-emerald-500"></i> Cek Jawaban
+              </button>
+              <button onclick="resetSudokuBoard()"
+                class="px-4 py-2.5 text-xs font-bold rounded-xl bg-surface hover:bg-card border border-themeBorder hover:border-borderHover text-textPrimary active:scale-95 transition-all flex items-center justify-center gap-2 shadow-sm">
+                <i class="fa-solid fa-rotate-left text-blue-400"></i> Reset Ulang
+              </button>
+            </div>
+
+            <button onclick="generateNewSudoku()"
+              class="w-full py-3 text-xs font-extrabold rounded-xl bg-gradient-to-r from-brand-red-600 to-brand-red-500 hover:from-brand-red-500 hover:to-brand-red-400 text-white shadow-lg hover:shadow-brand-red-500/25 active:scale-[0.98] transition-all flex items-center justify-center gap-2">
+              <i class="fa-solid fa-plus-circle"></i> Game Baru
+            </button>
+          </div>
+
+          <!-- Rules Card -->
+          <div class="premium-card rounded-2xl p-5 space-y-3">
+            <h4 class="font-display font-bold text-xs text-textPrimary uppercase tracking-wider flex items-center gap-2">
+              <i class="fa-solid fa-circle-info text-themeAccent"></i> CARA BERMAIN SUDOKU
+            </h4>
+            <ul class="text-xs text-textSecondary space-y-2 leading-relaxed list-disc list-inside">
+              <li>Pilih sel yang kosong lalu ketik angka 1&ndash;9 melalui keyboard atau tombol angka.</li>
+              <li>Gunakan tombol panah keyboard (<kbd class="px-1 py-0.5 rounded bg-surface border border-themeBorder font-mono text-[10px]">↑</kbd><kbd class="px-1 py-0.5 rounded bg-surface border border-themeBorder font-mono text-[10px]">↓</kbd><kbd class="px-1 py-0.5 rounded bg-surface border border-themeBorder font-mono text-[10px]">←</kbd><kbd class="px-1 py-0.5 rounded bg-surface border border-themeBorder font-mono text-[10px]">→</kbd>) untuk navigasi sel.</li>
+              <li>Setiap baris, kolom, dan kotak 3×3 harus berisi angka 1&ndash;9 tanpa ada yang berulang.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SECTION 3: SNAKE GAME ================= -->
+    <section id="game-view-snake" class="game-view-panel space-y-6 animate-slide-up hidden">
+      <div class="flex flex-col lg:flex-row gap-6 items-start justify-center">
+        <!-- Canvas Board Wrapper -->
+        <div class="w-full lg:w-7/12 flex flex-col items-center">
+          <div class="w-full max-w-[440px]">
+            <!-- Snake Score Bar -->
+            <div class="flex items-center justify-between mb-3 px-2 py-2 rounded-xl bg-card border border-themeBorder shadow-sm">
+              <div class="flex items-center gap-2">
+                <span class="text-xs text-textMuted font-bold uppercase tracking-wider">Score:</span>
+                <span id="snake-score" class="font-display font-black text-xl text-emerald-500">0</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <i class="fa-solid fa-trophy text-amber-400 text-xs"></i>
+                <span class="text-xs text-textMuted font-bold uppercase tracking-wider">High:</span>
+                <span id="snake-high-score" class="font-display font-black text-xl text-textPrimary">0</span>
+              </div>
+            </div>
+
+            <!-- Canvas Grid with Overlays -->
+            <div class="snake-canvas-wrapper">
+              <canvas id="snake-canvas" width="400" height="400"></canvas>
+
+              <!-- Start / Pause / Game Over Overlay -->
+              <div id="snake-overlay" class="absolute inset-0 bg-black/80 backdrop-blur-sm flex flex-col items-center justify-center p-6 text-center z-20 transition-all duration-300">
+                <div class="space-y-3 max-w-xs">
+                  <div class="w-14 h-14 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 text-2xl mx-auto shadow-lg shadow-emerald-500/20">
+                    <i id="snake-overlay-icon" class="fa-solid fa-gamepad"></i>
+                  </div>
+                  <h3 id="snake-overlay-title" class="font-display font-extrabold text-2xl text-white">
+                    Retro Snake
+                  </h3>
+                  <p id="snake-overlay-desc" class="text-xs text-zinc-300 leading-relaxed">
+                    Tekan tombol Mulai atau Spasi untuk menjalankan ular!
+                  </p>
+                  <button onclick="startOrResumeSnake()" id="snake-overlay-btn"
+                    class="mt-2 px-6 py-2.5 text-xs font-black rounded-xl bg-emerald-500 hover:bg-emerald-400 text-white shadow-lg hover:shadow-emerald-500/40 active:scale-95 transition-all flex items-center justify-center gap-2 mx-auto">
+                    <i class="fa-solid fa-play text-[11px]"></i> Main Sekarang
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Virtual Touch D-Pad for Mobile & Quick Play -->
+            <div class="mt-4 flex flex-col items-center md:hidden">
+              <button onclick="handleVirtualKey('ArrowUp')" class="dpad-btn w-12 h-12 rounded-xl bg-surface border border-themeBorder flex items-center justify-center text-lg active:bg-themeAccent active:text-white shadow-sm mb-1">
+                <i class="fa-solid fa-chevron-up"></i>
+              </button>
+              <div class="flex gap-4">
+                <button onclick="handleVirtualKey('ArrowLeft')" class="dpad-btn w-12 h-12 rounded-xl bg-surface border border-themeBorder flex items-center justify-center text-lg active:bg-themeAccent active:text-white shadow-sm">
+                  <i class="fa-solid fa-chevron-left"></i>
+                </button>
+                <button onclick="togglePauseSnake()" class="dpad-btn w-12 h-12 rounded-xl bg-surface border border-themeBorder flex items-center justify-center text-xs font-bold text-textMuted active:bg-themeAccent active:text-white shadow-sm">
+                  <i class="fa-solid fa-pause"></i>
+                </button>
+                <button onclick="handleVirtualKey('ArrowRight')" class="dpad-btn w-12 h-12 rounded-xl bg-surface border border-themeBorder flex items-center justify-center text-lg active:bg-themeAccent active:text-white shadow-sm">
+                  <i class="fa-solid fa-chevron-right"></i>
+                </button>
+              </div>
+              <button onclick="handleVirtualKey('ArrowDown')" class="dpad-btn w-12 h-12 rounded-xl bg-surface border border-themeBorder flex items-center justify-center text-lg active:bg-themeAccent active:text-white shadow-sm mt-1">
+                <i class="fa-solid fa-chevron-down"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Side: Snake Controls & Info -->
+        <div class="w-full lg:w-5/12 space-y-4">
+          <div class="premium-card rounded-2xl p-5 space-y-4">
+            <h4 class="font-display font-bold text-sm text-textPrimary uppercase tracking-wider flex items-center gap-2">
+              <i class="fa-solid fa-gamepad text-emerald-500"></i> KONTROL PERMAINAN
+            </h4>
+            <div class="grid grid-cols-2 gap-2.5">
+              <button onclick="togglePauseSnake()" id="btn-snake-pause"
+                class="px-4 py-2.5 text-xs font-bold rounded-xl bg-surface hover:bg-card border border-themeBorder hover:border-borderHover text-textPrimary active:scale-95 transition-all flex items-center justify-center gap-2 shadow-sm">
+                <i class="fa-solid fa-pause text-amber-500"></i> Jeda (Space)
+              </button>
+              <button onclick="restartSnakeGame()"
+                class="px-4 py-2.5 text-xs font-bold rounded-xl bg-surface hover:bg-card border border-themeBorder hover:border-borderHover text-textPrimary active:scale-95 transition-all flex items-center justify-center gap-2 shadow-sm">
+                <i class="fa-solid fa-rotate-left text-blue-400"></i> Main Ulang
+              </button>
+            </div>
+
+            <!-- Speed & Food Info -->
+            <div class="pt-2 border-t border-themeBorder space-y-2">
+              <div class="flex justify-between text-xs font-medium">
+                <span class="text-textMuted">Kecepatan Ular:</span>
+                <span id="snake-speed-label" class="font-bold text-emerald-500">Normal (1.0x)</span>
+              </div>
+              <div class="flex justify-between text-xs font-medium">
+                <span class="text-textMuted">Makanan Dimakan:</span>
+                <span id="snake-food-count" class="font-bold text-textPrimary">0 apel</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Controls Guide -->
+          <div class="premium-card rounded-2xl p-5 space-y-3">
+            <h4 class="font-display font-bold text-xs text-textPrimary uppercase tracking-wider flex items-center gap-2">
+              <i class="fa-solid fa-keyboard text-emerald-500"></i> TOMBOL KONTROL
+            </h4>
+            <div class="space-y-2 text-xs text-textSecondary">
+              <div class="flex items-center justify-between py-1 border-b border-themeBorder">
+                <span>Atas / Naik</span>
+                <span class="font-mono text-textPrimary font-bold"><kbd class="px-1.5 py-0.5 rounded bg-surface border border-themeBorder">↑</kbd> atau <kbd class="px-1.5 py-0.5 rounded bg-surface border border-themeBorder">W</kbd></span>
+              </div>
+              <div class="flex items-center justify-between py-1 border-b border-themeBorder">
+                <span>Bawah / Turun</span>
+                <span class="font-mono text-textPrimary font-bold"><kbd class="px-1.5 py-0.5 rounded bg-surface border border-themeBorder">↓</kbd> atau <kbd class="px-1.5 py-0.5 rounded bg-surface border border-themeBorder">S</kbd></span>
+              </div>
+              <div class="flex items-center justify-between py-1 border-b border-themeBorder">
+                <span>Kiri / Kanan</span>
+                <span class="font-mono text-textPrimary font-bold"><kbd class="px-1.5 py-0.5 rounded bg-surface border border-themeBorder">←</kbd> <kbd class="px-1.5 py-0.5 rounded bg-surface border border-themeBorder">→</kbd> atau <kbd class="px-1.5 py-0.5 rounded bg-surface border border-themeBorder">A</kbd> <kbd class="px-1.5 py-0.5 rounded bg-surface border border-themeBorder">D</kbd></span>
+              </div>
+              <div class="flex items-center justify-between py-1">
+                <span>Pause / Resume</span>
+                <span class="font-mono text-textPrimary font-bold"><kbd class="px-2 py-0.5 rounded bg-surface border border-themeBorder">Space</kbd></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    </section>
+  </main>
+
+  <!-- ================= SUDOKU WIN MODAL ================= -->
+  <div id="sudoku-win-modal" role="dialog" aria-modal="true"
+    class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-md hidden opacity-0 transition-opacity duration-300">
+    <div class="premium-card rounded-2xl w-full max-w-sm p-6 text-center space-y-4 transform scale-95 transition-transform duration-300 shadow-2xl border border-brand-red-500/40">
+      <div class="w-16 h-16 rounded-full bg-brand-red-500/15 border border-brand-red-500/30 text-brand-accent text-3xl flex items-center justify-center mx-auto animate-bounce-subtle">
+        <i class="fa-solid fa-trophy"></i>
+      </div>
+      <div class="space-y-1">
+        <h4 class="font-display font-black text-2xl text-textPrimary">Luar Biasa!</h4>
+        <p class="text-xs text-textSecondary">Kamu berhasil menyelesaikan puzzle Sudoku dengan tepat.</p>
+      </div>
+      <div class="bg-surface p-3.5 rounded-xl border border-themeBorder flex justify-around text-xs">
+        <div>
+          <span class="text-[10px] text-textMuted uppercase font-bold">Waktu</span>
+          <p id="win-modal-time" class="font-mono font-bold text-textPrimary text-sm mt-0.5">00:00</p>
+        </div>
+        <div class="w-px bg-themeBorder"></div>
+        <div>
+          <span class="text-[10px] text-textMuted uppercase font-bold">Kesulitan</span>
+          <p id="win-modal-diff" class="font-bold text-themeAccent text-sm mt-0.5">Easy</p>
+        </div>
+      </div>
+      <div class="flex gap-2 pt-2">
+        <button onclick="closeSudokuWinModal(); generateNewSudoku();"
+          class="flex-1 py-2.5 text-xs font-bold rounded-xl bg-brand-red-500 hover:bg-brand-accent text-white shadow-lg hover:shadow-brand-red-500/30 transition-all">
+          Main Lagi
+        </button>
+        <button onclick="closeSudokuWinModal()"
+          class="px-4 py-2.5 text-xs font-semibold rounded-xl bg-surface border border-themeBorder text-textSecondary hover:text-textPrimary transition-all">
+          Tutup
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="w-full py-6 border-t border-themeBorder mt-auto">
+    <div class="max-w-7xl mx-auto px-4 text-center">
+      <p class="text-[10px] text-textMuted tracking-wider uppercase font-semibold">© 2026 NA VIAN SEN. ALL RIGHTS RESERVED.</p>
+    </div>
+  </footer>
+
+  <!-- ================= GAME LOGIC SCRIPTS ================= -->
+  <script>
+    // --- TAB SWITCHER LOGIC ---
+    let currentActiveGame = 'hub';
+
+    function switchGameTab(tabName) {
+      currentActiveGame = tabName;
+
+      // Update Tab button active styles
+      document.querySelectorAll('.game-tab-btn').forEach(btn => {
+        btn.classList.remove('active');
+      });
+      const activeBtn = document.getElementById(`tab-btn-${tabName}`);
+      if (activeBtn) activeBtn.classList.add('active');
+
+      // Hide all panels
+      document.querySelectorAll('.game-view-panel').forEach(panel => {
+        panel.classList.add('hidden');
+        panel.classList.remove('block');
+      });
+
+      // Show selected panel
+      const targetPanel = document.getElementById(`game-view-${tabName}`);
+      if (targetPanel) {
+        targetPanel.classList.remove('hidden');
+        targetPanel.classList.add('block');
+      }
+
+      // Contextual startup triggers
+      if (tabName === 'sudoku') {
+        if (!sudokuInitialized) {
+          generateNewSudoku();
+        }
+      } else if (tabName === 'snake') {
+        if (!snakeInitialized) {
+          initSnakeGame();
+        }
+      }
+      updateHubStats();
+    }
+
+    function updateHubStats() {
+      const wins = localStorage.getItem('sudoku_wins_count') || 0;
+      const snakeHigh = localStorage.getItem('snake_highscore') || 0;
+      const winsEl = document.getElementById('hub-sudoku-wins');
+      const snakeHighEl = document.getElementById('hub-snake-high');
+      if (winsEl) winsEl.textContent = wins;
+      if (snakeHighEl) snakeHighEl.textContent = snakeHigh;
+    }
+
+    // =========================================================
+    // ================== 1. SUDOKU GAME ENGINE ==================
+    // =========================================================
+    let sudokuInitialized = false;
+    let sudokuDifficulty = 'easy'; // easy, medium, hard
+    let sudokuSolution = [];
+    let sudokuInitial = [];
+    let sudokuCurrent = [];
+    let selectedCellIndex = null;
+    let sudokuTimerInterval = null;
+    let sudokuSeconds = 0;
+    let sudokuMistakes = 0;
+    let sudokuIsWon = false;
+
+    // Pre-curated valid base puzzle boards to ensure guaranteed solvable and high quality puzzles
+    const SUDOKU_PRESETS = {
+      easy: [
+        {
+          initial: "530070000600195000098000060800060003400803001700020006060000280000419005000080079",
+          solution: "534678912672195348198342567859761423426853791713924856961537284287419635345286179"
+        },
+        {
+          initial: "000260701680070090190004500820100040004602900050003028009300074040050036703018000",
+          solution: "435269781682571493197834562826195347374682915951743628519326874248957136763418259"
+        }
+      ],
+      medium: [
+        {
+          initial: "200080300060070084030500209000105408000000000402706000301007040720040060004010003",
+          solution: "245981376169273584837564219976125438513498627482736951391657842728349165654812793"
+        },
+        {
+          initial: "000600400700003600000091080000000000050180003000306045040200060903000000020000100",
+          solution: "581672439792843651364591287438957126256184973179326845845219360913768500627435198"
+        }
+      ],
+      hard: [
+        {
+          initial: "000000012000000003002300400001800005060070800000009000008500000900040500470006000",
+          solution: "683457912145928763792361458231894675569172834874639251318575249926743581475216390"
+        },
+        {
+          initial: "020000000000600003074080000000003002080040010600500000000010780500009000000000040",
+          solution: "128354697956271483374986251415793862283645910697128345832410789541839026769502148"
+        }
+      ]
+    };
+
+    function setSudokuDifficulty(diff) {
+      sudokuDifficulty = diff;
+      ['easy', 'medium', 'hard'].forEach(d => {
+        const btn = document.getElementById(`diff-btn-${d}`);
+        if (btn) {
+          if (d === diff) {
+            btn.className = "px-2.5 py-1 text-[10px] font-bold rounded-md bg-themeAccent text-white transition-all";
+          } else {
+            btn.className = "px-2.5 py-1 text-[10px] font-bold rounded-md text-textSecondary hover:text-textPrimary transition-all";
+          }
+        }
+      });
+      generateNewSudoku();
+    }
+
+    function generateNewSudoku() {
+      sudokuInitialized = true;
+      sudokuIsWon = false;
+      sudokuMistakes = 0;
+      updateSudokuMistakes();
+      resetSudokuTimer();
+      startSudokuTimer();
+
+      // Pick a random preset based on difficulty
+      const pool = SUDOKU_PRESETS[sudokuDifficulty] || SUDOKU_PRESETS.easy;
+      const pick = pool[Math.floor(Math.random() * pool.length)];
+
+      sudokuInitial = pick.initial.split('').map(Number);
+      sudokuSolution = pick.solution.split('').map(Number);
+      sudokuCurrent = [...sudokuInitial];
+      selectedCellIndex = null;
+
+      renderSudokuBoard();
+    }
+
+    function renderSudokuBoard() {
+      const boardEl = document.getElementById('sudoku-board');
+      if (!boardEl) return;
+      boardEl.innerHTML = '';
+
+      const selectedVal = selectedCellIndex !== null ? sudokuCurrent[selectedCellIndex] : null;
+      const selRow = selectedCellIndex !== null ? Math.floor(selectedCellIndex / 9) : null;
+      const selCol = selectedCellIndex !== null ? selectedCellIndex % 9 : null;
+      const selBox = selectedCellIndex !== null ? (Math.floor(selRow / 3) * 3 + Math.floor(selCol / 3)) : null;
+
+      for (let i = 0; i < 81; i++) {
+        const cell = document.createElement('div');
+        const val = sudokuCurrent[i];
+        const isPrefilled = sudokuInitial[i] !== 0;
+
+        cell.className = 'sudoku-cell';
+        if (isPrefilled) cell.classList.add('prefilled');
+        else if (val !== 0) cell.classList.add('user-filled');
+
+        const row = Math.floor(i / 9);
+        const col = i % 9;
+        const box = Math.floor(row / 3) * 3 + Math.floor(col / 3);
+
+        if (selectedCellIndex === i) {
+          cell.classList.add('selected');
+        } else if (selectedCellIndex !== null) {
+          if (row === selRow || col === selCol || box === selBox) {
+            cell.classList.add('highlight-peer');
+          }
+          if (val !== 0 && selectedVal !== 0 && val === selectedVal) {
+            cell.classList.add('highlight-same');
+          }
+        }
+
+        cell.textContent = val === 0 ? '' : val;
+        cell.onclick = () => selectSudokuCell(i);
+
+        boardEl.appendChild(cell);
+      }
+    }
+
+    function selectSudokuCell(index) {
+      selectedCellIndex = index;
+      renderSudokuBoard();
+    }
+
+    function inputSudokuNumber(num) {
+      if (selectedCellIndex === null || sudokuIsWon) return;
+      if (sudokuInitial[selectedCellIndex] !== 0) return; // Cannot edit prefilled
+
+      const expected = sudokuSolution[selectedCellIndex];
+      sudokuCurrent[selectedCellIndex] = num;
+
+      if (num !== expected) {
+        sudokuMistakes++;
+        updateSudokuMistakes();
+
+        // Trigger cell error shake animation
+        const boardEl = document.getElementById('sudoku-board');
+        if (boardEl && boardEl.children[selectedCellIndex]) {
+          boardEl.children[selectedCellIndex].classList.add('invalid');
+          setTimeout(() => {
+            if (boardEl.children[selectedCellIndex]) {
+              boardEl.children[selectedCellIndex].classList.remove('invalid');
+            }
+          }, 400);
+        }
+      }
+
+      renderSudokuBoard();
+      checkIfSudokuWon();
+    }
+
+    function eraseSudokuCell() {
+      if (selectedCellIndex === null || sudokuIsWon) return;
+      if (sudokuInitial[selectedCellIndex] !== 0) return;
+
+      sudokuCurrent[selectedCellIndex] = 0;
+      renderSudokuBoard();
+    }
+
+    function giveSudokuHint() {
+      if (sudokuIsWon) return;
+      // If cell selected and empty, fill it
+      if (selectedCellIndex !== null && sudokuInitial[selectedCellIndex] === 0) {
+        sudokuCurrent[selectedCellIndex] = sudokuSolution[selectedCellIndex];
+        renderSudokuBoard();
+        checkIfSudokuWon();
+        return;
+      }
+
+      // Otherwise find first empty cell and fill it
+      for (let i = 0; i < 81; i++) {
+        if (sudokuCurrent[i] === 0) {
+          selectedCellIndex = i;
+          sudokuCurrent[i] = sudokuSolution[i];
+          renderSudokuBoard();
+          checkIfSudokuWon();
+          break;
+        }
+      }
+    }
+
+    function resetSudokuBoard() {
+      sudokuCurrent = [...sudokuInitial];
+      sudokuMistakes = 0;
+      updateSudokuMistakes();
+      selectedCellIndex = null;
+      renderSudokuBoard();
+    }
+
+    function checkSudokuSolution() {
+      if (sudokuIsWon) return;
+      let hasError = false;
+      const boardEl = document.getElementById('sudoku-board');
+
+      for (let i = 0; i < 81; i++) {
+        if (sudokuCurrent[i] !== 0 && sudokuCurrent[i] !== sudokuSolution[i]) {
+          hasError = true;
+          if (boardEl && boardEl.children[i]) {
+            boardEl.children[i].classList.add('invalid');
+            setTimeout(() => {
+              if (boardEl.children[i]) boardEl.children[i].classList.remove('invalid');
+            }, 600);
+          }
+        }
+      }
+
+      if (!hasError) {
+        checkIfSudokuWon(true);
+      }
+    }
+
+    function checkIfSudokuWon(forceCheck = false) {
+      let complete = true;
+      for (let i = 0; i < 81; i++) {
+        if (sudokuCurrent[i] !== sudokuSolution[i]) {
+          complete = false;
+          break;
+        }
+      }
+
+      if (complete) {
+        sudokuIsWon = true;
+        clearInterval(sudokuTimerInterval);
+
+        // Update local stats
+        const prevWins = parseInt(localStorage.getItem('sudoku_wins_count') || '0', 10);
+        localStorage.setItem('sudoku_wins_count', prevWins + 1);
+        updateHubStats();
+
+        // Show celebration win modal
+        const modal = document.getElementById('sudoku-win-modal');
+        const timerEl = document.getElementById('win-modal-time');
+        const diffEl = document.getElementById('win-modal-diff');
+
+        if (timerEl) timerEl.textContent = formatTime(sudokuSeconds);
+        if (diffEl) diffEl.textContent = sudokuDifficulty.toUpperCase();
+
+        if (modal) {
+          modal.classList.remove('hidden');
+          setTimeout(() => {
+            modal.classList.remove('opacity-0');
+            modal.querySelector('.premium-card').classList.remove('scale-95');
+            modal.querySelector('.premium-card').classList.add('scale-100');
+          }, 30);
+        }
+      }
+    }
+
+    function closeSudokuWinModal() {
+      const modal = document.getElementById('sudoku-win-modal');
+      if (modal) {
+        modal.classList.add('opacity-0');
+        modal.querySelector('.premium-card').classList.remove('scale-100');
+        modal.querySelector('.premium-card').classList.add('scale-95');
+        setTimeout(() => modal.classList.add('hidden'), 300);
+      }
+    }
+
+    function updateSudokuMistakes() {
+      const el = document.getElementById('sudoku-mistakes');
+      if (el) el.textContent = sudokuMistakes;
+    }
+
+    function startSudokuTimer() {
+      clearInterval(sudokuTimerInterval);
+      sudokuTimerInterval = setInterval(() => {
+        sudokuSeconds++;
+        const timerEl = document.getElementById('sudoku-timer');
+        if (timerEl) timerEl.textContent = formatTime(sudokuSeconds);
+      }, 1000);
+    }
+
+    function resetSudokuTimer() {
+      clearInterval(sudokuTimerInterval);
+      sudokuSeconds = 0;
+      const timerEl = document.getElementById('sudoku-timer');
+      if (timerEl) timerEl.textContent = "00:00";
+    }
+
+    function formatTime(totalSec) {
+      const m = Math.floor(totalSec / 60).toString().padStart(2, '0');
+      const s = (totalSec % 60).toString().padStart(2, '0');
+      return `${m}:${s}`;
+    }
+
+    // =========================================================
+    // =================== 2. SNAKE GAME ENGINE ==================
+    // =========================================================
+    let snakeInitialized = false;
+    let snakeCanvas, snakeCtx;
+    const GRID_SIZE = 20; // 20x20 grid
+    let CELL_SIZE = 20;
+    let snake = [];
+    let snakeDir = { x: 1, y: 0 };
+    let snakeNextDir = { x: 1, y: 0 };
+    let food = { x: 15, y: 10 };
+    let snakeScore = 0;
+    let snakeHighScore = 0;
+    let snakeGameRunning = false;
+    let snakeGamePaused = false;
+    let snakeGameLoopInterval = null;
+    let snakeSpeedMs = 130;
+    let snakeFoodEaten = 0;
+
+    function initSnakeGame() {
+      snakeInitialized = true;
+      snakeCanvas = document.getElementById('snake-canvas');
+      if (!snakeCanvas) return;
+      snakeCtx = snakeCanvas.getContext('2d');
+
+      snakeHighScore = parseInt(localStorage.getItem('snake_highscore') || '0', 10);
+      const highEl = document.getElementById('snake-high-score');
+      if (highEl) highEl.textContent = snakeHighScore;
+
+      resetSnakeState();
+      drawSnakeGame();
+    }
+
+    function resetSnakeState() {
+      snake = [
+        { x: 8, y: 10 },
+        { x: 7, y: 10 },
+        { x: 6, y: 10 }
+      ];
+      snakeDir = { x: 1, y: 0 };
+      snakeNextDir = { x: 1, y: 0 };
+      snakeScore = 0;
+      snakeFoodEaten = 0;
+      snakeSpeedMs = 130;
+      updateSnakeScoreUI();
+      spawnFood();
+    }
+
+    function startOrResumeSnake() {
+      const overlay = document.getElementById('snake-overlay');
+      if (overlay) overlay.classList.add('hidden');
+
+      if (!snakeGameRunning) {
+        resetSnakeState();
+        snakeGameRunning = true;
+        snakeGamePaused = false;
+        runSnakeLoop();
+      } else if (snakeGamePaused) {
+        snakeGamePaused = false;
+        runSnakeLoop();
+      }
+      updatePauseButtonUI();
+    }
+
+    function togglePauseSnake() {
+      if (!snakeGameRunning) {
+        startOrResumeSnake();
+        return;
+      }
+
+      snakeGamePaused = !snakeGamePaused;
+      const overlay = document.getElementById('snake-overlay');
+      const title = document.getElementById('snake-overlay-title');
+      const desc = document.getElementById('snake-overlay-desc');
+      const btn = document.getElementById('snake-overlay-btn');
+
+      if (snakeGamePaused) {
+        clearInterval(snakeGameLoopInterval);
+        if (title) title.textContent = "Permainan Dijeda";
+        if (desc) desc.textContent = "Tekan Lanjutkan untuk melanjutkan permainan.";
+        if (btn) btn.innerHTML = '<i class="fa-solid fa-play text-[11px]"></i> Lanjutkan';
+        if (overlay) overlay.classList.remove('hidden');
+      } else {
+        if (overlay) overlay.classList.add('hidden');
+        runSnakeLoop();
+      }
+      updatePauseButtonUI();
+    }
+
+    function restartSnakeGame() {
+      clearInterval(snakeGameLoopInterval);
+      snakeGameRunning = false;
+      snakeGamePaused = false;
+      resetSnakeState();
+      drawSnakeGame();
+      startOrResumeSnake();
+    }
+
+    function runSnakeLoop() {
+      clearInterval(snakeGameLoopInterval);
+      snakeGameLoopInterval = setInterval(() => {
+        updateSnakeLogic();
+        drawSnakeGame();
+      }, snakeSpeedMs);
+    }
+
+    function updateSnakeLogic() {
+      snakeDir = { ...snakeNextDir };
+      const head = { x: snake[0].x + snakeDir.x, y: snake[0].y + snakeDir.y };
+
+      // Wall collision check
+      if (head.x < 0 || head.x >= GRID_SIZE || head.y < 0 || head.y >= GRID_SIZE) {
+        triggerSnakeGameOver();
+        return;
+      }
+
+      // Self collision check
+      for (let segment of snake) {
+        if (segment.x === head.x && segment.y === head.y) {
+          triggerSnakeGameOver();
+          return;
+        }
+      }
+
+      snake.unshift(head);
+
+      // Check food eat
+      if (head.x === food.x && head.y === food.y) {
+        snakeScore += 10;
+        snakeFoodEaten++;
+        if (snakeScore > snakeHighScore) {
+          snakeHighScore = snakeScore;
+          localStorage.setItem('snake_highscore', snakeHighScore);
+        }
+        updateSnakeScoreUI();
+
+        // Speed curve acceleration
+        if (snakeFoodEaten % 4 === 0 && snakeSpeedMs > 65) {
+          snakeSpeedMs = Math.max(65, snakeSpeedMs - 8);
+          runSnakeLoop();
+        }
+
+        spawnFood();
+      } else {
+        snake.pop();
+      }
+    }
+
+    function spawnFood() {
+      let valid = false;
+      while (!valid) {
+        food.x = Math.floor(Math.random() * GRID_SIZE);
+        food.y = Math.floor(Math.random() * GRID_SIZE);
+        valid = !snake.some(segment => segment.x === food.x && segment.y === food.y);
+      }
+    }
+
+    function triggerSnakeGameOver() {
+      clearInterval(snakeGameLoopInterval);
+      snakeGameRunning = false;
+      snakeGamePaused = false;
+      updateHubStats();
+
+      const overlay = document.getElementById('snake-overlay');
+      const icon = document.getElementById('snake-overlay-icon');
+      const title = document.getElementById('snake-overlay-title');
+      const desc = document.getElementById('snake-overlay-desc');
+      const btn = document.getElementById('snake-overlay-btn');
+
+      if (icon) icon.className = "fa-solid fa-skull-crossbones text-brand-red-500";
+      if (title) title.textContent = "Game Over!";
+      if (desc) desc.innerHTML = `Skor Akhir: <strong class="text-emerald-400 font-bold">${snakeScore}</strong> &bull; Rekor: <strong class="text-amber-400 font-bold">${snakeHighScore}</strong>`;
+      if (btn) btn.innerHTML = '<i class="fa-solid fa-rotate-left text-[11px]"></i> Main Ulang';
+      if (overlay) overlay.classList.remove('hidden');
+
+      updatePauseButtonUI();
+    }
+
+    function updateSnakeScoreUI() {
+      const scoreEl = document.getElementById('snake-score');
+      const highEl = document.getElementById('snake-high-score');
+      const foodCountEl = document.getElementById('snake-food-count');
+      const speedLabel = document.getElementById('snake-speed-label');
+
+      if (scoreEl) scoreEl.textContent = snakeScore;
+      if (highEl) highEl.textContent = snakeHighScore;
+      if (foodCountEl) foodCountEl.textContent = `${snakeFoodEaten} apel`;
+
+      if (speedLabel) {
+        const multiplier = (130 / snakeSpeedMs).toFixed(1);
+        speedLabel.textContent = `${multiplier}x Speed`;
+      }
+    }
+
+    function updatePauseButtonUI() {
+      const pauseBtn = document.getElementById('btn-snake-pause');
+      if (!pauseBtn) return;
+      if (snakeGamePaused) {
+        pauseBtn.innerHTML = '<i class="fa-solid fa-play text-emerald-500"></i> Lanjut';
+      } else {
+        pauseBtn.innerHTML = '<i class="fa-solid fa-pause text-amber-500"></i> Jeda (Space)';
+      }
+    }
+
+    function drawSnakeGame() {
+      if (!snakeCtx || !snakeCanvas) return;
+      CELL_SIZE = snakeCanvas.width / GRID_SIZE;
+
+      // 1. Clear & Background
+      snakeCtx.fillStyle = '#0b0d11';
+      snakeCtx.fillRect(0, 0, snakeCanvas.width, snakeCanvas.height);
+
+      // 2. Subtle Grid Lines
+      snakeCtx.strokeStyle = 'rgba(255, 255, 255, 0.03)';
+      snakeCtx.lineWidth = 1;
+      for (let i = 0; i <= GRID_SIZE; i++) {
+        snakeCtx.beginPath();
+        snakeCtx.moveTo(i * CELL_SIZE, 0);
+        snakeCtx.lineTo(i * CELL_SIZE, snakeCanvas.height);
+        snakeCtx.stroke();
+
+        snakeCtx.beginPath();
+        snakeCtx.moveTo(0, i * CELL_SIZE);
+        snakeCtx.lineTo(snakeCanvas.width, i * CELL_SIZE);
+        snakeCtx.stroke();
+      }
+
+      // 3. Draw Food (Glowing Apple / Orb)
+      const foodX = food.x * CELL_SIZE + CELL_SIZE / 2;
+      const foodY = food.y * CELL_SIZE + CELL_SIZE / 2;
+      const radius = (CELL_SIZE / 2) * 0.75;
+
+      snakeCtx.save();
+      snakeCtx.shadowColor = '#e11d48';
+      snakeCtx.shadowBlur = 12;
+      snakeCtx.fillStyle = '#ff1a40';
+      snakeCtx.beginPath();
+      snakeCtx.arc(foodX, foodY, radius, 0, Math.PI * 2);
+      snakeCtx.fill();
+
+      // Food highlight
+      snakeCtx.fillStyle = '#ffffff';
+      snakeCtx.beginPath();
+      snakeCtx.arc(foodX - radius * 0.3, foodY - radius * 0.3, radius * 0.25, 0, Math.PI * 2);
+      snakeCtx.fill();
+      snakeCtx.restore();
+
+      // 4. Draw Snake Body
+      snake.forEach((segment, idx) => {
+        const segX = segment.x * CELL_SIZE;
+        const segY = segment.y * CELL_SIZE;
+        const isHead = idx === 0;
+
+        snakeCtx.save();
+        if (isHead) {
+          snakeCtx.shadowColor = '#10b981';
+          snakeCtx.shadowBlur = 10;
+          snakeCtx.fillStyle = '#10b981';
+        } else {
+          const greenTone = Math.max(70, 185 - idx * 3);
+          snakeCtx.fillStyle = `rgb(16, ${greenTone}, 129)`;
+        }
+
+        // Rounded Segments
+        const pad = 1.5;
+        const r = 5;
+        const x = segX + pad;
+        const y = segY + pad;
+        const w = CELL_SIZE - pad * 2;
+        const h = CELL_SIZE - pad * 2;
+
+        snakeCtx.beginPath();
+        snakeCtx.roundRect(x, y, w, h, isHead ? 6 : 4);
+        snakeCtx.fill();
+
+        // Eyes for Head
+        if (isHead) {
+          snakeCtx.fillStyle = '#000000';
+          let eye1X, eye1Y, eye2X, eye2Y;
+          const eyeSize = 2;
+
+          if (snakeDir.x === 1) { // Moving Right
+            eye1X = x + w - 4; eye1Y = y + 4;
+            eye2X = x + w - 4; eye2Y = y + h - 4;
+          } else if (snakeDir.x === -1) { // Moving Left
+            eye1X = x + 4; eye1Y = y + 4;
+            eye2X = x + 4; eye2Y = y + h - 4;
+          } else if (snakeDir.y === 1) { // Moving Down
+            eye1X = x + 4; eye1Y = y + h - 4;
+            eye2X = x + w - 4; eye2Y = y + h - 4;
+          } else { // Moving Up
+            eye1X = x + 4; eye1Y = y + 4;
+            eye2X = x + w - 4; eye2Y = y + 4;
+          }
+
+          snakeCtx.beginPath();
+          snakeCtx.arc(eye1X, eye1Y, eyeSize, 0, Math.PI * 2);
+          snakeCtx.arc(eye2X, eye2Y, eyeSize, 0, Math.PI * 2);
+          snakeCtx.fill();
+        }
+
+        snakeCtx.restore();
+      });
+    }
+
+    function handleVirtualKey(key) {
+      if (key === 'ArrowUp' && snakeDir.y === 0) snakeNextDir = { x: 0, y: -1 };
+      else if (key === 'ArrowDown' && snakeDir.y === 0) snakeNextDir = { x: 0, y: 1 };
+      else if (key === 'ArrowLeft' && snakeDir.x === 0) snakeNextDir = { x: -1, y: 0 };
+      else if (key === 'ArrowRight' && snakeDir.x === 0) snakeNextDir = { x: 1, y: 0 };
+    }
+
+    // Keyboard Listeners for both Games
+    window.addEventListener('keydown', (e) => {
+      // 1. Sudoku Controls
+      if (currentActiveGame === 'sudoku' && selectedCellIndex !== null) {
+        const key = e.key;
+        if (key >= '1' && key <= '9') {
+          inputSudokuNumber(parseInt(key, 10));
+        } else if (key === 'Backspace' || key === 'Delete') {
+          eraseSudokuCell();
+        } else if (key === 'ArrowUp') {
+          e.preventDefault();
+          if (selectedCellIndex >= 9) selectSudokuCell(selectedCellIndex - 9);
+        } else if (key === 'ArrowDown') {
+          e.preventDefault();
+          if (selectedCellIndex < 72) selectSudokuCell(selectedCellIndex + 9);
+        } else if (key === 'ArrowLeft') {
+          e.preventDefault();
+          if (selectedCellIndex % 9 > 0) selectSudokuCell(selectedCellIndex - 1);
+        } else if (key === 'ArrowRight') {
+          e.preventDefault();
+          if (selectedCellIndex % 9 < 8) selectSudokuCell(selectedCellIndex + 1);
+        }
+      }
+
+      // 2. Snake Controls
+      if (currentActiveGame === 'snake') {
+        if (e.key === ' ' || e.code === 'Space') {
+          e.preventDefault();
+          togglePauseSnake();
+        } else if ((e.key === 'ArrowUp' || e.key.toLowerCase() === 'w') && snakeDir.y === 0) {
+          e.preventDefault();
+          snakeNextDir = { x: 0, y: -1 };
+        } else if ((e.key === 'ArrowDown' || e.key.toLowerCase() === 's') && snakeDir.y === 0) {
+          e.preventDefault();
+          snakeNextDir = { x: 0, y: 1 };
+        } else if ((e.key === 'ArrowLeft' || e.key.toLowerCase() === 'a') && snakeDir.x === 0) {
+          e.preventDefault();
+          snakeNextDir = { x: -1, y: 0 };
+        } else if ((e.key === 'ArrowRight' || e.key.toLowerCase() === 'd') && snakeDir.x === 0) {
+          e.preventDefault();
+          snakeNextDir = { x: 1, y: 0 };
+        }
+      }
+    });
+
+    // Theme Toggle Functionality
+    function toggleTheme() {
+      const doc = document.documentElement;
+      if (doc.classList.contains('dark')) {
+        doc.classList.remove('dark');
+        localStorage.setItem('theme', 'light');
+      } else {
+        doc.classList.add('dark');
+        localStorage.setItem('theme', 'dark');
+      }
+    }
+
+    function toggleMobileMenu() {
+      const menu = document.getElementById('mobile-menu');
+      const btnIcon = document.querySelector('#btn-mobile-menu i');
+      if (menu) {
+        if (menu.classList.contains('hidden')) {
+          menu.classList.remove('hidden');
+          if (btnIcon) btnIcon.className = "fa-solid fa-xmark text-xs";
+        } else {
+          menu.classList.add('hidden');
+          if (btnIcon) btnIcon.className = "fa-solid fa-bars-staggered text-xs";
+        }
+      }
+    }
+
+    // Auto-init on page load
+    window.addEventListener('DOMContentLoaded', () => {
+      updateHubStats();
+    });
+
+    // Explicit window assignments for inline HTML onclick handlers
+    window.switchGameTab = switchGameTab;
+    window.setSudokuDifficulty = setSudokuDifficulty;
+    window.generateNewSudoku = generateNewSudoku;
+    window.resetSudokuBoard = resetSudokuBoard;
+    window.checkSudokuSolution = checkSudokuSolution;
+    window.inputSudokuNumber = inputSudokuNumber;
+    window.eraseSudokuCell = eraseSudokuCell;
+    window.closeSudokuWinModal = closeSudokuWinModal;
+    window.startOrResumeSnake = startOrResumeSnake;
+    window.togglePauseSnake = togglePauseSnake;
+    window.restartSnakeGame = restartSnakeGame;
+    window.setSnakeDifficulty = setSnakeDifficulty;
+    window.handleVirtualKey = handleVirtualKey;
+    window.toggleTheme = toggleTheme;
+    window.toggleMobileMenu = toggleMobileMenu;
+  </script>
+
+  <!-- Global Supporting Scripts for Site Consistency & Music Player -->
+  <script src="app.js"></script>
+  <script src="spaRouter.js"></script>
+  <script src="iwannabeyoursLyrics.js"></script>
+  <script src="no1PartyAnthemLyrics.js"></script>
+  <script src="secretDoorLyrics.js"></script>
+  <script src="505Lyrics.js"></script>
+  <script src="bestfriendLyrics.js"></script>
+  <script src="happinessLyrics.js"></script>
+  <script src="minigames.js"></script>
+  <script src="audioManager.js"></script>
+  <script src="musicPlayer.js"></script>
+</body>
+
+</html>
